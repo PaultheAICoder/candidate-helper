@@ -3,7 +3,12 @@
 **Input**: Design documents from `/specs/001-ai-interview-coach/`
 **Prerequisites**: plan.md (required), spec.md (required), research.md, data-model.md, contracts/, quickstart.md
 
-**Tests**: Tests are OPTIONAL - only included if explicitly requested. This feature does not require tests in MVP.
+**Tests**: Automated tests REQUIRED for each user story. Tests should be written BEFORE implementation (TDD approach).
+
+- Unit tests: Core utilities (STAR scoring, job matching, validators)
+- Integration tests: API routes with MSW mocking for OpenAI/Microsoft Graph
+- E2E tests: Critical user journeys with Playwright
+- Accessibility tests: WCAG 2.2 AA compliance with axe-core
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
@@ -51,61 +56,61 @@
 
 ### Database Schema
 
-- [ ] T017 Create migration 001: Initial schema in supabase/migrations/001_initial_schema.sql
-- [ ] T018 Define users table: id, email, auth_provider, work_auth_status, comp_range_min/max, remote_preference, location, eligibility_confirmed, recruiter_access_granted, digest_opt_in, digest_confirmed, timestamps
-- [ ] T019 [P] Define profiles table: id, user_id FK, target_roles, seniority_level, resume_filename, resume_storage_path, resume_uploaded_at, resume_file_size_bytes, timestamps
-- [ ] T020 [P] Define sessions table: id, user_id FK (nullable), mode, low_anxiety_enabled, per_question_coaching, job_description_text, target_role_override, question_count, started_at, completed_at, avg_star_score, completion_rate, draft_save JSONB, created_at
-- [ ] T021 [P] Define questions table: id, session_id FK, question_order, question_text, category, is_tailored, follow_up_question, follow_up_used, created_at
-- [ ] T022 [P] Define answers table: id, session_id FK, question_id FK UNIQUE, transcript_text, duration_seconds, retake_used, extension_used, star_situation_score, star_task_score, star_action_score, star_result_score, specificity_tag, impact_tag, clarity_tag, honesty_flag, created_at
-- [ ] T023 [P] Define reports table: id, session_id FK UNIQUE, strengths JSONB, clarifications JSONB, per_question_feedback JSONB, pdf_storage_path, pdf_generated_at, created_at
-- [ ] T024 [P] Define jobs table: id, source, title, company, skills TEXT[], must_have_skills TEXT[], seniority_level, location, posting_url UNIQUE, curated_at, active
-- [ ] T025 [P] Define matches table: id, user_id FK, job_id FK, match_score, hard_skills_score, soft_skills_score, seniority_score, logistics_score, match_reasons TEXT[], notified_at, recruiting_alert_sent, created_at
-- [ ] T026 [P] Define events table: id, user_id FK (nullable), event_type, session_id FK (nullable), payload JSONB, created_at
-- [ ] T027 [P] Define consents table: id, user_id FK, terms_version, privacy_version, ip_address INET, user_agent, created_at
-- [ ] T028 [P] Define cost_tracking table: id, period_start, period_end, model, tokens_used, audio_seconds, estimated_cost_usd, created_at
-- [ ] T029 [P] Define system_config table: key PRIMARY KEY, value TEXT, updated_at
-- [ ] T030 [P] Define audit_logs table: id, admin_user_id FK (nullable), action_type, resource_type, resource_id, details JSONB, created_at
-- [ ] T031 Add indexes: users(email), users(digest_opt_in, digest_confirmed), profiles(user_id), sessions(user_id), sessions(completed_at), sessions(avg_star_score, completion_rate), questions(session_id, question_order), answers(session_id), answers(question_id), reports(session_id), jobs(source), jobs(active, curated_at DESC), jobs(posting_url), jobs(skills USING GIN), matches(user_id, match_score DESC), matches(job_id), matches(user_id, notified_at), matches(match_score, recruiting_alert_sent), events(user_id, created_at DESC), events(event_type, created_at DESC), events(session_id), consents(user_id, created_at DESC), cost_tracking(period_start, period_end), cost_tracking(model, period_start), audit_logs(admin_user_id, created_at DESC), audit_logs(resource_type, resource_id)
-- [ ] T032 Create migration 002: Row Level Security in supabase/migrations/002_rls_policies.sql
-- [ ] T033 Enable RLS on all tables: users, profiles, sessions, questions, answers, reports, matches, consents, events
-- [ ] T034 [P] Create RLS policy: Users can view own profile (users table SELECT)
-- [ ] T035 [P] Create RLS policy: Users can update own profile (users table UPDATE)
-- [ ] T036 [P] Create RLS policy: Users can view own sessions (sessions table SELECT, allow user_id = auth.uid() OR user_id IS NULL for guests)
-- [ ] T037 [P] Create RLS policy: Users can create sessions (sessions table INSERT)
-- [ ] T038 [P] Create RLS policy: Users can view own answers (answers table SELECT via session ownership)
-- [ ] T039 [P] Create helper function: is_recruiter(user_id UUID) RETURNS BOOLEAN in supabase/migrations/002_rls_policies.sql
-- [ ] T040 Create RLS policy: Recruiters can view eligible transcripts (answers table SELECT, check recruiter_access_granted OR performance threshold)
-- [ ] T041 [P] Create RLS policy: Users can view own consents (consents table SELECT)
-- [ ] T042 [P] Create RLS policy: System can insert consents (consents table INSERT)
-- [ ] T043 Create migration 003: Audit triggers in supabase/migrations/003_audit_triggers.sql
-- [ ] T044 Create trigger: Update sessions.avg_star_score when answers inserted/updated
-- [ ] T045 [P] Create trigger: Update sessions.completion_rate when answers inserted
-- [ ] T046 Create function: get_current_month_cost() RETURNS DECIMAL for cost tracking
-- [ ] T047 Create seed data file: supabase/seed.sql with generic soft-skill question bank (conflict, leadership, ownership, collaboration, failure/learning, communication categories)
-- [ ] T048 Insert sample system_config rows: audio_mode_enabled=true, monthly_cost_threshold_usd=285.00, max_sessions_per_day=2, max_questions_per_session=10
+- [x] T017 Create migration 001: Initial schema in supabase/migrations/001_initial_schema.sql
+- [x] T018 Define users table: id, email, auth_provider, work_auth_status, comp_range_min/max, remote_preference, location, eligibility_confirmed, recruiter_access_granted, digest_opt_in, digest_confirmed, timestamps
+- [x] T019 [P] Define profiles table: id, user_id FK, target_roles, seniority_level, resume_filename, resume_storage_path, resume_uploaded_at, resume_file_size_bytes, timestamps
+- [x] T020 [P] Define sessions table: id, user_id FK (nullable), mode, low_anxiety_enabled, per_question_coaching, job_description_text, target_role_override, question_count, started_at, completed_at, avg_star_score, completion_rate, draft_save JSONB, created_at
+- [x] T021 [P] Define questions table: id, session_id FK, question_order, question_text, category, is_tailored, follow_up_question, follow_up_used, created_at
+- [x] T022 [P] Define answers table: id, session_id FK, question_id FK UNIQUE, transcript_text, duration_seconds, retake_used, extension_used, star_situation_score, star_task_score, star_action_score, star_result_score, specificity_tag, impact_tag, clarity_tag, honesty_flag, created_at
+- [x] T023 [P] Define reports table: id, session_id FK UNIQUE, strengths JSONB, clarifications JSONB, per_question_feedback JSONB, pdf_storage_path, pdf_generated_at, created_at
+- [x] T024 [P] Define jobs table: id, source, title, company, skills TEXT[], must_have_skills TEXT[], seniority_level, location, posting_url UNIQUE, curated_at, active
+- [x] T025 [P] Define matches table: id, user_id FK, job_id FK, match_score, hard_skills_score, soft_skills_score, seniority_score, logistics_score, match_reasons TEXT[], notified_at, recruiting_alert_sent, created_at
+- [x] T026 [P] Define events table: id, user_id FK (nullable), event_type, session_id FK (nullable), payload JSONB, created_at
+- [x] T027 [P] Define consents table: id, user_id FK, terms_version, privacy_version, ip_address INET, user_agent, created_at
+- [x] T028 [P] Define cost_tracking table: id, period_start, period_end, model, tokens_used, audio_seconds, estimated_cost_usd, created_at
+- [x] T029 [P] Define system_config table: key PRIMARY KEY, value TEXT, updated_at
+- [x] T030 [P] Define audit_logs table: id, admin_user_id FK (nullable), action_type, resource_type, resource_id, details JSONB, created_at
+- [x] T031 Add indexes: users(email), users(digest_opt_in, digest_confirmed), profiles(user_id), sessions(user_id), sessions(completed_at), sessions(avg_star_score, completion_rate), questions(session_id, question_order), answers(session_id), answers(question_id), reports(session_id), jobs(source), jobs(active, curated_at DESC), jobs(posting_url), jobs(skills USING GIN), matches(user_id, match_score DESC), matches(job_id), matches(user_id, notified_at), matches(match_score, recruiting_alert_sent), events(user_id, created_at DESC), events(event_type, created_at DESC), events(session_id), consents(user_id, created_at DESC), cost_tracking(period_start, period_end), cost_tracking(model, period_start), audit_logs(admin_user_id, created_at DESC), audit_logs(resource_type, resource_id)
+- [x] T032 Create migration 002: Row Level Security in supabase/migrations/002_rls_policies.sql
+- [x] T033 Enable RLS on all tables: users, profiles, sessions, questions, answers, reports, matches, consents, events
+- [x] T034 [P] Create RLS policy: Users can view own profile (users table SELECT)
+- [x] T035 [P] Create RLS policy: Users can update own profile (users table UPDATE)
+- [x] T036 [P] Create RLS policy: Users can view own sessions (sessions table SELECT, allow user_id = auth.uid() OR user_id IS NULL for guests)
+- [x] T037 [P] Create RLS policy: Users can create sessions (sessions table INSERT)
+- [x] T038 [P] Create RLS policy: Users can view own answers (answers table SELECT via session ownership)
+- [x] T039 [P] Create helper function: is_recruiter(user_id UUID) RETURNS BOOLEAN in supabase/migrations/002_rls_policies.sql
+- [x] T040 Create RLS policy: Recruiters can view eligible transcripts (answers table SELECT, check recruiter_access_granted OR performance threshold)
+- [x] T041 [P] Create RLS policy: Users can view own consents (consents table SELECT)
+- [x] T042 [P] Create RLS policy: System can insert consents (consents table INSERT)
+- [x] T043 Create migration 003: Audit triggers in supabase/migrations/003_audit_triggers.sql
+- [x] T044 Create trigger: Update sessions.avg_star_score when answers inserted/updated
+- [x] T045 [P] Create trigger: Update sessions.completion_rate when answers inserted
+- [x] T046 Create function: get_current_month_cost() RETURNS DECIMAL for cost tracking
+- [x] T047 Create seed data file: supabase/seed.sql with generic soft-skill question bank (conflict, leadership, ownership, collaboration, failure/learning, communication categories)
+- [x] T048 Insert sample system_config rows: audio_mode_enabled=true, monthly_cost_threshold_usd=285.00, max_sessions_per_day=2, max_questions_per_session=10
 
 ### Auth & Middleware
 
-- [ ] T049 Create Supabase browser client in lib/supabase/client.ts
-- [ ] T050 Create Supabase server client in lib/supabase/server.ts
-- [ ] T051 Create auth middleware in lib/supabase/middleware.ts with eligibility checks (18+, U.S.-based)
-- [ ] T052 Create Next.js middleware in middleware.ts to protect auth routes and apply Supabase session handling
-- [ ] T053 Create rate limiting utility in lib/security/rate-limit.ts (per-IP and per-account limits)
-- [ ] T054 Create reCAPTCHA verification utility in lib/security/recaptcha.ts
+- [x] T049 Create Supabase browser client in lib/supabase/client.ts
+- [x] T050 Create Supabase server client in lib/supabase/server.ts
+- [x] T051 Create auth middleware in lib/supabase/middleware.ts with eligibility checks (18+, U.S.-based)
+- [x] T052 Create Next.js middleware in middleware.ts to protect auth routes and apply Supabase session handling
+- [x] T053 Create rate limiting utility in lib/security/rate-limit.ts (per-IP and per-account limits)
+- [x] T054 Create reCAPTCHA verification utility in lib/security/recaptcha.ts
 
 ### Shared Utilities & Components
 
-- [ ] T055 Create Zod validation schemas in lib/utils/validators.ts (session create, answer submit, resume upload, etc.)
-- [ ] T056 Create TypeScript types file: types/database.ts (Supabase generated types via npm run db:types)
-- [ ] T057 Create TypeScript types file: types/models.ts (domain model types: Session, Question, Answer, Report, etc.)
-- [ ] T058 Create TypeScript types file: types/openai.ts (OpenAI response types for structured outputs)
-- [ ] T059 Create cost tracker utility in lib/utils/cost-tracker.ts (insert cost_tracking rows after OpenAI calls)
-- [ ] T060 Create base UI components in components/ui/ using Radix UI primitives: Button.tsx, Dialog.tsx, Form.tsx, Input.tsx, Label.tsx, Select.tsx, Textarea.tsx, Toast.tsx
-- [ ] T061 Create shared Navbar component in components/shared/Navbar.tsx
-- [ ] T062 [P] Create shared Footer component in components/shared/Footer.tsx
-- [ ] T063 [P] Create ErrorBoundary component in components/shared/ErrorBoundary.tsx
-- [ ] T064 Create root layout in app/layout.tsx (fonts, TailwindCSS, providers, metadata)
-- [ ] T065 Create global styles in app/globals.css (TailwindCSS imports, custom utilities, WCAG-compliant focus rings)
+- [x] T055 Create Zod validation schemas in lib/utils/validators.ts (session create, answer submit, resume upload, etc.)
+- [x] T056 Create TypeScript types file: types/database.ts (Supabase generated types via npm run db:types)
+- [x] T057 Create TypeScript types file: types/models.ts (domain model types: Session, Question, Answer, Report, etc.)
+- [x] T058 Create TypeScript types file: types/openai.ts (OpenAI response types for structured outputs)
+- [x] T059 Create cost tracker utility in lib/utils/cost-tracker.ts (insert cost_tracking rows after OpenAI calls)
+- [x] T060 Create base UI components in components/ui/ using Radix UI primitives: Button.tsx, Dialog.tsx, Form.tsx, Input.tsx, Label.tsx, Select.tsx, Textarea.tsx, Toast.tsx
+- [x] T061 Create shared Navbar component in components/shared/Navbar.tsx
+- [x] T062 [P] Create shared Footer component in components/shared/Footer.tsx
+- [x] T063 [P] Create ErrorBoundary component in components/shared/ErrorBoundary.tsx
+- [x] T064 Create root layout in app/layout.tsx (fonts, TailwindCSS, providers, metadata)
+- [x] T065 Create global styles in app/globals.css (TailwindCSS imports, custom utilities, WCAG-compliant focus rings)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -119,21 +124,21 @@
 
 ### Implementation for User Story 1
 
-- [ ] T066 [P] [US1] Create public landing page in app/(public)/page.tsx with "Try Practice Session" CTA
-- [ ] T067 [P] [US1] Create public layout in app/(public)/layout.tsx (Navbar, Footer, no auth required)
-- [ ] T068 [US1] Create practice session setup page in app/(coach)/practice/page.tsx (select question count 3-10, text-only mode for guest, Low-Anxiety Mode toggle)
-- [ ] T069 [US1] Create coach layout in app/(coach)/layout.tsx
-- [ ] T070 [US1] Create POST /api/sessions route in app/api/sessions/route.ts (create session with user_id=NULL for guest, validate question_count, insert into sessions table, track session_start event)
-- [ ] T071 [US1] Create POST /api/sessions/[id]/questions route in app/api/sessions/[id]/questions/route.ts (fetch generic soft-skill questions from database seed, return 3-10 questions based on session.question_count, insert into questions table)
-- [ ] T072 [US1] Create active session page in app/(coach)/practice/session/[id]/page.tsx (display questions one-by-one, AnswerInput component for text, track q_answered events)
-- [ ] T073 [US1] Create AnswerInput component in components/coach/AnswerInput.tsx (text textarea with character count, accessibility labels, submit button)
-- [ ] T074 [US1] Create POST /api/answers route in app/api/answers/route.ts (submit answer with transcriptText, validate against session, insert into answers table, update session.completion_rate)
-- [ ] T075 [US1] Create OpenAI coaching utility in lib/openai/coaching.ts (prompt templates for STAR scoring and narrative feedback, function to call GPT-4o with structured output)
-- [ ] T076 [US1] Create STAR scoring utility in lib/scoring/star.ts (parse OpenAI response, extract situation/task/action/result scores 1-5, calculate specificity/impact/clarity tags)
-- [ ] T077 [US1] Create POST /api/sessions/[id]/coaching route in app/api/sessions/[id]/coaching/route.ts (fetch all answers for session, call OpenAI coaching for each, generate narrative + rubric tags + example improved answer, insert report into reports table, mark session completed_at)
-- [ ] T078 [US1] Create coaching results page in app/(coach)/practice/results/[id]/page.tsx (display narrative coaching, rubric tags, example answers, sign-up nudge banner)
-- [ ] T079 [US1] Create CoachingFeedback component in components/coach/CoachingFeedback.tsx (narrative text, STAR rubric tags with colors, example answer collapsible, hide scores if Low-Anxiety Mode)
-- [ ] T080 [US1] Add sign-up nudge banner to results page: "Create a free account to unlock resume uploads, audio practice, and personalized job matching!"
+- [x] T066 [P] [US1] Create public landing page in app/(public)/page.tsx with "Try Practice Session" CTA
+- [x] T067 [P] [US1] Create public layout in app/(public)/layout.tsx (Navbar, Footer, no auth required)
+- [x] T068 [US1] Create practice session setup page in app/(coach)/practice/page.tsx (select question count 3-10, text-only mode for guest, Low-Anxiety Mode toggle)
+- [x] T069 [US1] Create coach layout in app/(coach)/layout.tsx
+- [x] T070 [US1] Create POST /api/sessions route in app/api/sessions/route.ts (create session with user_id=NULL for guest, validate question_count, insert into sessions table, track session_start event)
+- [x] T071 [US1] Create POST /api/sessions/[id]/questions route in app/api/sessions/[id]/questions/route.ts (fetch generic soft-skill questions from database seed, return 3-10 questions based on session.question_count, insert into questions table)
+- [x] T072 [US1] Create active session page in app/(coach)/practice/session/[id]/page.tsx (display questions one-by-one, AnswerInput component for text, track q_answered events)
+- [x] T073 [US1] Create AnswerInput component in components/coach/AnswerInput.tsx (text textarea with character count, accessibility labels, submit button)
+- [x] T074 [US1] Create POST /api/answers route in app/api/answers/route.ts (submit answer with transcriptText, validate against session, insert into answers table, update session.completion_rate)
+- [x] T075 [US1] Create OpenAI coaching utility in lib/openai/coaching.ts (prompt templates for STAR scoring and narrative feedback, function to call GPT-4o with structured output)
+- [x] T076 [US1] Create STAR scoring utility in lib/scoring/star.ts (parse OpenAI response, extract situation/task/action/result scores 1-5, calculate specificity/impact/clarity tags)
+- [x] T077 [US1] Create POST /api/sessions/[id]/coaching route in app/api/sessions/[id]/coaching/route.ts (fetch all answers for session, call OpenAI coaching for each, generate narrative + rubric tags + example improved answer, insert report into reports table, mark session completed_at)
+- [x] T078 [US1] Create coaching results page in app/(coach)/practice/results/[id]/page.tsx (display narrative coaching, rubric tags, example answers, sign-up nudge banner)
+- [x] T079 [US1] Create CoachingFeedback component in components/coach/CoachingFeedback.tsx (narrative text, STAR rubric tags with colors, example answer collapsible, hide scores if Low-Anxiety Mode)
+- [x] T080 [US1] Add sign-up nudge banner to results page: "Create a free account to unlock resume uploads, audio practice, and personalized job matching!"
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -483,6 +488,6 @@ With multiple developers:
 - Admin/Security/Polish tasks: **30** (17% of total)
 - Parallel opportunities: **~60 tasks** marked with [P] can run concurrently
 - Each user story independently completable and testable
-- No tests included (not requested in specification)
+- Automated tests required: unit, integration, E2E, and accessibility tests per TDD approach
 - Commit after each task or logical group
 - Stop at checkpoints to validate stories independently before proceeding
