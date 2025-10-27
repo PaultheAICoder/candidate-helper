@@ -4,7 +4,7 @@
  */
 
 import { OpenAI } from "openai";
-import { insertCostTrackingRecord } from "@/lib/utils/cost-tracker";
+import { trackCost, calculateGPTCost } from "@/lib/utils/cost-tracker";
 
 interface ParsedResume {
   fullName?: string;
@@ -33,7 +33,8 @@ const openai = new OpenAI({
 
 export async function parseResume(resumeText: string): Promise<ParsedResume> {
   try {
-    const response = await openai.beta.chat.completions.parse({
+    // Use the beta API for structured output (parse method)
+    const response = await ((openai as any).beta.chat.completions as any).parse({
       model: "gpt-4o",
       messages: [
         {
@@ -118,10 +119,10 @@ Be thorough but accurate - only extract information that is explicitly mentioned
           },
         },
       },
-    });
+    } as any);
 
     // Extract the parsed content
-    const content = response.choices[0].message.content;
+    const content = (response as any).choices[0].message.content;
     if (!content) {
       throw new Error("No content returned from OpenAI");
     }
@@ -130,10 +131,15 @@ Be thorough but accurate - only extract information that is explicitly mentioned
 
     // Track cost
     if (response.usage) {
-      await insertCostTrackingRecord({
+      const estimatedCost = calculateGPTCost("gpt-4o", {
+        prompt_tokens: response.usage.prompt_tokens,
+        completion_tokens: response.usage.completion_tokens,
+      });
+
+      await trackCost({
         model: "gpt-4o",
         tokensUsed: response.usage.total_tokens,
-        estimatedCost: (response.usage.total_tokens / 1000) * 0.015, // Approximate GPT-4o cost
+        estimatedCostUsd: estimatedCost,
       });
     }
 

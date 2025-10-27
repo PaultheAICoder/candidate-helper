@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
 
 export default function SettingsPage() {
+  const router = useRouter();
   const supabase = createClient();
 
   const [user, setUser] = useState<User | null>(null);
@@ -34,7 +36,7 @@ export default function SettingsPage() {
           .single();
 
         if (userData) {
-          setRecruiterAccess(userData.recruiter_access_granted);
+          setRecruiterAccess(userData.recruiter_access_granted ?? false);
         }
       } catch (error) {
         console.error("Error loading settings:", error);
@@ -139,7 +141,9 @@ export default function SettingsPage() {
             <div>
               <p className="text-sm text-muted-foreground">Account Created</p>
               <p className="font-medium">
-                {new Date(user?.created_at).toLocaleDateString()}
+                {user?.created_at
+                  ? new Date(user.created_at).toLocaleDateString()
+                  : "Unknown"}
               </p>
             </div>
           </div>

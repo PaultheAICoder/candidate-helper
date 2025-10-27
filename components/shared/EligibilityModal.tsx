@@ -54,7 +54,7 @@ export function EligibilityModal({ isOpen, onConfirm }: EligibilityModalProps) {
               <Checkbox
                 id="age-18-plus"
                 checked={isAge18Plus}
-                onCheckedChange={(checked) => setIsAge18Plus(checked as boolean)}
+                onCheckedChange={(checked: boolean | string) => setIsAge18Plus(checked as boolean)}
                 disabled={isLoading}
                 aria-label="Confirm you are 18 years old or older"
               />
@@ -71,7 +71,7 @@ export function EligibilityModal({ isOpen, onConfirm }: EligibilityModalProps) {
               <Checkbox
                 id="us-based"
                 checked={isUSBased}
-                onCheckedChange={(checked) => setIsUSBased(checked as boolean)}
+                onCheckedChange={(checked: boolean | string) => setIsUSBased(checked as boolean)}
                 disabled={isLoading}
                 aria-label="Confirm you are based in the United States"
               />

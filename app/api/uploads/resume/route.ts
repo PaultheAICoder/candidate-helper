@@ -3,7 +3,6 @@ import { createClient } from "@/lib/supabase/server";
 import { scanFile } from "@/lib/security/virus-scan";
 import { detectAndRedactPII } from "@/lib/security/pii-detection";
 import { parseResume, extractSkills, extractSeniority } from "@/lib/openai/resume-parser";
-import * as pdfjson from "pdfjs-dist/legacy/build/pdf";
 
 const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB
 const ALLOWED_MIMETYPES = [
@@ -23,27 +22,18 @@ async function extractTextFromFile(
   const mimetype = file.type;
 
   if (mimetype === "application/pdf") {
-    // Extract text from PDF
-    const pdf = await pdfjson.getDocument({ data: buffer }).promise;
-    let text = "";
-
-    for (let i = 0; i < pdf.numPages; i++) {
-      const page = await pdf.getPage(i + 1);
-      const textContent = await page.getTextContent();
-      const pageText = textContent.items
-        .map((item: Record<string, unknown>) => (item as { str: string }).str)
-        .join(" ");
-      text += pageText + "\n";
-    }
-
-    return text;
+    // For MVP, require text file or use pdf-parse
+    // For now, return helpful error
+    throw new Error(
+      "PDF parsing requires additional setup. Please upload as TXT or MD file for MVP."
+    );
   } else if (
     mimetype ===
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
   ) {
     // For .docx, we would need mammoth library
     // For MVP, return helpful error
-    throw new Error("DOCX support coming soon. Please convert to PDF.");
+    throw new Error("DOCX support coming soon. Please export to PDF or TXT.");
   } else if (mimetype === "text/plain" || mimetype === "text/markdown") {
     return buffer.toString("utf-8");
   } else {

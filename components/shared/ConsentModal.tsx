@@ -57,7 +57,7 @@ export function ConsentModal({ isOpen, onConfirm }: ConsentModalProps) {
                 <Checkbox
                   id="terms"
                   checked={termsAccepted}
-                  onCheckedChange={(checked) => setTermsAccepted(checked as boolean)}
+                  onCheckedChange={(checked: boolean | string) => setTermsAccepted(checked as boolean)}
                   disabled={isLoading}
                   aria-label="Accept Terms of Service"
                 />
@@ -99,7 +99,7 @@ export function ConsentModal({ isOpen, onConfirm }: ConsentModalProps) {
                 <Checkbox
                   id="privacy"
                   checked={privacyAccepted}
-                  onCheckedChange={(checked) => setPrivacyAccepted(checked as boolean)}
+                  onCheckedChange={(checked: boolean | string) => setPrivacyAccepted(checked as boolean)}
                   disabled={isLoading}
                   aria-label="Accept Privacy Policy"
                 />

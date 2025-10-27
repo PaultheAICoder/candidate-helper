@@ -51,7 +51,15 @@ export default function DashboardPage() {
           .limit(10);
 
         if (sessionsData) {
-          setSessions(sessionsData);
+          setSessions(
+            sessionsData.map(
+              (s) =>
+                ({
+                  ...s,
+                  mode: (s.mode as "audio" | "text") || "text",
+                } as SessionRecord)
+            )
+          );
         }
 
         // Load profile and resume status
@@ -77,8 +85,8 @@ export default function DashboardPage() {
           .single();
 
         if (userData) {
-          setDigestOptIn(userData.digest_opt_in);
-          setDigestConfirmed(userData.digest_confirmed);
+          setDigestOptIn(userData.digest_opt_in ?? false);
+          setDigestConfirmed(userData.digest_confirmed ?? false);
         }
       } catch (error) {
         console.error("Error loading dashboard data:", error);
