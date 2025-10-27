@@ -62,25 +62,18 @@ export default function PracticeSetupPage() {
         <div className="bg-card border rounded-lg p-8 space-y-8">
           {/* Low-Anxiety Mode Toggle */}
           <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="low-anxiety-mode">Low-Anxiety Mode</Label>
-              <button
-                id="low-anxiety-mode"
-                role="switch"
-                aria-checked={lowAnxietyMode}
-                onClick={() => setLowAnxietyMode(!lowAnxietyMode)}
-                className={`
-                  relative inline-flex h-6 w-11 items-center rounded-full transition-colors
-                  ${lowAnxietyMode ? "bg-primary" : "bg-muted"}
-                `}
-              >
-                <span
-                  className={`
-                    inline-block h-4 w-4 transform rounded-full bg-background transition-transform
-                    ${lowAnxietyMode ? "translate-x-6" : "translate-x-1"}
-                  `}
-                />
-              </button>
+            <div className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                id="low-anxiety-toggle"
+                aria-label="Enable Low-Anxiety Mode for gentler interview practice"
+                checked={lowAnxietyMode}
+                onChange={(e) => setLowAnxietyMode(e.target.checked)}
+                className="h-5 w-5 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              />
+              <Label htmlFor="low-anxiety-toggle" className="cursor-pointer">
+                Low-Anxiety Mode
+              </Label>
             </div>
             <p className="text-sm text-muted-foreground">
               A gentler experience with only 3 questions, no numeric scores, and supportive
@@ -91,9 +84,10 @@ export default function PracticeSetupPage() {
           {/* Question Count Selection */}
           {!lowAnxietyMode && (
             <div className="space-y-3">
-              <Label htmlFor="question-count">Number of Questions</Label>
+              <Label htmlFor="question-count">Question Count</Label>
               <Select
                 id="question-count"
+                aria-label="Number of questions to practice"
                 value={questionCount.toString()}
                 onChange={(e) => setQuestionCount(parseInt(e.target.value))}
               >
@@ -173,7 +167,7 @@ export default function PracticeSetupPage() {
 
           {/* Start Button */}
           <Button size="lg" className="w-full" onClick={handleStartSession} disabled={isLoading}>
-            {isLoading ? "Creating Session..." : "Start Practice Session"}
+            {isLoading ? "Creating Session..." : "Start Practice"}
           </Button>
 
           <p className="text-center text-sm text-muted-foreground">

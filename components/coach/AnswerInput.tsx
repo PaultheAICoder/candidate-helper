@@ -45,7 +45,6 @@ export function AnswerInput({
     }
   };
 
-  const remainingChars = maxLength - answer.length;
   const isValid = answer.trim().length >= minLength;
 
   return (
@@ -70,7 +69,10 @@ export function AnswerInput({
 
       {/* Question Card */}
       <div className="bg-card border rounded-lg p-8">
-        <h2 className="text-2xl font-semibold mb-6">{questionText}</h2>
+        <h2 className="text-2xl font-semibold mb-2">
+          Question {questionNumber} of {totalQuestions}
+        </h2>
+        <p className="text-lg mb-6">{questionText}</p>
 
         {/* STAR Framework Hint */}
         <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6">
@@ -119,9 +121,9 @@ export function AnswerInput({
             </p>
             <span
               id="char-count"
-              className={`${remainingChars < 100 ? "text-destructive" : "text-muted-foreground"}`}
+              className={`${answer.length > maxLength - 100 ? "text-destructive" : "text-muted-foreground"}`}
             >
-              {remainingChars} characters remaining
+              {answer.length} / {maxLength}
             </span>
           </div>
         </div>

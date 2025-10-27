@@ -50,20 +50,25 @@ test.describe("Accessibility Compliance (WCAG 2.2 AA)", () => {
   test("should be keyboard navigable on practice setup", async ({ page }) => {
     await page.goto("/practice");
 
-    // Tab to question count select
-    await page.keyboard.press("Tab");
-    let focused = await page.evaluate(() => document.activeElement?.id);
-    expect(focused).toBeTruthy();
-
+    // Tab through nav links to get to page content
+    await page.keyboard.press("Tab"); // Home link
+    await page.keyboard.press("Tab"); // Login link  
+    await page.keyboard.press("Tab"); // Practice button
+    
     // Tab to low-anxiety toggle
     await page.keyboard.press("Tab");
-    focused = await page.evaluate(() => document.activeElement?.id);
-    expect(focused).toBe("low-anxiety-toggle");
+    const checkbox = page.locator("#low-anxiety-toggle");
+    await expect(checkbox).toBeFocused();
 
+    // Tab to question count select
+    await page.keyboard.press("Tab");
+    const select = page.locator("#question-count");
+    await expect(select).toBeFocused();
+    
     // Tab to start button
     await page.keyboard.press("Tab");
-    const focusedText = await page.evaluate(() => document.activeElement?.textContent);
-    expect(focusedText).toContain("Start Practice");
+    const button = page.locator('button:has-text("Start Practice")');
+    await expect(button).toBeFocused();
 
     // Activate with Enter
     await page.keyboard.press("Enter");

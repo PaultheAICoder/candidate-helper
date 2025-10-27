@@ -139,7 +139,7 @@ export default function ResultsPage({ params }: ResultsPageProps) {
           <div className="bg-card border rounded-lg p-6 space-y-4">
             <div className="flex items-center gap-3 mb-4">
               <div className="text-3xl">💪</div>
-              <h2 className="text-2xl font-bold">Your Top 3 Strengths</h2>
+              <h2 className="text-2xl font-bold">Top 3 Strengths</h2>
             </div>
 
             <div className="space-y-4">
@@ -158,7 +158,7 @@ export default function ResultsPage({ params }: ResultsPageProps) {
           <div className="bg-card border rounded-lg p-6 space-y-4">
             <div className="flex items-center gap-3 mb-4">
               <div className="text-3xl">📝</div>
-              <h2 className="text-2xl font-bold">Clarifications to Add</h2>
+              <h2 className="text-2xl font-bold">3 Clarifications</h2>
             </div>
 
             <div className="space-y-4">
@@ -178,7 +178,7 @@ export default function ResultsPage({ params }: ResultsPageProps) {
         <div className="space-y-4">
           <div className="flex items-center gap-3 mb-4">
             <div className="text-3xl">💬</div>
-            <h2 className="text-2xl font-bold">Question-by-Question Feedback</h2>
+            <h2 className="text-2xl font-bold">Per-Question Feedback</h2>
           </div>
 
           <div className="space-y-4">

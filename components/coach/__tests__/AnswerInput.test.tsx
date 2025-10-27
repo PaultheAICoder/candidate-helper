@@ -24,7 +24,8 @@ describe("AnswerInput Component", () => {
 
     it("should display question progress (X of Y)", () => {
       render(<AnswerInput {...defaultProps} />);
-      expect(screen.getByText(/Question 1 of 5/i)).toBeInTheDocument();
+      const elements = screen.getAllByText(/Question 1 of 5/i);
+      expect(elements.length).toBeGreaterThan(0);
     });
 
     it("should render textarea for answer input", () => {
@@ -39,7 +40,7 @@ describe("AnswerInput Component", () => {
 
     it("should display character count", () => {
       render(<AnswerInput {...defaultProps} />);
-      expect(screen.getByText(/5000 characters remaining/)).toBeInTheDocument();
+      expect(screen.getByText(/0 \/ 5000/)).toBeInTheDocument();
     });
 
     it("should show STAR framework hint", () => {
@@ -60,13 +61,13 @@ describe("AnswerInput Component", () => {
       await user.type(textarea, "Test answer here");
 
       await waitFor(() => {
-        expect(screen.getByText(/4984 characters remaining/)).toBeInTheDocument();
+        expect(screen.getByText(/16 \/ 5000/)).toBeInTheDocument();
       });
     });
 
     it("should handle empty textarea", () => {
       render(<AnswerInput {...defaultProps} />);
-      expect(screen.getByText(/5000 characters remaining/)).toBeInTheDocument();
+      expect(screen.getByText(/0 \/ 5000/)).toBeInTheDocument();
     });
 
     it("should count multiline text correctly", async () => {
@@ -77,9 +78,9 @@ describe("AnswerInput Component", () => {
       await user.type(textarea, "Line 1{Enter}Line 2{Enter}Line 3");
 
       await waitFor(() => {
-        const remaining = 5000 - textarea.value.length;
+        const length = textarea.value.length;
         expect(
-          screen.getByText(new RegExp(`${remaining} characters remaining`))
+          screen.getByText(new RegExp(`${length} / 5000`))
         ).toBeInTheDocument();
       });
     });
@@ -96,7 +97,7 @@ describe("AnswerInput Component", () => {
       await user.paste(longText);
 
       await waitFor(() => {
-        expect(screen.getByText(/100 characters remaining/)).toBeInTheDocument();
+        expect(screen.getByText(/4900 \/ 5000/)).toBeInTheDocument();
       });
     });
 
@@ -330,17 +331,20 @@ describe("AnswerInput Component", () => {
   describe("Question Progress Display", () => {
     it("should show first question correctly", () => {
       render(<AnswerInput {...defaultProps} questionNumber={1} totalQuestions={8} />);
-      expect(screen.getByText(/Question 1 of 8/i)).toBeInTheDocument();
+      const elements = screen.getAllByText(/Question 1 of 8/i);
+      expect(elements.length).toBeGreaterThan(0);
     });
 
     it("should show last question correctly", () => {
       render(<AnswerInput {...defaultProps} questionNumber={8} totalQuestions={8} />);
-      expect(screen.getByText(/Question 8 of 8/i)).toBeInTheDocument();
+      const elements = screen.getAllByText(/Question 8 of 8/i);
+      expect(elements.length).toBeGreaterThan(0);
     });
 
     it("should show middle question correctly", () => {
       render(<AnswerInput {...defaultProps} questionNumber={5} totalQuestions={10} />);
-      expect(screen.getByText(/Question 5 of 10/i)).toBeInTheDocument();
+      const elements = screen.getAllByText(/Question 5 of 10/i);
+      expect(elements.length).toBeGreaterThan(0);
     });
   });
 });
