@@ -35,12 +35,12 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
     }
 
     // Check if questions already generated
-    const { count } = await supabase
+    const { count: existingCount } = await supabase
       .from("questions")
       .select("*", { count: "exact", head: true })
       .eq("session_id", sessionId);
 
-    if (count && count > 0) {
+    if (existingCount && existingCount > 0) {
       // Questions already exist, fetch and return them
       const { data: existingQuestions, error: fetchError } = await supabase
         .from("questions")
@@ -111,9 +111,252 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
     }
 
     // For US2+ (registered users with resume/JD)
-    // This will be implemented in Phase 4
-    // For now, fall back to generic questions
-    return NextResponse.json({ error: "Tailored questions not yet implemented" }, { status: 501 });
+    // Fetch user's resume from profiles table
+    const { data: userProfile, error: profileError } = await supabase
+      .from("profiles")
+      .select("resume_storage_path, seniority_level")
+      .eq("user_id", session.user_id)
+      .single();
+
+    if (profileError || !userProfile || !userProfile.resume_storage_path) {
+      // No resume available - fall back to generic questions
+      const { getGenericQuestions } = await import("@/lib/openai/questions");
+      const { getRandomQuestions } = await import("@/lib/data/question-bank");
+
+      const count = session.low_anxiety_enabled ? 3 : session.question_count;
+      const genericQuestions = getGenericQuestions();
+      const randomFromBank = getRandomQuestions(count, session.low_anxiety_enabled ?? false);
+
+      // Combine generic + random from bank
+      const combinedQuestions = [...genericQuestions, ...randomFromBank].slice(0, count);
+
+      const questionsToInsert = combinedQuestions.map((question, index) => ({
+        session_id: sessionId,
+        question_order: index + 1,
+        question_text: question.text,
+        category: question.category,
+        is_tailored: false,
+      }));
+
+      const { data: insertedQuestions, error: insertError } = await supabase
+        .from("questions")
+        .insert(questionsToInsert)
+        .select("id, question_text, question_order, category");
+
+      if (insertError || !insertedQuestions) {
+        console.error("Error inserting fallback questions:", insertError);
+        return NextResponse.json({ error: "Failed to generate questions" }, { status: 500 });
+      }
+
+      return NextResponse.json({
+        questions: insertedQuestions.map((q) => ({
+          id: q.id,
+          text: q.question_text,
+          order: q.question_order,
+          category: q.category,
+        })),
+      });
+    }
+
+    // Generate tailored questions if resume exists and JD is provided
+    if (session.job_description_text && userProfile.resume_storage_path) {
+      try {
+        const { generateTailoredQuestions, mixQuestions, getGenericQuestions } = await import(
+          "@/lib/openai/questions"
+        );
+
+        // Fetch resume from Supabase Storage
+        const { data: resumeData, error: downloadError } = await supabase.storage
+          .from("resumes")
+          .download(userProfile.resume_storage_path);
+
+        if (downloadError || !resumeData) {
+          console.error("Error downloading resume:", downloadError);
+          // Fall back to generic questions if resume fetch fails
+          const { getRandomQuestions } = await import("@/lib/data/question-bank");
+          const count = session.low_anxiety_enabled ? 3 : session.question_count;
+          const fallbackQuestions = getRandomQuestions(count, session.low_anxiety_enabled ?? false);
+
+          const questionsToInsert = fallbackQuestions.map((q, index) => ({
+            session_id: sessionId,
+            question_order: index + 1,
+            question_text: q.text,
+            category: q.category,
+            is_tailored: false,
+          }));
+
+          const { data: insertedQuestions, error: insertError } = await supabase
+            .from("questions")
+            .insert(questionsToInsert)
+            .select("id, question_text, question_order, category");
+
+          if (insertError || !insertedQuestions) {
+            return NextResponse.json({ error: "Failed to generate questions" }, { status: 500 });
+          }
+
+          return NextResponse.json({
+            questions: insertedQuestions.map((q) => ({
+              id: q.id,
+              text: q.question_text,
+              order: q.question_order,
+              category: q.category,
+            })),
+          });
+        }
+
+        // Convert blob to text
+        const resumeText = await resumeData.text();
+        const count = session.low_anxiety_enabled ? 3 : session.question_count;
+
+        // Generate tailored questions
+        const tailoredQuestions = await generateTailoredQuestions(
+          resumeText,
+          session.job_description_text,
+          Math.max(2, Math.floor(count * 0.75)) // 75% tailored, 25% generic
+        );
+
+        // Get generic questions
+        const genericQuestions = getGenericQuestions();
+
+        // Mix them together
+        const mixedQuestions = mixQuestions(
+          tailoredQuestions,
+          genericQuestions,
+          Math.max(2, Math.floor(count * 0.75)),
+          Math.max(1, Math.ceil(count * 0.25))
+        );
+
+        // Use only the required count
+        const finalQuestions = mixedQuestions.slice(0, count);
+
+        // Insert questions into session
+        const questionsToInsert = finalQuestions.map((question, index) => ({
+          session_id: sessionId,
+          question_order: index + 1,
+          question_text: question.text,
+          category: question.category,
+          is_tailored: question.isTailored,
+          context: question.context || null,
+        }));
+
+        const { data: insertedQuestions, error: insertError } = await supabase
+          .from("questions")
+          .insert(questionsToInsert)
+          .select("id, question_text, question_order, category, is_tailored");
+
+        if (insertError || !insertedQuestions) {
+          console.error("Error inserting tailored questions:", insertError);
+          // Fall back to generic questions
+          const { getRandomQuestions } = await import("@/lib/data/question-bank");
+          const fallbackQuestions = getRandomQuestions(count, session.low_anxiety_enabled ?? false);
+
+          const fallbackInsert = fallbackQuestions.map((q, index) => ({
+            session_id: sessionId,
+            question_order: index + 1,
+            question_text: q.text,
+            category: q.category,
+            is_tailored: false,
+          }));
+
+          const { data: fallbackData, error: fallbackError } = await supabase
+            .from("questions")
+            .insert(fallbackInsert)
+            .select("id, question_text, question_order, category");
+
+          if (fallbackError || !fallbackData) {
+            return NextResponse.json({ error: "Failed to generate questions" }, { status: 500 });
+          }
+
+          return NextResponse.json({
+            questions: fallbackData.map((q) => ({
+              id: q.id,
+              text: q.question_text,
+              order: q.question_order,
+              category: q.category,
+            })),
+          });
+        }
+
+        return NextResponse.json({
+          questions: insertedQuestions.map((q) => ({
+            id: q.id,
+            text: q.question_text,
+            order: q.question_order,
+            category: q.category,
+            isTailored: q.is_tailored,
+          })),
+        });
+      } catch (error) {
+        console.error("Error generating tailored questions:", error);
+        // Fall back to generic questions on error
+        const { getRandomQuestions } = await import("@/lib/data/question-bank");
+        const count = session.low_anxiety_enabled ? 3 : session.question_count;
+        const fallbackQuestions = getRandomQuestions(count, session.low_anxiety_enabled ?? false);
+
+        const questionsToInsert = fallbackQuestions.map((q, index) => ({
+          session_id: sessionId,
+          question_order: index + 1,
+          question_text: q.text,
+          category: q.category,
+          is_tailored: false,
+        }));
+
+        const { data: insertedQuestions, error: insertError } = await supabase
+          .from("questions")
+          .insert(questionsToInsert)
+          .select("id, question_text, question_order, category");
+
+        if (insertError || !insertedQuestions) {
+          return NextResponse.json({ error: "Failed to generate questions" }, { status: 500 });
+        }
+
+        return NextResponse.json({
+          questions: insertedQuestions.map((q) => ({
+            id: q.id,
+            text: q.question_text,
+            order: q.question_order,
+            category: q.category,
+          })),
+        });
+      }
+    }
+
+    // User has resume but no JD provided - use generic + skill-based mix
+    const { getGenericQuestions } = await import("@/lib/openai/questions");
+    const { getRandomQuestions } = await import("@/lib/data/question-bank");
+
+    const count = session.low_anxiety_enabled ? 3 : session.question_count;
+    const genericQuestions = getGenericQuestions();
+    const bankQuestions = getRandomQuestions(count, session.low_anxiety_enabled ?? false);
+
+    const combinedQuestions = [...genericQuestions.slice(0, 2), ...bankQuestions].slice(0, count);
+
+    const questionsToInsert = combinedQuestions.map((question, index) => ({
+      session_id: sessionId,
+      question_order: index + 1,
+      question_text: question.text,
+      category: question.category,
+      is_tailored: false,
+    }));
+
+    const { data: insertedQuestions, error: insertError } = await supabase
+      .from("questions")
+      .insert(questionsToInsert)
+      .select("id, question_text, question_order, category");
+
+    if (insertError || !insertedQuestions) {
+      console.error("Error inserting questions:", insertError);
+      return NextResponse.json({ error: "Failed to generate questions" }, { status: 500 });
+    }
+
+    return NextResponse.json({
+      questions: insertedQuestions.map((q) => ({
+        id: q.id,
+        text: q.question_text,
+        order: q.question_order,
+        category: q.category,
+      })),
+    });
   } catch (error) {
     console.error("Unexpected error in POST /api/sessions/[id]/questions:", error);
     return NextResponse.json({ error: "An unexpected error occurred" }, { status: 500 });
