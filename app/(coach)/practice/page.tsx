@@ -1,37 +1,101 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
 import { Label } from "@/components/ui/Label";
 import { Select } from "@/components/ui/Select";
+import { Textarea } from "@/components/ui/Textarea";
 import type { SessionMode } from "@/types/models";
+import type { Session } from "@supabase/supabase-js";
 
 export default function PracticeSetupPage() {
   const router = useRouter();
+  const supabase = createClient();
+
+  const [user, setUser] = useState<Session["user"] | null>(null);
   const [questionCount, setQuestionCount] = useState(8);
   const [lowAnxietyMode, setLowAnxietyMode] = useState(false);
+  const [mode, setMode] = useState<SessionMode>("text");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [resumeParseStatus, setResumeParseStatus] = useState<string | null>(null);
+  const [jobDescription, setJobDescription] = useState("");
+  const [tailorQuestions, setTailorQuestions] = useState(true);
 
-  // Guest users default to text mode
-  const mode: SessionMode = "text";
+  // Check if user is authenticated
+  useEffect(() => {
+    const checkAuth = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (session) {
+        setUser(session.user);
+        // Allow audio mode for authenticated users
+        setMode("audio");
+      }
+    };
+
+    checkAuth();
+  }, [supabase]);
+
+  // Handle resume file upload
+  const handleResumeUpload = async (file: File) => {
+    if (!file) return;
+
+    setResumeFile(file);
+    setResumeParseStatus("Uploading and parsing resume...");
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await fetch("/api/uploads/resume", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setResumeParseStatus(`Error: ${errorData.error}`);
+        setResumeFile(null);
+        return;
+      }
+
+      const data = await response.json();
+      setResumeParseStatus(
+        `✓ Resume parsed! Found ${data.parsedData.skills?.length || 0} skills`
+      );
+    } catch (err) {
+      setResumeParseStatus(
+        err instanceof Error ? `Error: ${err.message}` : "Error parsing resume"
+      );
+      setResumeFile(null);
+    }
+  };
 
   const handleStartSession = async () => {
     setIsLoading(true);
     setError(null);
 
     try {
+      const sessionPayload = {
+        mode: user ? mode : "text", // Force text for guests
+        questionCount: lowAnxietyMode ? 3 : questionCount,
+        lowAnxietyEnabled: lowAnxietyMode,
+        jobDescriptionText: jobDescription || undefined,
+        tailorQuestions: user && tailorQuestions,
+      };
+
       const response = await fetch("/api/sessions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          mode,
-          questionCount: lowAnxietyMode ? 3 : questionCount,
-          lowAnxietyEnabled: lowAnxietyMode,
-        }),
+        body: JSON.stringify(sessionPayload),
       });
 
       if (!response.ok) {
@@ -60,6 +124,69 @@ export default function PracticeSetupPage() {
         </div>
 
         <div className="bg-card border rounded-lg p-8 space-y-8">
+          {/* Authenticated User Section */}
+          {user && (
+            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+              <h3 className="font-semibold mb-3">Personalize Your Practice</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Upload your resume and paste a job description to get tailored interview questions
+              </p>
+
+              {/* Resume Upload */}
+              <div className="mb-4">
+                <Label className="mb-2 block">Resume (TXT or MD)</Label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="file"
+                    id="resume-input"
+                    accept=".txt,.md"
+                    onChange={(e) => {
+                      const file = e.currentTarget.files?.[0];
+                      if (file) handleResumeUpload(file);
+                    }}
+                    className="flex-1 text-sm"
+                    aria-label="Upload resume file"
+                  />
+                </div>
+                {resumeParseStatus && (
+                  <p className="text-xs mt-2 text-muted-foreground">{resumeParseStatus}</p>
+                )}
+              </div>
+
+              {/* Job Description */}
+              <div>
+                <Label htmlFor="job-desc" className="mb-2 block">
+                  Job Description
+                </Label>
+                <Textarea
+                  id="job-desc"
+                  placeholder="Paste the job description here for tailored questions..."
+                  value={jobDescription}
+                  onChange={(e) => setJobDescription(e.target.value)}
+                  rows={4}
+                  className="text-sm"
+                  aria-label="Paste job description text"
+                />
+              </div>
+
+              {/* Tailor Questions Toggle */}
+              <div className="mt-3 flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="tailor-questions"
+                  checked={tailorQuestions && !!resumeFile}
+                  onChange={(e) => setTailorQuestions(e.target.checked)}
+                  disabled={!resumeFile}
+                  className="h-4 w-4 rounded"
+                  aria-label="Generate tailored questions from resume and job description"
+                />
+                <Label htmlFor="tailor-questions" className="text-sm cursor-pointer">
+                  Generate tailored questions
+                </Label>
+              </div>
+            </div>
+          )}
+
           {/* Low-Anxiety Mode Toggle */}
           <div className="space-y-3">
             <div className="flex items-center gap-3">
@@ -102,25 +229,68 @@ export default function PracticeSetupPage() {
             </div>
           )}
 
-          {/* Mode Information (Text-only for guests) */}
+          {/* Mode Information */}
           <div className="space-y-3">
             <Label>Response Mode</Label>
-            <div className="bg-muted/50 border rounded-lg p-4">
-              <div className="flex items-start gap-3">
-                <div className="text-2xl">✍️</div>
-                <div>
-                  <h4 className="font-semibold mb-1">Text Mode</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Type your answers using the text editor. Great for accessibility and thoughtful
-                    responses.
-                  </p>
+            {user ? (
+              <div className="space-y-2">
+                <label className="flex items-start gap-3 border rounded-lg p-4 cursor-pointer hover:bg-muted/50">
+                  <input
+                    type="radio"
+                    name="mode"
+                    value="audio"
+                    checked={mode === "audio"}
+                    onChange={(e) => setMode(e.target.value as SessionMode)}
+                    className="mt-1"
+                    aria-label="Audio mode - speak your answers"
+                  />
+                  <div>
+                    <h4 className="font-semibold mb-1">🎙️ Audio Mode</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Speak your answers with real-time transcription. Feels more natural and
+                      realistic.
+                    </p>
+                  </div>
+                </label>
+
+                <label className="flex items-start gap-3 border rounded-lg p-4 cursor-pointer hover:bg-muted/50">
+                  <input
+                    type="radio"
+                    name="mode"
+                    value="text"
+                    checked={mode === "text"}
+                    onChange={(e) => setMode(e.target.value as SessionMode)}
+                    className="mt-1"
+                    aria-label="Text mode - type your answers"
+                  />
+                  <div>
+                    <h4 className="font-semibold mb-1">✍️ Text Mode</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Type your answers. Great for accessibility and thoughtful responses.
+                    </p>
+                  </div>
+                </label>
+              </div>
+            ) : (
+              <div className="bg-muted/50 border rounded-lg p-4">
+                <div className="flex items-start gap-3">
+                  <div className="text-2xl">✍️</div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Text Mode</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Type your answers using the text editor. Great for accessibility and thoughtful
+                      responses.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              <strong>Want audio mode?</strong> Create a free account to unlock audio recording with
-              real-time transcription.
-            </p>
+            )}
+            {!user && (
+              <p className="text-sm text-muted-foreground">
+                <strong>Want audio mode?</strong> Create a free account to unlock audio recording with
+                real-time transcription.
+              </p>
+            )}
           </div>
 
           {/* Session Info */}
