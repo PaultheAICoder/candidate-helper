@@ -65,10 +65,9 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
       });
     }
 
-    // Questions count mismatch - delete old questions and regenerate
-    if (existingCount && existingCount > 0) {
-      await supabase.from("questions").delete().eq("session_id", sessionId);
-    }
+    // Questions count mismatch or don't exist - will regenerate below
+    // Don't try to delete since this endpoint may not have RLS permission to do so
+    // Test cleanup hooks should handle cleaning up stale sessions/questions
 
     // Generate new questions
     // For US1 (guest sessions), use in-memory question bank
