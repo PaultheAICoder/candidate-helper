@@ -40,8 +40,11 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
       .select("*", { count: "exact", head: true })
       .eq("session_id", sessionId);
 
-    if (existingCount && existingCount > 0) {
-      // Questions already exist, fetch and return them
+    // Expected question count (3 for low-anxiety, session.question_count otherwise)
+    const expectedCount = session.low_anxiety_enabled ? 3 : session.question_count;
+
+    if (existingCount && existingCount === expectedCount) {
+      // Questions already exist with correct count, fetch and return them
       const { data: existingQuestions, error: fetchError } = await supabase
         .from("questions")
         .select("id, question_text, question_order, category")
@@ -60,6 +63,11 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
           category: q.category,
         })),
       });
+    }
+
+    // Questions count mismatch - delete old questions and regenerate
+    if (existingCount && existingCount > 0) {
+      await supabase.from("questions").delete().eq("session_id", sessionId);
     }
 
     // Generate new questions
