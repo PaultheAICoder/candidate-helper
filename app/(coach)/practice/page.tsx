@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Label } from "@/components/ui/Label";
 import { Select } from "@/components/ui/Select";
 import { Textarea } from "@/components/ui/Textarea";
+import { Checkbox } from "@/components/ui/Checkbox";
 import type { SessionMode } from "@/types/models";
 import type { Session } from "@supabase/supabase-js";
 
@@ -66,13 +67,9 @@ export default function PracticeSetupPage() {
       }
 
       const data = await response.json();
-      setResumeParseStatus(
-        `✓ Resume parsed! Found ${data.parsedData.skills?.length || 0} skills`
-      );
+      setResumeParseStatus(`✓ Resume parsed! Found ${data.parsedData.skills?.length || 0} skills`);
     } catch (err) {
-      setResumeParseStatus(
-        err instanceof Error ? `Error: ${err.message}` : "Error parsing resume"
-      );
+      setResumeParseStatus(err instanceof Error ? `Error: ${err.message}` : "Error parsing resume");
       setResumeFile(null);
     }
   };
@@ -123,7 +120,13 @@ export default function PracticeSetupPage() {
           </p>
         </div>
 
-        <div className="bg-card border rounded-lg p-8 space-y-8">
+        <form
+          className="bg-card border rounded-lg p-8 space-y-8"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleStartSession();
+          }}
+        >
           {/* Authenticated User Section */}
           {user && (
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
@@ -171,13 +174,13 @@ export default function PracticeSetupPage() {
 
               {/* Tailor Questions Toggle */}
               <div className="mt-3 flex items-center gap-2">
-                <input
-                  type="checkbox"
+                <Checkbox
                   id="tailor-questions"
                   checked={tailorQuestions && !!resumeFile}
-                  onChange={(e) => setTailorQuestions(e.target.checked)}
+                  onCheckedChange={(checked) => {
+                    if (typeof checked === "boolean") setTailorQuestions(checked);
+                  }}
                   disabled={!resumeFile}
-                  className="h-4 w-4 rounded"
                   aria-label="Generate tailored questions from resume and job description"
                 />
                 <Label htmlFor="tailor-questions" className="text-sm cursor-pointer">
@@ -190,13 +193,13 @@ export default function PracticeSetupPage() {
           {/* Low-Anxiety Mode Toggle */}
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <input
-                type="checkbox"
+              <Checkbox
                 id="low-anxiety-toggle"
                 aria-label="Enable Low-Anxiety Mode for gentler interview practice"
                 checked={lowAnxietyMode}
-                onChange={(e) => setLowAnxietyMode(e.target.checked)}
-                className="h-5 w-5 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                onCheckedChange={(checked) => {
+                  if (typeof checked === "boolean") setLowAnxietyMode(checked);
+                }}
               />
               <Label htmlFor="low-anxiety-toggle" className="cursor-pointer">
                 Low-Anxiety Mode
@@ -278,8 +281,8 @@ export default function PracticeSetupPage() {
                   <div>
                     <h4 className="font-semibold mb-1">Text Mode</h4>
                     <p className="text-sm text-muted-foreground">
-                      Type your answers using the text editor. Great for accessibility and thoughtful
-                      responses.
+                      Type your answers using the text editor. Great for accessibility and
+                      thoughtful responses.
                     </p>
                   </div>
                 </div>
@@ -287,8 +290,8 @@ export default function PracticeSetupPage() {
             )}
             {!user && (
               <p className="text-sm text-muted-foreground">
-                <strong>Want audio mode?</strong> Create a free account to unlock audio recording with
-                real-time transcription.
+                <strong>Want audio mode?</strong> Create a free account to unlock audio recording
+                with real-time transcription.
               </p>
             )}
           </div>
@@ -336,14 +339,14 @@ export default function PracticeSetupPage() {
           )}
 
           {/* Start Button */}
-          <Button size="lg" className="w-full" onClick={handleStartSession} disabled={isLoading}>
+          <Button size="lg" className="w-full" type="submit" disabled={isLoading}>
             {isLoading ? "Creating Session..." : "Start Practice"}
           </Button>
 
           <p className="text-center text-sm text-muted-foreground">
             No account required • Free forever • Your data stays private
           </p>
-        </div>
+        </form>
       </div>
     </main>
   );
