@@ -5,15 +5,19 @@ test.describe("Guest Practice Session Flow", () => {
   test.beforeEach(async ({ request }) => {
     // Reset database state by calling Supabase
     // This ensures clean state for each test run
-    await request.post("http://127.0.0.1:54321/rest/v1/rpc/reset_test_data", {
-      headers: {
-        apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
-        Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY || ""}`,
-      },
-    }).catch(() => {
-      // Function might not exist yet, that's okay
-      console.log("Note: reset_test_data function not found - tests may have constraint violations");
-    });
+    await request
+      .post("http://127.0.0.1:54321/rest/v1/rpc/reset_test_data", {
+        headers: {
+          apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
+          Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY || ""}`,
+        },
+      })
+      .catch(() => {
+        // Function might not exist yet, that's okay
+        console.log(
+          "Note: reset_test_data function not found - tests may have constraint violations"
+        );
+      });
   });
   test("should complete full guest session with 8 questions", async ({ page }) => {
     // 1. Land on homepage
@@ -24,7 +28,7 @@ test.describe("Guest Practice Session Flow", () => {
     await expect(page.locator("h1")).toContainText("Cindy from Cinder");
 
     // 3. Click "Try Practice Session" CTA
-    await page.click("text=Try Practice Session");
+    await page.locator("main").getByRole("button", { name: "Try Practice Session" }).click();
     await expect(page).toHaveURL(/\/practice/);
 
     // 4. Configure session (8 questions, text-only)
@@ -45,10 +49,10 @@ test.describe("Guest Practice Session Flow", () => {
     await expect(questionText).toBeVisible();
 
     // 8. Verify STAR hint is visible
-    await expect(page.locator("text=Situation")).toBeVisible();
-    await expect(page.locator("text=Task")).toBeVisible();
-    await expect(page.locator("text=Action")).toBeVisible();
-    await expect(page.locator("text=Result")).toBeVisible();
+    await expect(page.locator("text=Situation: Set the context")).toBeVisible();
+    await expect(page.locator("text=Task: Describe your responsibility")).toBeVisible();
+    await expect(page.locator("text=Action: Explain what you did")).toBeVisible();
+    await expect(page.locator("text=Result: Share the outcome")).toBeVisible();
 
     // 9. Answer all 8 questions
     for (let i = 1; i <= 8; i++) {
@@ -302,13 +306,15 @@ test.describe("Landing Page", () => {
     await page.goto("/");
 
     await expect(page.locator("h1")).toContainText("Cindy from Cinder");
-    await expect(page.locator("text=Try Practice Session")).toBeVisible();
+    await expect(
+      page.locator("main").getByRole("button", { name: "Try Practice Session" })
+    ).toBeVisible();
   });
 
   test("should navigate to practice setup from CTA", async ({ page }) => {
     await page.goto("/");
 
-    await page.click("text=Try Practice Session");
+    await page.locator("main").getByRole("button", { name: "Try Practice Session" }).click();
     await expect(page).toHaveURL(/\/practice/);
   });
 
@@ -336,10 +342,10 @@ test.describe("Practice Setup Page", () => {
     const select = page.locator("#question-count");
 
     // Check options exist
-    await expect(select.locator('option[value="3"]')).toBeVisible();
-    await expect(select.locator('option[value="5"]')).toBeVisible();
-    await expect(select.locator('option[value="8"]')).toBeVisible();
-    await expect(select.locator('option[value="10"]')).toBeVisible();
+    await expect(select.locator('option[value="3"]')).toHaveCount(1);
+    await expect(select.locator('option[value="5"]')).toHaveCount(1);
+    await expect(select.locator('option[value="8"]')).toHaveCount(1);
+    await expect(select.locator('option[value="10"]')).toHaveCount(1);
   });
 
   test("should toggle Low-Anxiety Mode", async ({ page }) => {
