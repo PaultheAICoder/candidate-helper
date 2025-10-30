@@ -96,7 +96,13 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
         .select("id, question_text, question_order, category");
 
       if (insertError || !insertedQuestions) {
-        console.error("Error inserting questions:", insertError);
+        console.error("Error inserting questions:", {
+          code: insertError?.code,
+          message: insertError?.message,
+          details: insertError?.details,
+          hint: insertError?.hint,
+          questions: questionsToInsert,
+        });
         return NextResponse.json({ error: "Failed to generate questions" }, { status: 500 });
       }
 
@@ -144,7 +150,14 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
         .select("id, question_text, question_order, category");
 
       if (insertError || !insertedQuestions) {
-        console.error("Error inserting fallback questions:", insertError);
+        console.error("Error inserting fallback questions (no resume):", {
+          code: insertError?.code,
+          message: insertError?.message,
+          details: insertError?.details,
+          hint: insertError?.hint,
+          sessionId,
+          questionsToInsert,
+        });
         return NextResponse.json({ error: "Failed to generate questions" }, { status: 500 });
       }
 
@@ -191,6 +204,14 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
             .select("id, question_text, question_order, category");
 
           if (insertError || !insertedQuestions) {
+            console.error("Error inserting fallback questions (resume fetch failed):", {
+              code: insertError?.code,
+              message: insertError?.message,
+              details: insertError?.details,
+              hint: insertError?.hint,
+              sessionId,
+              questionsToInsert,
+            });
             return NextResponse.json({ error: "Failed to generate questions" }, { status: 500 });
           }
 
@@ -245,7 +266,14 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
           .select("id, question_text, question_order, category, is_tailored");
 
         if (insertError || !insertedQuestions) {
-          console.error("Error inserting tailored questions:", insertError);
+          console.error("Error inserting tailored questions:", {
+            code: insertError?.code,
+            message: insertError?.message,
+            details: insertError?.details,
+            hint: insertError?.hint,
+            sessionId,
+            questionsToInsert,
+          });
           // Fall back to generic questions
           const { getRandomQuestions } = await import("@/lib/data/question-bank");
           const fallbackQuestions = getRandomQuestions(count, session.low_anxiety_enabled ?? false);
@@ -264,6 +292,14 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
             .select("id, question_text, question_order, category");
 
           if (fallbackError || !fallbackData) {
+            console.error("Error inserting fallback questions (tailored failed):", {
+              code: fallbackError?.code,
+              message: fallbackError?.message,
+              details: fallbackError?.details,
+              hint: fallbackError?.hint,
+              sessionId,
+              fallbackInsert,
+            });
             return NextResponse.json({ error: "Failed to generate questions" }, { status: 500 });
           }
 
@@ -287,7 +323,11 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
           })),
         });
       } catch (error) {
-        console.error("Error generating tailored questions:", error);
+        console.error("Error generating tailored questions:", {
+          message: error instanceof Error ? error.message : String(error),
+          stack: error instanceof Error ? error.stack : undefined,
+          sessionId,
+        });
         // Fall back to generic questions on error
         const { getRandomQuestions } = await import("@/lib/data/question-bank");
         const count = session.low_anxiety_enabled ? 3 : session.question_count;
@@ -307,6 +347,14 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
           .select("id, question_text, question_order, category");
 
         if (insertError || !insertedQuestions) {
+          console.error("Error inserting fallback in catch handler:", {
+            code: insertError?.code,
+            message: insertError?.message,
+            details: insertError?.details,
+            hint: insertError?.hint,
+            sessionId,
+            questionsToInsert,
+          });
           return NextResponse.json({ error: "Failed to generate questions" }, { status: 500 });
         }
 
@@ -345,7 +393,14 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
       .select("id, question_text, question_order, category");
 
     if (insertError || !insertedQuestions) {
-      console.error("Error inserting questions:", insertError);
+      console.error("Error inserting final questions (no JD):", {
+        code: insertError?.code,
+        message: insertError?.message,
+        details: insertError?.details,
+        hint: insertError?.hint,
+        sessionId,
+        questionsToInsert,
+      });
       return NextResponse.json({ error: "Failed to generate questions" }, { status: 500 });
     }
 
@@ -358,7 +413,11 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
       })),
     });
   } catch (error) {
-    console.error("Unexpected error in POST /api/sessions/[id]/questions:", error);
+    console.error("Unexpected error in POST /api/sessions/[id]/questions:", {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+      sessionId: params.id,
+    });
     return NextResponse.json({ error: "An unexpected error occurred" }, { status: 500 });
   }
 }

@@ -25,5 +25,6 @@ BEGIN
 END;
 $$;
 
--- Grant execute permission to service role
+-- Grant execute permission to service role and anon (for tests)
 GRANT EXECUTE ON FUNCTION reset_test_data() TO service_role;
+GRANT EXECUTE ON FUNCTION reset_test_data() TO anon;
