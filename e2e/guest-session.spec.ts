@@ -1,23 +1,12 @@
 import { test, expect } from "@playwright/test";
+import { cleanupAllTestData } from "./helpers/db-cleanup";
 
 test.describe("Guest Practice Session Flow", () => {
   // Clean up database before each test to avoid constraint violations
-  test.beforeEach(async ({ request }) => {
-    // Reset database state by calling Supabase
-    // This ensures clean state for each test run
-    await request
-      .post("http://127.0.0.1:54321/rest/v1/rpc/reset_test_data", {
-        headers: {
-          apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
-          Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY || ""}`,
-        },
-      })
-      .catch(() => {
-        // Function might not exist yet, that's okay
-        console.log(
-          "Note: reset_test_data function not found - tests may have constraint violations"
-        );
-      });
+  test.beforeEach(async () => {
+    // Delete ALL test data to ensure completely clean state
+    // This uses the nuclear option since tests run fast and data isn't "stale" yet
+    await cleanupAllTestData();
   });
   test("should complete full guest session with 8 questions", async ({ page }) => {
     // 1. Land on homepage

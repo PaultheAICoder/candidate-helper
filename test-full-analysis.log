@@ -1,0 +1,2845 @@
+
+> candidate-helper@1.0.0 test:e2e
+> playwright test
+
+
+Running 170 tests using 5 workers
+
+[1A[2K[1/170] [chromium] › e2e/a11y.spec.ts:25:7 › Accessibility Compliance (WCAG 2.2 AA) › active session page should have no accessibility violations
+[1A[2K[2/170] [chromium] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup
+[1A[2K[3/170] [chromium] › e2e/a11y.spec.ts:15:7 › Accessibility Compliance (WCAG 2.2 AA) › practice setup page should have no accessibility violations
+[1A[2K[4/170] [chromium] › e2e/a11y.spec.ts:5:7 › Accessibility Compliance (WCAG 2.2 AA) › homepage should have no accessibility violations
+[1A[2K[5/170] [chromium] › e2e/a11y.spec.ts:39:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on homepage
+[1A[2K[6/170] [chromium] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session
+[1A[2K[7/170] [chromium] › e2e/a11y.spec.ts:102:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper ARIA labels on form elements
+[1A[2K[8/170] [chromium] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy
+[1A[2K[9/170] [chromium] › e2e/a11y.spec.ts:135:7 › Accessibility Compliance (WCAG 2.2 AA) › should have sufficient color contrast
+[1A[2K[10/170] [chromium] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels
+[1A[2K[11/170] [chromium] › e2e/a11y.spec.ts:160:7 › Accessibility Compliance (WCAG 2.2 AA) › buttons should have accessible names
+[1A[2K[12/170] [chromium] › e2e/a11y.spec.ts:174:7 › Accessibility Compliance (WCAG 2.2 AA) › images should have alt text
+[1A[2K[13/170] [chromium] › e2e/a11y.spec.ts:187:7 › Accessibility Compliance (WCAG 2.2 AA) › should support screen reader announcements for dynamic content
+[1A[2K[14/170] [chromium] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles
+[1A[2K[15/170] [chromium] › e2e/a11y.spec.ts:229:7 › Accessibility Compliance (WCAG 2.2 AA) › should not have any automatically playing audio or video
+[1A[2K[16/170] [chromium] › e2e/a11y.spec.ts:240:7 › Accessibility Compliance (WCAG 2.2 AA) › page should have a valid language attribute
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'ceb3a229-217a-4ae9-9a25-f1b88ec06b66'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you received critical feedback. How did you respond and what changes did you make?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'ceb3a229-217a-4ae9-9a25-f1b88ec06b66'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a time when you identified a problem that wasn't part of your job description but took the initiative to solve it anyway."[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'ceb3a229-217a-4ae9-9a25-f1b88ec06b66'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to deliver difficult news or feedback to someone?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[17/170] [chromium] › e2e/a11y.spec.ts:248:7 › Accessibility Compliance (WCAG 2.2 AA) › should have skip to main content link
+[1A[2K  1) [chromium] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31m""[39m
+
+      224 |       (focusedElement?.boxShadow && focusedElement.boxShadow !== "none");
+      225 |
+    > 226 |     expect(hasFocusIndicator).toBeTruthy();
+          |                               ^
+      227 |   });
+      228 |
+      229 |   test("should not have any automatically playing audio or video", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:226:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-chromium/error-context.md
+
+
+[1A[2K[18/170] [chromium] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors
+[1A[2K[19/170] [chromium] › e2e/a11y.spec.ts:265:7 › Accessibility Compliance (WCAG 2.2 AA) › disabled elements should not be keyboard focusable
+[1A[2K  2) [chromium] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('#low-anxiety-toggle')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('#low-anxiety-toggle')[22m
+    [2m    9 × locator resolved to <button value="on" type="button" role="checkbox" aria-checked="false" data-state="unchecked" id="low-anxiety-toggle" aria-label="Enable Low-Anxiety Mode for gentler interview practice" class="peer h-4 w-4 shrink-0 border border-primary rounded-sm bg-background ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"></button>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      59 |     await page.keyboard.press("Tab");
+      60 |     const checkbox = page.locator("#low-anxiety-toggle");
+    > 61 |     await expect(checkbox).toBeFocused();
+         |                            ^
+      62 |
+      63 |     // Tab to question count select
+      64 |     await page.keyboard.press("Tab");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:61:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-chromium/error-context.md
+
+
+[1A[2K[20/170] [chromium] › e2e/guest-session.spec.ts:115:7 › Guest Practice Session Flow › should enforce minimum answer length
+[1A[2K[21/170] [chromium] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions
+[1A[2K[22/170] [chromium] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions)
+[1A[2K[23/170] [chromium] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts
+[1A[2K  3) [chromium] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+       97 |     // Submit with Enter
+       98 |     await page.keyboard.press("Enter");
+    >  99 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      100 |   });
+      101 |
+      102 |   test("should have proper ARIA labels on form elements", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:99:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-chromium/error-context.md
+
+
+[1A[2K[24/170] [chromium] › e2e/guest-session.spec.ts:187:7 › Guest Practice Session Flow › should show character count as user types
+[1A[2K[25/170] [chromium] › e2e/guest-session.spec.ts:207:7 › Guest Practice Session Flow › should handle navigation without answers
+[1A[2K[26/170] [chromium] › e2e/guest-session.spec.ts:224:7 › Guest Practice Session Flow › should display different question categories
+[1A[2K  4) [chromium] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+      182 |
+      183 |     // Verify we moved to next question
+    > 184 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      185 |   });
+      186 |
+      187 |   test("should show character count as user types", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:184:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-chromium/error-context.md
+
+
+[1A[2K[27/170] [chromium] › e2e/guest-session.spec.ts:257:7 › Guest Practice Session Flow › should prevent exceeding maximum characters
+[1A[2K[28/170] [chromium] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching
+[1A[2K[29/170] [chromium] › e2e/guest-session.spec.ts:305:7 › Landing Page › should display hero section with CTA
+[1A[2K[30/170] [chromium] › e2e/guest-session.spec.ts:314:7 › Landing Page › should navigate to practice setup from CTA
+[1A[2K[31/170] [chromium] › e2e/guest-session.spec.ts:321:7 › Landing Page › should have accessible navigation
+[1A[2K[32/170] [chromium] › e2e/guest-session.spec.ts:331:7 › Practice Setup Page › should display all setup options
+[1A[2K[33/170] [chromium] › e2e/guest-session.spec.ts:339:7 › Practice Setup Page › should support all question count options
+[1A[2K[34/170] [chromium] › e2e/guest-session.spec.ts:351:7 › Practice Setup Page › should toggle Low-Anxiety Mode
+[1A[2K  5) [chromium] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 8"[39m
+    Received string:    [31m"Question [7m1[27m of 8"[39m
+    Timeout: 10000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 10000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    14 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 8</h2>[22m
+    [2m       - unexpected value "Question 1 of 8"[22m
+
+
+      78 |       // If not last question, verify we moved to next question
+      79 |       if (i < 8) {
+    > 80 |         await expect(page.locator("h2")).toContainText(`Question ${i + 1} of 8`, {
+         |                                          ^
+      81 |           timeout: 10000,
+      82 |         });
+      83 |       }
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:80:42
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-chromium/error-context.md
+
+
+[1A[2K[35/170] [firefox] › e2e/a11y.spec.ts:5:7 › Accessibility Compliance (WCAG 2.2 AA) › homepage should have no accessibility violations
+[1A[2K[36/170] [firefox] › e2e/a11y.spec.ts:15:7 › Accessibility Compliance (WCAG 2.2 AA) › practice setup page should have no accessibility violations
+[1A[2K[37/170] [firefox] › e2e/a11y.spec.ts:25:7 › Accessibility Compliance (WCAG 2.2 AA) › active session page should have no accessibility violations
+[1A[2K[38/170] [firefox] › e2e/a11y.spec.ts:39:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on homepage
+[1A[2K[39/170] [firefox] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'8b061d7a-1adb-4caf-a1e8-adcf4a0f41c4'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a project that didn't go as planned. What did you learn from it?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'8b061d7a-1adb-4caf-a1e8-adcf4a0f41c4'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you disagreed with a coworker or manager about the best approach to a problem. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'8b061d7a-1adb-4caf-a1e8-adcf4a0f41c4'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where miscommunication caused a problem. How did you resolve it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[40/170] [firefox] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'30c25e9b-0a09-4aae-a1ee-5a4bde9b850a'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to work with a cross-functional team to achieve a goal. What was your role?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'30c25e9b-0a09-4aae-a1ee-5a4bde9b850a'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a time when you identified a problem that wasn't part of your job description but took the initiative to solve it anyway."[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'30c25e9b-0a09-4aae-a1ee-5a4bde9b850a'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where you helped someone on your team grow or develop their skills?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K  6) [firefox] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('#low-anxiety-toggle')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('#low-anxiety-toggle')[22m
+    [2m    9 × locator resolved to <button value="on" type="button" role="checkbox" aria-checked="false" data-state="unchecked" id="low-anxiety-toggle" aria-label="Enable Low-Anxiety Mode for gentler interview practice" class="peer h-4 w-4 shrink-0 border border-primary rounded-sm bg-background ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"></button>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      59 |     await page.keyboard.press("Tab");
+      60 |     const checkbox = page.locator("#low-anxiety-toggle");
+    > 61 |     await expect(checkbox).toBeFocused();
+         |                            ^
+      62 |
+      63 |     // Tab to question count select
+      64 |     await page.keyboard.press("Tab");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:61:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-firefox/error-context.md
+
+
+[1A[2K[41/170] [firefox] › e2e/a11y.spec.ts:102:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper ARIA labels on form elements
+[1A[2K  7) [firefox] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+       97 |     // Submit with Enter
+       98 |     await page.keyboard.press("Enter");
+    >  99 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      100 |   });
+      101 |
+      102 |   test("should have proper ARIA labels on form elements", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:99:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-firefox/error-context.md
+
+
+[1A[2K[42/170] [firefox] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy
+[1A[2K[43/170] [firefox] › e2e/a11y.spec.ts:135:7 › Accessibility Compliance (WCAG 2.2 AA) › should have sufficient color contrast
+[1A[2K[44/170] [firefox] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels
+[1A[2K[45/170] [firefox] › e2e/a11y.spec.ts:160:7 › Accessibility Compliance (WCAG 2.2 AA) › buttons should have accessible names
+[1A[2K[46/170] [firefox] › e2e/a11y.spec.ts:174:7 › Accessibility Compliance (WCAG 2.2 AA) › images should have alt text
+[1A[2K[47/170] [firefox] › e2e/a11y.spec.ts:187:7 › Accessibility Compliance (WCAG 2.2 AA) › should support screen reader announcements for dynamic content
+[1A[2K[48/170] [firefox] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles
+[1A[2K[49/170] [firefox] › e2e/a11y.spec.ts:229:7 › Accessibility Compliance (WCAG 2.2 AA) › should not have any automatically playing audio or video
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'882e11ac-b4c0-4468-a4fc-56c541670b1f'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you led a project or initiative without having formal authority over the team members.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'882e11ac-b4c0-4468-a4fc-56c541670b1f'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to work with a cross-functional team to achieve a goal. What was your role?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'882e11ac-b4c0-4468-a4fc-56c541670b1f'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a project that didn't go as planned. What did you learn from it?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[50/170] [firefox] › e2e/a11y.spec.ts:240:7 › Accessibility Compliance (WCAG 2.2 AA) › page should have a valid language attribute
+[1A[2K  8) [firefox] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31m""[39m
+
+      224 |       (focusedElement?.boxShadow && focusedElement.boxShadow !== "none");
+      225 |
+    > 226 |     expect(hasFocusIndicator).toBeTruthy();
+          |                               ^
+      227 |   });
+      228 |
+      229 |   test("should not have any automatically playing audio or video", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:226:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-firefox/error-context.md
+
+
+[1A[2K[51/170] [firefox] › e2e/a11y.spec.ts:265:7 › Accessibility Compliance (WCAG 2.2 AA) › disabled elements should not be keyboard focusable
+[1A[2K[52/170] [firefox] › e2e/a11y.spec.ts:248:7 › Accessibility Compliance (WCAG 2.2 AA) › should have skip to main content link
+[1A[2K  9) [chromium] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('textarea')[22m
+
+
+      294 |
+      295 |     const textarea = page.locator("textarea");
+    > 296 |     await textarea.fill("x"); // Too short
+          |                    ^
+      297 |
+      298 |     // Check for aria-invalid or aria-describedby on validation
+      299 |     const hasValidationAria =
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:296:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-20c46-unce-form-validation-errors-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-20c46-unce-form-validation-errors-chromium/error-context.md
+
+
+[1A[2K[53/170] [firefox] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'2802d088-37ae-4e84-9c87-a70d23318b61'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to navigate conflicting priorities or requirements from different stakeholders.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'2802d088-37ae-4e84-9c87-a70d23318b61'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'2802d088-37ae-4e84-9c87-a70d23318b61'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you led a project or initiative without having formal authority over the team members.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'2802d088-37ae-4e84-9c87-a70d23318b61'[39m,
+[2m[WebServer] [22m      question_order: [33m4[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a time when you identified a problem that wasn't part of your job description but took the initiative to solve it anyway."[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'2802d088-37ae-4e84-9c87-a70d23318b61'[39m,
+[2m[WebServer] [22m      question_order: [33m5[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a project that didn't go as planned. What did you learn from it?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'2802d088-37ae-4e84-9c87-a70d23318b61'[39m,
+[2m[WebServer] [22m      question_order: [33m6[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you went above and beyond what was expected of you?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'2802d088-37ae-4e84-9c87-a70d23318b61'[39m,
+[2m[WebServer] [22m      question_order: [33m7[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you disagreed with a coworker or manager about the best approach to a problem. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'2802d088-37ae-4e84-9c87-a70d23318b61'[39m,
+[2m[WebServer] [22m      question_order: [33m8[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to collaborate with someone whose work style was very different from yours.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[54/170] [firefox] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions
+[1A[2K[55/170] [firefox] › e2e/guest-session.spec.ts:115:7 › Guest Practice Session Flow › should enforce minimum answer length
+[1A[2K  10) [chromium] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Top 3 Strengths')
+    Expected: visible
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 30000ms[22m
+    [2m  - waiting for locator('text=Top 3 Strengths')[22m
+
+
+      162 |     // Verify redirect to results
+      163 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+    > 164 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+          |                                                        ^
+      165 |   });
+      166 |
+      167 |   test("should support keyboard shortcuts", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:164:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--chromium/error-context.md
+
+
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'dfe14721-f541-45ea-a268-51452b94ce08'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to navigate conflicting priorities or requirements from different stakeholders.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'dfe14721-f541-45ea-a268-51452b94ce08'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to collaborate with someone whose work style was very different from yours.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'dfe14721-f541-45ea-a268-51452b94ce08'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m"Can you share a time when you tried something new and it didn't work out? What was your takeaway?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'dfe14721-f541-45ea-a268-51452b94ce08'[39m,
+[2m[WebServer] [22m      question_order: [33m4[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a time when you identified a problem that wasn't part of your job description but took the initiative to solve it anyway."[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'dfe14721-f541-45ea-a268-51452b94ce08'[39m,
+[2m[WebServer] [22m      question_order: [33m5[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where you helped someone on your team grow or develop their skills?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'dfe14721-f541-45ea-a268-51452b94ce08'[39m,
+[2m[WebServer] [22m      question_order: [33m6[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you disagreed with a coworker or manager about the best approach to a problem. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'dfe14721-f541-45ea-a268-51452b94ce08'[39m,
+[2m[WebServer] [22m      question_order: [33m7[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to explain a complex technical concept to a non-technical audience.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'dfe14721-f541-45ea-a268-51452b94ce08'[39m,
+[2m[WebServer] [22m      question_order: [33m8[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to address a conflict within your team? What was your approach?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[56/170] [firefox] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions)
+[1A[2K[57/170] [firefox] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts
+[1A[2K  11) [chromium] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+
+    TimeoutError: page.waitForURL: Timeout 20000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================
+
+      295 |
+      296 |     // Should redirect to results and show loading state
+    > 297 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+          |                ^
+      298 |
+      299 |     // Coaching should eventually appear
+      300 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:297:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-chromium/error-context.md
+
+
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'b455fe91-12b5-4b95-ae11-05089a572b8f'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you received critical feedback. How did you respond and what changes did you make?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'b455fe91-12b5-4b95-ae11-05089a572b8f'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where miscommunication caused a problem. How did you resolve it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'b455fe91-12b5-4b95-ae11-05089a572b8f'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to explain a complex technical concept to a non-technical audience.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[58/170] [firefox] › e2e/guest-session.spec.ts:187:7 › Guest Practice Session Flow › should show character count as user types
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'eddd1161-dde3-4d36-965d-bc58e12d8971'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you went above and beyond what was expected of you?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'eddd1161-dde3-4d36-965d-bc58e12d8971'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m"Can you share a time when you tried something new and it didn't work out? What was your takeaway?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'eddd1161-dde3-4d36-965d-bc58e12d8971'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'59899c67-4717-4016-a9b7-b7292b56f856'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'59899c67-4717-4016-a9b7-b7292b56f856'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to collaborate with someone whose work style was very different from yours.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'59899c67-4717-4016-a9b7-b7292b56f856'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you led a project or initiative without having formal authority over the team members.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[59/170] [firefox] › e2e/guest-session.spec.ts:207:7 › Guest Practice Session Flow › should handle navigation without answers
+[1A[2K[60/170] [firefox] › e2e/guest-session.spec.ts:224:7 › Guest Practice Session Flow › should display different question categories
+[1A[2K  12) [firefox] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    8 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+      182 |
+      183 |     // Verify we moved to next question
+    > 184 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      185 |   });
+      186 |
+      187 |   test("should show character count as user types", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:184:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-firefox/error-context.md
+
+
+[1A[2K[61/170] [firefox] › e2e/guest-session.spec.ts:257:7 › Guest Practice Session Flow › should prevent exceeding maximum characters
+[1A[2K  13) [firefox] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 8"[39m
+    Received string:    [31m"Question [7m1[27m of 8"[39m
+    Timeout: 10000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 10000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    13 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 8</h2>[22m
+    [2m       - unexpected value "Question 1 of 8"[22m
+
+
+      78 |       // If not last question, verify we moved to next question
+      79 |       if (i < 8) {
+    > 80 |         await expect(page.locator("h2")).toContainText(`Question ${i + 1} of 8`, {
+         |                                          ^
+      81 |           timeout: 10000,
+      82 |         });
+      83 |       }
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:80:42
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-firefox/error-context.md
+
+
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'ba286c6b-677f-441f-9518-b4133b5c6940'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to motivate a team during a challenging period or setback.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'ba286c6b-677f-441f-9518-b4133b5c6940'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you disagreed with a coworker or manager about the best approach to a problem. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'ba286c6b-677f-441f-9518-b4133b5c6940'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where miscommunication caused a problem. How did you resolve it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[62/170] [firefox] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching
+[1A[2K[63/170] [firefox] › e2e/guest-session.spec.ts:305:7 › Landing Page › should display hero section with CTA
+[1A[2K[64/170] [firefox] › e2e/guest-session.spec.ts:314:7 › Landing Page › should navigate to practice setup from CTA
+[1A[2K[65/170] [firefox] › e2e/guest-session.spec.ts:321:7 › Landing Page › should have accessible navigation
+[1A[2K[66/170] [firefox] › e2e/guest-session.spec.ts:331:7 › Practice Setup Page › should display all setup options
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'5392704c-61de-4e20-97dc-303528ae7d65'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you went above and beyond what was expected of you?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'5392704c-61de-4e20-97dc-303528ae7d65'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'5392704c-61de-4e20-97dc-303528ae7d65'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to take ownership of a mistake or failure. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[67/170] [firefox] › e2e/guest-session.spec.ts:339:7 › Practice Setup Page › should support all question count options
+[1A[2K[68/170] [firefox] › e2e/guest-session.spec.ts:351:7 › Practice Setup Page › should toggle Low-Anxiety Mode
+[1A[2K[69/170] [webkit] › e2e/a11y.spec.ts:5:7 › Accessibility Compliance (WCAG 2.2 AA) › homepage should have no accessibility violations
+[1A[2K[70/170] [webkit] › e2e/a11y.spec.ts:15:7 › Accessibility Compliance (WCAG 2.2 AA) › practice setup page should have no accessibility violations
+[1A[2K[71/170] [webkit] › e2e/a11y.spec.ts:25:7 › Accessibility Compliance (WCAG 2.2 AA) › active session page should have no accessibility violations
+[1A[2K[72/170] [webkit] › e2e/a11y.spec.ts:39:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on homepage
+[1A[2K[73/170] [webkit] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'aa6e745d-998f-4932-bc1d-b7b05e0e9af7'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where miscommunication caused a problem. How did you resolve it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'aa6e745d-998f-4932-bc1d-b7b05e0e9af7'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to collaborate with someone whose work style was very different from yours.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'aa6e745d-998f-4932-bc1d-b7b05e0e9af7'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a project that didn't go as planned. What did you learn from it?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[74/170] [webkit] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'c602c90c-a742-4cf6-8472-8558dd1a2531'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where you helped someone on your team grow or develop their skills?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'c602c90c-a742-4cf6-8472-8558dd1a2531'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where miscommunication caused a problem. How did you resolve it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'c602c90c-a742-4cf6-8472-8558dd1a2531'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m"Can you share a time when you tried something new and it didn't work out? What was your takeaway?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K  14) [webkit] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('#low-anxiety-toggle')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('#low-anxiety-toggle')[22m
+    [2m    9 × locator resolved to <button value="on" type="button" role="checkbox" aria-checked="false" data-state="unchecked" id="low-anxiety-toggle" aria-label="Enable Low-Anxiety Mode for gentler interview practice" class="peer h-4 w-4 shrink-0 border border-primary rounded-sm bg-background ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"></button>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      59 |     await page.keyboard.press("Tab");
+      60 |     const checkbox = page.locator("#low-anxiety-toggle");
+    > 61 |     await expect(checkbox).toBeFocused();
+         |                            ^
+      62 |
+      63 |     // Tab to question count select
+      64 |     await page.keyboard.press("Tab");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:61:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-webkit/error-context.md
+
+
+[1A[2K[75/170] [webkit] › e2e/a11y.spec.ts:102:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper ARIA labels on form elements
+[1A[2K  15) [webkit] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('button:has-text("Submit Answer")')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('button:has-text("Submit Answer")')[22m
+    [2m    9 × locator resolved to <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-11 rounded-md px-8">Submit Answer</button>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      93 |     await page.keyboard.press("Tab");
+      94 |     const submitButton = page.locator('button:has-text("Submit Answer")');
+    > 95 |     await expect(submitButton).toBeFocused();
+         |                                ^
+      96 |
+      97 |     // Submit with Enter
+      98 |     await page.keyboard.press("Enter");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:95:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-webkit/error-context.md
+
+
+[1A[2K[76/170] [webkit] › e2e/a11y.spec.ts:135:7 › Accessibility Compliance (WCAG 2.2 AA) › should have sufficient color contrast
+[1A[2K[77/170] [webkit] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy
+[1A[2K[78/170] [webkit] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels
+[1A[2K[79/170] [webkit] › e2e/a11y.spec.ts:160:7 › Accessibility Compliance (WCAG 2.2 AA) › buttons should have accessible names
+[1A[2K[80/170] [webkit] › e2e/a11y.spec.ts:174:7 › Accessibility Compliance (WCAG 2.2 AA) › images should have alt text
+[1A[2K[81/170] [webkit] › e2e/a11y.spec.ts:187:7 › Accessibility Compliance (WCAG 2.2 AA) › should support screen reader announcements for dynamic content
+[1A[2K[82/170] [webkit] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles
+[1A[2K[83/170] [webkit] › e2e/a11y.spec.ts:229:7 › Accessibility Compliance (WCAG 2.2 AA) › should not have any automatically playing audio or video
+[1A[2K  16) [webkit] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31m""[39m
+
+      224 |       (focusedElement?.boxShadow && focusedElement.boxShadow !== "none");
+      225 |
+    > 226 |     expect(hasFocusIndicator).toBeTruthy();
+          |                               ^
+      227 |   });
+      228 |
+      229 |   test("should not have any automatically playing audio or video", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:226:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-webkit/error-context.md
+
+
+[1A[2K[84/170] [webkit] › e2e/a11y.spec.ts:248:7 › Accessibility Compliance (WCAG 2.2 AA) › should have skip to main content link
+[1A[2K[85/170] [webkit] › e2e/a11y.spec.ts:240:7 › Accessibility Compliance (WCAG 2.2 AA) › page should have a valid language attribute
+[1A[2K[86/170] [webkit] › e2e/a11y.spec.ts:265:7 › Accessibility Compliance (WCAG 2.2 AA) › disabled elements should not be keyboard focusable
+[1A[2K[87/170] [webkit] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'cdfbf078-9ebe-4684-8318-01638cd8b72d'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to motivate a team during a challenging period or setback.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'cdfbf078-9ebe-4684-8318-01638cd8b72d'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to explain a complex technical concept to a non-technical audience.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'cdfbf078-9ebe-4684-8318-01638cd8b72d'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to address a conflict within your team? What was your approach?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'cdfbf078-9ebe-4684-8318-01638cd8b72d'[39m,
+[2m[WebServer] [22m      question_order: [33m4[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you led a project or initiative without having formal authority over the team members.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'cdfbf078-9ebe-4684-8318-01638cd8b72d'[39m,
+[2m[WebServer] [22m      question_order: [33m5[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'cdfbf078-9ebe-4684-8318-01638cd8b72d'[39m,
+[2m[WebServer] [22m      question_order: [33m6[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to work with a cross-functional team to achieve a goal. What was your role?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'cdfbf078-9ebe-4684-8318-01638cd8b72d'[39m,
+[2m[WebServer] [22m      question_order: [33m7[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to collaborate with someone whose work style was very different from yours.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'cdfbf078-9ebe-4684-8318-01638cd8b72d'[39m,
+[2m[WebServer] [22m      question_order: [33m8[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a time when you identified a problem that wasn't part of your job description but took the initiative to solve it anyway."[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[88/170] [webkit] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'a330f51c-dfba-4bd1-8b23-4c1097b4548c'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you led a project or initiative without having formal authority over the team members.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'a330f51c-dfba-4bd1-8b23-4c1097b4548c'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to deliver difficult news or feedback to someone?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'a330f51c-dfba-4bd1-8b23-4c1097b4548c'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to navigate conflicting priorities or requirements from different stakeholders.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'a330f51c-dfba-4bd1-8b23-4c1097b4548c'[39m,
+[2m[WebServer] [22m      question_order: [33m4[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you went above and beyond what was expected of you?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'a330f51c-dfba-4bd1-8b23-4c1097b4548c'[39m,
+[2m[WebServer] [22m      question_order: [33m5[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'a330f51c-dfba-4bd1-8b23-4c1097b4548c'[39m,
+[2m[WebServer] [22m      question_order: [33m6[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to collaborate with someone whose work style was very different from yours.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'a330f51c-dfba-4bd1-8b23-4c1097b4548c'[39m,
+[2m[WebServer] [22m      question_order: [33m7[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a time when you identified a problem that wasn't part of your job description but took the initiative to solve it anyway."[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'a330f51c-dfba-4bd1-8b23-4c1097b4548c'[39m,
+[2m[WebServer] [22m      question_order: [33m8[39m,
+[2m[WebServer] [22m      question_text: [32m"Can you share a time when you tried something new and it didn't work out? What was your takeaway?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K  17) [firefox] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('textarea')[22m
+
+
+      294 |
+      295 |     const textarea = page.locator("textarea");
+    > 296 |     await textarea.fill("x"); // Too short
+          |                    ^
+      297 |
+      298 |     // Check for aria-invalid or aria-describedby on validation
+      299 |     const hasValidationAria =
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:296:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-20c46-unce-form-validation-errors-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-20c46-unce-form-validation-errors-firefox/error-context.md
+
+
+[1A[2K[89/170] [webkit] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions)
+[1A[2K[90/170] [webkit] › e2e/guest-session.spec.ts:115:7 › Guest Practice Session Flow › should enforce minimum answer length
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'bf492563-5f50-4cf4-b935-6acb77af7aa6'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a project that didn't go as planned. What did you learn from it?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'bf492563-5f50-4cf4-b935-6acb77af7aa6'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where you helped someone on your team grow or develop their skills?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'bf492563-5f50-4cf4-b935-6acb77af7aa6'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where miscommunication caused a problem. How did you resolve it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'bf492563-5f50-4cf4-b935-6acb77af7aa6'[39m,
+[2m[WebServer] [22m      question_order: [33m4[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to address a conflict within your team? What was your approach?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'bf492563-5f50-4cf4-b935-6acb77af7aa6'[39m,
+[2m[WebServer] [22m      question_order: [33m5[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a time when you identified a problem that wasn't part of your job description but took the initiative to solve it anyway."[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'bf492563-5f50-4cf4-b935-6acb77af7aa6'[39m,
+[2m[WebServer] [22m      question_order: [33m6[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to motivate a team during a challenging period or setback.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'bf492563-5f50-4cf4-b935-6acb77af7aa6'[39m,
+[2m[WebServer] [22m      question_order: [33m7[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you disagreed with a coworker or manager about the best approach to a problem. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'bf492563-5f50-4cf4-b935-6acb77af7aa6'[39m,
+[2m[WebServer] [22m      question_order: [33m8[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to deliver difficult news or feedback to someone?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'c3d89f06-0e85-4196-ae54-31bba7cbc8a0'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where you helped someone on your team grow or develop their skills?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'c3d89f06-0e85-4196-ae54-31bba7cbc8a0'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m"Can you share a time when you tried something new and it didn't work out? What was your takeaway?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'c3d89f06-0e85-4196-ae54-31bba7cbc8a0'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[91/170] [webkit] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts
+[1A[2K[2m[WebServer] [22mError creating report: {
+[2m[WebServer] [22m  code: [32m'42501'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  message: [32m'new row violates row-level security policy for table "reports"'[39m
+[2m[WebServer] [22m}
+
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'41f5e121-e1b8-4c39-bfe1-63bfc51f77d0'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to collaborate with someone whose work style was very different from yours.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'41f5e121-e1b8-4c39-bfe1-63bfc51f77d0'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a time when you identified a problem that wasn't part of your job description but took the initiative to solve it anyway."[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'41f5e121-e1b8-4c39-bfe1-63bfc51f77d0'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where miscommunication caused a problem. How did you resolve it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K  18) [firefox] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Top 3 Strengths')
+    Expected: visible
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 30000ms[22m
+    [2m  - waiting for locator('text=Top 3 Strengths')[22m
+
+
+      162 |     // Verify redirect to results
+      163 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+    > 164 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+          |                                                        ^
+      165 |   });
+      166 |
+      167 |   test("should support keyboard shortcuts", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:164:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--firefox/error-context.md
+
+
+[1A[2K[92/170] [webkit] › e2e/guest-session.spec.ts:187:7 › Guest Practice Session Flow › should show character count as user types
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'4fb662e3-4dd6-4737-9cd7-f2b53096c621'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'4fb662e3-4dd6-4737-9cd7-f2b53096c621'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to take ownership of a mistake or failure. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'4fb662e3-4dd6-4737-9cd7-f2b53096c621'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to deliver difficult news or feedback to someone?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[93/170] [webkit] › e2e/guest-session.spec.ts:207:7 › Guest Practice Session Flow › should handle navigation without answers
+[1A[2K[2m[WebServer] [22mError creating report: {
+[2m[WebServer] [22m  code: [32m'42501'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  message: [32m'new row violates row-level security policy for table "reports"'[39m
+[2m[WebServer] [22m}
+
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'61900a82-b288-4606-a72f-d6d9a7d87a9e'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to deliver difficult news or feedback to someone?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'61900a82-b288-4606-a72f-d6d9a7d87a9e'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you went above and beyond what was expected of you?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'61900a82-b288-4606-a72f-d6d9a7d87a9e'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you received critical feedback. How did you respond and what changes did you make?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'61900a82-b288-4606-a72f-d6d9a7d87a9e'[39m,
+[2m[WebServer] [22m      question_order: [33m4[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to navigate conflicting priorities or requirements from different stakeholders.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'61900a82-b288-4606-a72f-d6d9a7d87a9e'[39m,
+[2m[WebServer] [22m      question_order: [33m5[39m,
+[2m[WebServer] [22m      question_text: [32m"Can you share a time when you tried something new and it didn't work out? What was your takeaway?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[94/170] [webkit] › e2e/guest-session.spec.ts:224:7 › Guest Practice Session Flow › should display different question categories
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'74eb72d3-2d88-4074-8562-d76363814ad2'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you received critical feedback. How did you respond and what changes did you make?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'74eb72d3-2d88-4074-8562-d76363814ad2'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to work with a cross-functional team to achieve a goal. What was your role?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'74eb72d3-2d88-4074-8562-d76363814ad2'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you disagreed with a coworker or manager about the best approach to a problem. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'74eb72d3-2d88-4074-8562-d76363814ad2'[39m,
+[2m[WebServer] [22m      question_order: [33m4[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'74eb72d3-2d88-4074-8562-d76363814ad2'[39m,
+[2m[WebServer] [22m      question_order: [33m5[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to take ownership of a mistake or failure. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'74eb72d3-2d88-4074-8562-d76363814ad2'[39m,
+[2m[WebServer] [22m      question_order: [33m6[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a project that didn't go as planned. What did you learn from it?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'74eb72d3-2d88-4074-8562-d76363814ad2'[39m,
+[2m[WebServer] [22m      question_order: [33m7[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to deliver difficult news or feedback to someone?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'74eb72d3-2d88-4074-8562-d76363814ad2'[39m,
+[2m[WebServer] [22m      question_order: [33m8[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to explain a complex technical concept to a non-technical audience.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K  19) [firefox] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+
+    TimeoutError: page.waitForURL: Timeout 20000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================
+
+      295 |
+      296 |     // Should redirect to results and show loading state
+    > 297 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+          |                ^
+      298 |
+      299 |     // Coaching should eventually appear
+      300 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:297:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-firefox/error-context.md
+
+
+[1A[2K[95/170] [webkit] › e2e/guest-session.spec.ts:257:7 › Guest Practice Session Flow › should prevent exceeding maximum characters
+[1A[2K  20) [webkit] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+      182 |
+      183 |     // Verify we moved to next question
+    > 184 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      185 |   });
+      186 |
+      187 |   test("should show character count as user types", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:184:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-webkit/error-context.md
+
+
+[1A[2K[96/170] [webkit] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'3b1b92a7-e582-41cb-a586-55c8ff3a2f10'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'3b1b92a7-e582-41cb-a586-55c8ff3a2f10'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you went above and beyond what was expected of you?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'3b1b92a7-e582-41cb-a586-55c8ff3a2f10'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you received critical feedback. How did you respond and what changes did you make?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[97/170] [webkit] › e2e/guest-session.spec.ts:305:7 › Landing Page › should display hero section with CTA
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'9d922792-1295-4df2-8040-88153ef4681b'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a project that didn't go as planned. What did you learn from it?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'9d922792-1295-4df2-8040-88153ef4681b'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you received critical feedback. How did you respond and what changes did you make?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'9d922792-1295-4df2-8040-88153ef4681b'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to motivate a team during a challenging period or setback.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[98/170] [webkit] › e2e/guest-session.spec.ts:314:7 › Landing Page › should navigate to practice setup from CTA
+[1A[2K[99/170] [webkit] › e2e/guest-session.spec.ts:321:7 › Landing Page › should have accessible navigation
+[1A[2K[100/170] [webkit] › e2e/guest-session.spec.ts:331:7 › Practice Setup Page › should display all setup options
+[1A[2K  21) [webkit] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 8"[39m
+    Received string:    [31m"Question [7m1[27m of 8"[39m
+    Timeout: 10000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 10000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    14 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 8</h2>[22m
+    [2m       - unexpected value "Question 1 of 8"[22m
+
+
+      78 |       // If not last question, verify we moved to next question
+      79 |       if (i < 8) {
+    > 80 |         await expect(page.locator("h2")).toContainText(`Question ${i + 1} of 8`, {
+         |                                          ^
+      81 |           timeout: 10000,
+      82 |         });
+      83 |       }
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:80:42
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-webkit/error-context.md
+
+
+[1A[2K[101/170] [webkit] › e2e/guest-session.spec.ts:351:7 › Practice Setup Page › should toggle Low-Anxiety Mode
+[1A[2K[102/170] [webkit] › e2e/guest-session.spec.ts:339:7 › Practice Setup Page › should support all question count options
+[1A[2K[103/170] [Mobile Chrome] › e2e/a11y.spec.ts:5:7 › Accessibility Compliance (WCAG 2.2 AA) › homepage should have no accessibility violations
+[1A[2K[104/170] [Mobile Chrome] › e2e/a11y.spec.ts:15:7 › Accessibility Compliance (WCAG 2.2 AA) › practice setup page should have no accessibility violations
+[1A[2K[105/170] [Mobile Chrome] › e2e/a11y.spec.ts:39:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on homepage
+[1A[2K[106/170] [Mobile Chrome] › e2e/a11y.spec.ts:25:7 › Accessibility Compliance (WCAG 2.2 AA) › active session page should have no accessibility violations
+[1A[2K[107/170] [Mobile Chrome] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup
+[1A[2K[108/170] [Mobile Chrome] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'9636d1ed-9f9f-43ec-bf11-74111e36e626'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m"Can you share a time when you tried something new and it didn't work out? What was your takeaway?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'9636d1ed-9f9f-43ec-bf11-74111e36e626'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to motivate a team during a challenging period or setback.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'9636d1ed-9f9f-43ec-bf11-74111e36e626'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a project that didn't go as planned. What did you learn from it?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[109/170] [Mobile Chrome] › e2e/a11y.spec.ts:102:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper ARIA labels on form elements
+[1A[2K[110/170] [Mobile Chrome] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy
+[1A[2K[111/170] [Mobile Chrome] › e2e/a11y.spec.ts:135:7 › Accessibility Compliance (WCAG 2.2 AA) › should have sufficient color contrast
+[1A[2K[112/170] [Mobile Chrome] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels
+[1A[2K[113/170] [Mobile Chrome] › e2e/a11y.spec.ts:160:7 › Accessibility Compliance (WCAG 2.2 AA) › buttons should have accessible names
+[1A[2K[114/170] [Mobile Chrome] › e2e/a11y.spec.ts:174:7 › Accessibility Compliance (WCAG 2.2 AA) › images should have alt text
+[1A[2K[115/170] [Mobile Chrome] › e2e/a11y.spec.ts:187:7 › Accessibility Compliance (WCAG 2.2 AA) › should support screen reader announcements for dynamic content
+[1A[2K[116/170] [Mobile Chrome] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles
+[1A[2K  22) [Mobile Chrome] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31m""[39m
+
+      224 |       (focusedElement?.boxShadow && focusedElement.boxShadow !== "none");
+      225 |
+    > 226 |     expect(hasFocusIndicator).toBeTruthy();
+          |                               ^
+      227 |   });
+      228 |
+      229 |   test("should not have any automatically playing audio or video", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:226:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-Mobile-Chrome/error-context.md
+
+
+[1A[2K[117/170] [Mobile Chrome] › e2e/a11y.spec.ts:229:7 › Accessibility Compliance (WCAG 2.2 AA) › should not have any automatically playing audio or video
+[1A[2K[118/170] [Mobile Chrome] › e2e/a11y.spec.ts:240:7 › Accessibility Compliance (WCAG 2.2 AA) › page should have a valid language attribute
+[1A[2K  23) [Mobile Chrome] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('#low-anxiety-toggle')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('#low-anxiety-toggle')[22m
+    [2m    9 × locator resolved to <button value="on" type="button" role="checkbox" aria-checked="false" data-state="unchecked" id="low-anxiety-toggle" aria-label="Enable Low-Anxiety Mode for gentler interview practice" class="peer h-4 w-4 shrink-0 border border-primary rounded-sm bg-background ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"></button>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      59 |     await page.keyboard.press("Tab");
+      60 |     const checkbox = page.locator("#low-anxiety-toggle");
+    > 61 |     await expect(checkbox).toBeFocused();
+         |                            ^
+      62 |
+      63 |     // Tab to question count select
+      64 |     await page.keyboard.press("Tab");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:61:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-Mobile-Chrome/error-context.md
+
+
+[1A[2K  24) [Mobile Chrome] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+       97 |     // Submit with Enter
+       98 |     await page.keyboard.press("Enter");
+    >  99 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      100 |   });
+      101 |
+      102 |   test("should have proper ARIA labels on form elements", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:99:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-Mobile-Chrome/error-context.md
+
+
+[1A[2K[119/170] [Mobile Chrome] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors
+[1A[2K[120/170] [Mobile Chrome] › e2e/a11y.spec.ts:248:7 › Accessibility Compliance (WCAG 2.2 AA) › should have skip to main content link
+[1A[2K[121/170] [Mobile Chrome] › e2e/a11y.spec.ts:265:7 › Accessibility Compliance (WCAG 2.2 AA) › disabled elements should not be keyboard focusable
+[1A[2K[122/170] [Mobile Chrome] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions
+[1A[2K[123/170] [Mobile Chrome] › e2e/guest-session.spec.ts:115:7 › Guest Practice Session Flow › should enforce minimum answer length
+[1A[2K[124/170] [Mobile Chrome] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions)
+[1A[2K[125/170] [Mobile Chrome] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts
+[1A[2K[2m[WebServer] [22mError creating report: {
+[2m[WebServer] [22m  code: [32m'42501'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  message: [32m'new row violates row-level security policy for table "reports"'[39m
+[2m[WebServer] [22m}
+
+[1A[2K  25) [Mobile Chrome] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question 1 of 8"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+
+
+      43 |     // 6. Wait for questions to load and verify first question
+      44 |     await page.waitForURL(/\/practice\/session\//);
+    > 45 |     await expect(page.locator("h2")).toContainText("Question 1 of 8");
+         |                                      ^
+      46 |
+      47 |     // 7. Verify question text is displayed
+      48 |     const questionText = await page.locator("p.text-lg").first();
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:45:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-Mobile-Chrome/error-context.md
+
+
+[1A[2K[126/170] [Mobile Chrome] › e2e/guest-session.spec.ts:187:7 › Guest Practice Session Flow › should show character count as user types
+[1A[2K  26) [Mobile Chrome] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+      182 |
+      183 |     // Verify we moved to next question
+    > 184 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      185 |   });
+      186 |
+      187 |   test("should show character count as user types", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:184:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-Mobile-Chrome/error-context.md
+
+
+[1A[2K[127/170] [Mobile Chrome] › e2e/guest-session.spec.ts:207:7 › Guest Practice Session Flow › should handle navigation without answers
+[1A[2K[128/170] [Mobile Chrome] › e2e/guest-session.spec.ts:224:7 › Guest Practice Session Flow › should display different question categories
+[1A[2K[129/170] [Mobile Chrome] › e2e/guest-session.spec.ts:257:7 › Guest Practice Session Flow › should prevent exceeding maximum characters
+[1A[2K[130/170] [Mobile Chrome] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching
+[1A[2K[2m[WebServer] [22mError creating report: {
+[2m[WebServer] [22m  code: [32m'42501'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  message: [32m'new row violates row-level security policy for table "reports"'[39m
+[2m[WebServer] [22m}
+
+[1A[2K  27) [webkit] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Top 3 Strengths')
+    Expected: visible
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 30000ms[22m
+    [2m  - waiting for locator('text=Top 3 Strengths')[22m
+
+
+      162 |     // Verify redirect to results
+      163 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+    > 164 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+          |                                                        ^
+      165 |   });
+      166 |
+      167 |   test("should support keyboard shortcuts", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:164:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--webkit/error-context.md
+
+
+[1A[2K[131/170] [Mobile Chrome] › e2e/guest-session.spec.ts:305:7 › Landing Page › should display hero section with CTA
+[1A[2K[132/170] [Mobile Chrome] › e2e/guest-session.spec.ts:314:7 › Landing Page › should navigate to practice setup from CTA
+[1A[2K[133/170] [Mobile Chrome] › e2e/guest-session.spec.ts:321:7 › Landing Page › should have accessible navigation
+[1A[2K[134/170] [Mobile Chrome] › e2e/guest-session.spec.ts:331:7 › Practice Setup Page › should display all setup options
+[1A[2K[135/170] [Mobile Chrome] › e2e/guest-session.spec.ts:339:7 › Practice Setup Page › should support all question count options
+[1A[2K[136/170] [Mobile Chrome] › e2e/guest-session.spec.ts:351:7 › Practice Setup Page › should toggle Low-Anxiety Mode
+[1A[2K[137/170] [Mobile Safari] › e2e/a11y.spec.ts:5:7 › Accessibility Compliance (WCAG 2.2 AA) › homepage should have no accessibility violations
+[1A[2K[138/170] [Mobile Safari] › e2e/a11y.spec.ts:15:7 › Accessibility Compliance (WCAG 2.2 AA) › practice setup page should have no accessibility violations
+[1A[2K  28) [webkit] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+
+    TimeoutError: page.waitForURL: Timeout 20000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================
+
+      295 |
+      296 |     // Should redirect to results and show loading state
+    > 297 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+          |                ^
+      298 |
+      299 |     // Coaching should eventually appear
+      300 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:297:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-webkit/error-context.md
+
+
+[1A[2K[139/170] [Mobile Safari] › e2e/a11y.spec.ts:39:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on homepage
+[1A[2K[140/170] [Mobile Safari] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup
+[1A[2K[141/170] [Mobile Safari] › e2e/a11y.spec.ts:25:7 › Accessibility Compliance (WCAG 2.2 AA) › active session page should have no accessibility violations
+[1A[2K[142/170] [Mobile Safari] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'1c810346-8980-46d7-8696-88718e8b885c'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you led a project or initiative without having formal authority over the team members.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'1c810346-8980-46d7-8696-88718e8b885c'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where you helped someone on your team grow or develop their skills?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'1c810346-8980-46d7-8696-88718e8b885c'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m"Can you share a time when you tried something new and it didn't work out? What was your takeaway?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'50839ebf-e7be-4784-a2b1-f52fc18f29b0'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a time when you identified a problem that wasn't part of your job description but took the initiative to solve it anyway."[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'50839ebf-e7be-4784-a2b1-f52fc18f29b0'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a project that didn't go as planned. What did you learn from it?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'50839ebf-e7be-4784-a2b1-f52fc18f29b0'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[143/170] [Mobile Safari] › e2e/a11y.spec.ts:102:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper ARIA labels on form elements
+[1A[2K[144/170] [Mobile Safari] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy
+[1A[2K[145/170] [Mobile Safari] › e2e/a11y.spec.ts:135:7 › Accessibility Compliance (WCAG 2.2 AA) › should have sufficient color contrast
+[1A[2K[146/170] [Mobile Safari] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels
+[1A[2K[147/170] [Mobile Safari] › e2e/a11y.spec.ts:160:7 › Accessibility Compliance (WCAG 2.2 AA) › buttons should have accessible names
+[1A[2K[148/170] [Mobile Safari] › e2e/a11y.spec.ts:174:7 › Accessibility Compliance (WCAG 2.2 AA) › images should have alt text
+[1A[2K[149/170] [Mobile Safari] › e2e/a11y.spec.ts:187:7 › Accessibility Compliance (WCAG 2.2 AA) › should support screen reader announcements for dynamic content
+[1A[2K[150/170] [Mobile Safari] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles
+[1A[2K[2m[WebServer] [22m [31m[1m⨯[22m[39m Error: aborted
+[2m[WebServer] [22m[90m    at abortIncoming (node:_http_server:825:17)[39m
+[2m[WebServer] [22m[90m    at socketOnClose (node:_http_server:819:3)[39m
+[2m[WebServer] [22m[90m    at Socket.emit (node:events:531:35)[39m
+[2m[WebServer] [22m[90m    at TCP.<anonymous> (node:net:346:12)[39m
+[2m[WebServer] [22m[90m    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)[39m
+
+[1A[2K[2m[WebServer] [22m [31m[1m⨯[22m[39m Error: aborted
+[2m[WebServer] [22m[90m    at abortIncoming (node:_http_server:825:17)[39m
+[2m[WebServer] [22m[90m    at socketOnClose (node:_http_server:819:3)[39m
+[2m[WebServer] [22m[90m    at Socket.emit (node:events:531:35)[39m
+[2m[WebServer] [22m[90m    at TCP.<anonymous> (node:net:346:12)[39m
+[2m[WebServer] [22m[90m    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)[39m
+
+[1A[2K  29) [Mobile Safari] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('#low-anxiety-toggle')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('#low-anxiety-toggle')[22m
+    [2m    9 × locator resolved to <button value="on" type="button" role="checkbox" aria-checked="false" data-state="unchecked" id="low-anxiety-toggle" aria-label="Enable Low-Anxiety Mode for gentler interview practice" class="peer h-4 w-4 shrink-0 border border-primary rounded-sm bg-background ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"></button>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      59 |     await page.keyboard.press("Tab");
+      60 |     const checkbox = page.locator("#low-anxiety-toggle");
+    > 61 |     await expect(checkbox).toBeFocused();
+         |                            ^
+      62 |
+      63 |     // Tab to question count select
+      64 |     await page.keyboard.press("Tab");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:61:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-Mobile-Safari/error-context.md
+
+
+[1A[2K  30) [Mobile Safari] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31m""[39m
+
+      224 |       (focusedElement?.boxShadow && focusedElement.boxShadow !== "none");
+      225 |
+    > 226 |     expect(hasFocusIndicator).toBeTruthy();
+          |                               ^
+      227 |   });
+      228 |
+      229 |   test("should not have any automatically playing audio or video", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:226:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-Mobile-Safari/error-context.md
+
+
+[1A[2K[151/170] [Mobile Safari] › e2e/a11y.spec.ts:229:7 › Accessibility Compliance (WCAG 2.2 AA) › should not have any automatically playing audio or video
+[1A[2K  31) [Mobile Safari] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('button:has-text("Submit Answer")')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('button:has-text("Submit Answer")')[22m
+    [2m    9 × locator resolved to <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-11 rounded-md px-8">Submit Answer</button>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      93 |     await page.keyboard.press("Tab");
+      94 |     const submitButton = page.locator('button:has-text("Submit Answer")');
+    > 95 |     await expect(submitButton).toBeFocused();
+         |                                ^
+      96 |
+      97 |     // Submit with Enter
+      98 |     await page.keyboard.press("Enter");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:95:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-Mobile-Safari/error-context.md
+
+
+[1A[2K[152/170] [Mobile Safari] › e2e/a11y.spec.ts:240:7 › Accessibility Compliance (WCAG 2.2 AA) › page should have a valid language attribute
+[1A[2K[153/170] [Mobile Safari] › e2e/a11y.spec.ts:248:7 › Accessibility Compliance (WCAG 2.2 AA) › should have skip to main content link
+[1A[2K[154/170] [Mobile Safari] › e2e/a11y.spec.ts:265:7 › Accessibility Compliance (WCAG 2.2 AA) › disabled elements should not be keyboard focusable
+[1A[2K[155/170] [Mobile Safari] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors
+[1A[2K[156/170] [Mobile Safari] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'5ced4259-cee8-4c90-9dae-b94680663734'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to work with a cross-functional team to achieve a goal. What was your role?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'5ced4259-cee8-4c90-9dae-b94680663734'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to motivate a team during a challenging period or setback.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'5ced4259-cee8-4c90-9dae-b94680663734'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you received critical feedback. How did you respond and what changes did you make?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'5ced4259-cee8-4c90-9dae-b94680663734'[39m,
+[2m[WebServer] [22m      question_order: [33m4[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you disagreed with a coworker or manager about the best approach to a problem. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'5ced4259-cee8-4c90-9dae-b94680663734'[39m,
+[2m[WebServer] [22m      question_order: [33m5[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to collaborate with someone whose work style was very different from yours.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'5ced4259-cee8-4c90-9dae-b94680663734'[39m,
+[2m[WebServer] [22m      question_order: [33m6[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where you helped someone on your team grow or develop their skills?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'5ced4259-cee8-4c90-9dae-b94680663734'[39m,
+[2m[WebServer] [22m      question_order: [33m7[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'5ced4259-cee8-4c90-9dae-b94680663734'[39m,
+[2m[WebServer] [22m      question_order: [33m8[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to deliver difficult news or feedback to someone?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[157/170] [Mobile Safari] › e2e/guest-session.spec.ts:115:7 › Guest Practice Session Flow › should enforce minimum answer length
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'35dbb17e-598a-4171-be19-6d897fceb1d9'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a project that didn't go as planned. What did you learn from it?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'35dbb17e-598a-4171-be19-6d897fceb1d9'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to motivate a team during a challenging period or setback.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'35dbb17e-598a-4171-be19-6d897fceb1d9'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m"Can you share a time when you tried something new and it didn't work out? What was your takeaway?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'35dbb17e-598a-4171-be19-6d897fceb1d9'[39m,
+[2m[WebServer] [22m      question_order: [33m4[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to deliver difficult news or feedback to someone?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'35dbb17e-598a-4171-be19-6d897fceb1d9'[39m,
+[2m[WebServer] [22m      question_order: [33m5[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to navigate conflicting priorities or requirements from different stakeholders.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'35dbb17e-598a-4171-be19-6d897fceb1d9'[39m,
+[2m[WebServer] [22m      question_order: [33m6[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a time when you identified a problem that wasn't part of your job description but took the initiative to solve it anyway."[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'35dbb17e-598a-4171-be19-6d897fceb1d9'[39m,
+[2m[WebServer] [22m      question_order: [33m7[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to explain a complex technical concept to a non-technical audience.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'35dbb17e-598a-4171-be19-6d897fceb1d9'[39m,
+[2m[WebServer] [22m      question_order: [33m8[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you led a project or initiative without having formal authority over the team members.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[158/170] [Mobile Safari] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions)
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'b7ebd8f1-57b6-48c8-94aa-3988e5d41661'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to deliver difficult news or feedback to someone?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'b7ebd8f1-57b6-48c8-94aa-3988e5d41661'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'b7ebd8f1-57b6-48c8-94aa-3988e5d41661'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to work with a cross-functional team to achieve a goal. What was your role?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'b7ebd8f1-57b6-48c8-94aa-3988e5d41661'[39m,
+[2m[WebServer] [22m      question_order: [33m4[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a time when you identified a problem that wasn't part of your job description but took the initiative to solve it anyway."[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'b7ebd8f1-57b6-48c8-94aa-3988e5d41661'[39m,
+[2m[WebServer] [22m      question_order: [33m5[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a project that didn't go as planned. What did you learn from it?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'b7ebd8f1-57b6-48c8-94aa-3988e5d41661'[39m,
+[2m[WebServer] [22m      question_order: [33m6[39m,
+[2m[WebServer] [22m      question_text: [32m"Can you share a time when you tried something new and it didn't work out? What was your takeaway?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'b7ebd8f1-57b6-48c8-94aa-3988e5d41661'[39m,
+[2m[WebServer] [22m      question_order: [33m7[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where miscommunication caused a problem. How did you resolve it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'b7ebd8f1-57b6-48c8-94aa-3988e5d41661'[39m,
+[2m[WebServer] [22m      question_order: [33m8[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to address a conflict within your team? What was your approach?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'f742c9b6-dd6c-43c5-ab6b-4b9bfd1efcf2'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where you helped someone on your team grow or develop their skills?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'f742c9b6-dd6c-43c5-ab6b-4b9bfd1efcf2'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to take ownership of a mistake or failure. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'f742c9b6-dd6c-43c5-ab6b-4b9bfd1efcf2'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you led a project or initiative without having formal authority over the team members.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[159/170] [Mobile Safari] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'8ae2dc0d-02cf-4840-b767-8ce5ad8a3618'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you went above and beyond what was expected of you?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'8ae2dc0d-02cf-4840-b767-8ce5ad8a3618'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m"Can you share a time when you tried something new and it didn't work out? What was your takeaway?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'8ae2dc0d-02cf-4840-b767-8ce5ad8a3618'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to deliver difficult news or feedback to someone?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'8ce2ce9a-a34f-44fe-bede-79fd5570b82b'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to work with a cross-functional team to achieve a goal. What was your role?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'8ce2ce9a-a34f-44fe-bede-79fd5570b82b'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to address a conflict within your team? What was your approach?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'8ce2ce9a-a34f-44fe-bede-79fd5570b82b'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where miscommunication caused a problem. How did you resolve it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K  32) [Mobile Safari] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+      182 |
+      183 |     // Verify we moved to next question
+    > 184 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      185 |   });
+      186 |
+      187 |   test("should show character count as user types", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:184:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-Mobile-Safari/error-context.md
+
+
+[1A[2K[2m[WebServer] [22mError creating report: {
+[2m[WebServer] [22m  code: [32m'42501'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  message: [32m'new row violates row-level security policy for table "reports"'[39m
+[2m[WebServer] [22m}
+
+[1A[2K[160/170] [Mobile Safari] › e2e/guest-session.spec.ts:187:7 › Guest Practice Session Flow › should show character count as user types
+[1A[2K[2m[WebServer] [22mError creating report: {
+[2m[WebServer] [22m  code: [32m'42501'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  message: [32m'new row violates row-level security policy for table "reports"'[39m
+[2m[WebServer] [22m}
+
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'0672f7e2-5060-4aef-957b-6c4fc624adad'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you led a project or initiative without having formal authority over the team members.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'0672f7e2-5060-4aef-957b-6c4fc624adad'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where you helped someone on your team grow or develop their skills?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'0672f7e2-5060-4aef-957b-6c4fc624adad'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m"Can you share a time when you tried something new and it didn't work out? What was your takeaway?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[161/170] [Mobile Safari] › e2e/guest-session.spec.ts:207:7 › Guest Practice Session Flow › should handle navigation without answers
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'd4c43421-0b57-4bfb-8fd1-9c70cc11e0ed'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you led a project or initiative without having formal authority over the team members.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'd4c43421-0b57-4bfb-8fd1-9c70cc11e0ed'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where miscommunication caused a problem. How did you resolve it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'd4c43421-0b57-4bfb-8fd1-9c70cc11e0ed'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to explain a complex technical concept to a non-technical audience.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'd4c43421-0b57-4bfb-8fd1-9c70cc11e0ed'[39m,
+[2m[WebServer] [22m      question_order: [33m4[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you had to address a conflict within your team? What was your approach?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'd4c43421-0b57-4bfb-8fd1-9c70cc11e0ed'[39m,
+[2m[WebServer] [22m      question_order: [33m5[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you disagreed with a coworker or manager about the best approach to a problem. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[162/170] [Mobile Safari] › e2e/guest-session.spec.ts:224:7 › Guest Practice Session Flow › should display different question categories
+[1A[2K  33) [Mobile Chrome] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Top 3 Strengths')
+    Expected: visible
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 30000ms[22m
+    [2m  - waiting for locator('text=Top 3 Strengths')[22m
+
+
+      162 |     // Verify redirect to results
+      163 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+    > 164 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+          |                                                        ^
+      165 |   });
+      166 |
+      167 |   test("should support keyboard shortcuts", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:164:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--Mobile-Chrome/error-context.md
+
+
+[1A[2K[163/170] [Mobile Safari] › e2e/guest-session.spec.ts:257:7 › Guest Practice Session Flow › should prevent exceeding maximum characters
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'13d66743-4eaf-4647-abd2-8806114d20d2'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to navigate conflicting priorities or requirements from different stakeholders.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'13d66743-4eaf-4647-abd2-8806114d20d2'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where you helped someone on your team grow or develop their skills?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'13d66743-4eaf-4647-abd2-8806114d20d2'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m"Tell me about a time when you identified a problem that wasn't part of your job description but took the initiative to solve it anyway."[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'13d66743-4eaf-4647-abd2-8806114d20d2'[39m,
+[2m[WebServer] [22m      question_order: [33m4[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you disagreed with a coworker or manager about the best approach to a problem. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_conflict'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'13d66743-4eaf-4647-abd2-8806114d20d2'[39m,
+[2m[WebServer] [22m      question_order: [33m5[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where miscommunication caused a problem. How did you resolve it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'13d66743-4eaf-4647-abd2-8806114d20d2'[39m,
+[2m[WebServer] [22m      question_order: [33m6[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you received critical feedback. How did you respond and what changes did you make?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'13d66743-4eaf-4647-abd2-8806114d20d2'[39m,
+[2m[WebServer] [22m      question_order: [33m7[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you led a project or initiative without having formal authority over the team members.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'13d66743-4eaf-4647-abd2-8806114d20d2'[39m,
+[2m[WebServer] [22m      question_order: [33m8[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to take ownership of a mistake or failure. How did you handle it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'13522497-0994-4c11-b808-f3ccdd591bb2'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an experience where teamwork made a significant difference in the outcome of a project?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_collaboration'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'13522497-0994-4c11-b808-f3ccdd591bb2'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where you had to motivate a team during a challenging period or setback.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_leadership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'13522497-0994-4c11-b808-f3ccdd591bb2'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Can you share an example of when you went above and beyond what was expected of you?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_ownership'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[164/170] [Mobile Safari] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching
+[1A[2K  34) [Mobile Chrome] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+
+    TimeoutError: page.waitForURL: Timeout 20000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+      navigated to "http://localhost:3000/practice/session/ea0b85d7-d435-4bd4-846b-810a9d993cb9"
+    ============================================================
+
+      295 |
+      296 |     // Should redirect to results and show loading state
+    > 297 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+          |                ^
+      298 |
+      299 |     // Coaching should eventually appear
+      300 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:297:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-Mobile-Chrome/error-context.md
+
+
+[1A[2K[165/170] [Mobile Safari] › e2e/guest-session.spec.ts:305:7 › Landing Page › should display hero section with CTA
+[1A[2K[2m[WebServer] [22mError inserting questions: {
+[2m[WebServer] [22m  code: [32m'23505'[39m,
+[2m[WebServer] [22m  message: [32m'duplicate key value violates unique constraint "unique_question_order"'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  questions: [
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'dd3def70-516c-4bcd-9b97-50d45f2214a4'[39m,
+[2m[WebServer] [22m      question_order: [33m1[39m,
+[2m[WebServer] [22m      question_text: [32m"Can you share a time when you tried something new and it didn't work out? What was your takeaway?"[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_failure'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'dd3def70-516c-4bcd-9b97-50d45f2214a4'[39m,
+[2m[WebServer] [22m      question_order: [33m2[39m,
+[2m[WebServer] [22m      question_text: [32m'Tell me about a time when you had to explain a complex technical concept to a non-technical audience.'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    },
+[2m[WebServer] [22m    {
+[2m[WebServer] [22m      session_id: [32m'dd3def70-516c-4bcd-9b97-50d45f2214a4'[39m,
+[2m[WebServer] [22m      question_order: [33m3[39m,
+[2m[WebServer] [22m      question_text: [32m'Describe a situation where miscommunication caused a problem. How did you resolve it?'[39m,
+[2m[WebServer] [22m      category: [32m'soft_skills_communication'[39m,
+[2m[WebServer] [22m      is_tailored: [33mfalse[39m
+[2m[WebServer] [22m    }
+[2m[WebServer] [22m  ]
+[2m[WebServer] [22m}
+
+[1A[2K[166/170] [Mobile Safari] › e2e/guest-session.spec.ts:314:7 › Landing Page › should navigate to practice setup from CTA
+[1A[2K  35) [Mobile Safari] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m3[27m of 8"[39m
+    Received string:    [31m"Question [7m2[27m of 8"[39m
+    Timeout: 10000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 10000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    14 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 2 of 8</h2>[22m
+    [2m       - unexpected value "Question 2 of 8"[22m
+
+
+      78 |       // If not last question, verify we moved to next question
+      79 |       if (i < 8) {
+    > 80 |         await expect(page.locator("h2")).toContainText(`Question ${i + 1} of 8`, {
+         |                                          ^
+      81 |           timeout: 10000,
+      82 |         });
+      83 |       }
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:80:42
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-Mobile-Safari/error-context.md
+
+
+[1A[2K[167/170] [Mobile Safari] › e2e/guest-session.spec.ts:321:7 › Landing Page › should have accessible navigation
+[1A[2K[168/170] [Mobile Safari] › e2e/guest-session.spec.ts:331:7 › Practice Setup Page › should display all setup options
+[1A[2K[169/170] [Mobile Safari] › e2e/guest-session.spec.ts:339:7 › Practice Setup Page › should support all question count options
+[1A[2K[170/170] [Mobile Safari] › e2e/guest-session.spec.ts:351:7 › Practice Setup Page › should toggle Low-Anxiety Mode
+[1A[2K[2m[WebServer] [22mError creating report: {
+[2m[WebServer] [22m  code: [32m'42501'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  message: [32m'new row violates row-level security policy for table "reports"'[39m
+[2m[WebServer] [22m}
+
+[1A[2K[2m[WebServer] [22mError creating report: {
+[2m[WebServer] [22m  code: [32m'42501'[39m,
+[2m[WebServer] [22m  details: [1mnull[22m,
+[2m[WebServer] [22m  hint: [1mnull[22m,
+[2m[WebServer] [22m  message: [32m'new row violates row-level security policy for table "reports"'[39m
+[2m[WebServer] [22m}
+
+[1A[2K  36) [Mobile Safari] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Top 3 Strengths')
+    Expected: visible
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 30000ms[22m
+    [2m  - waiting for locator('text=Top 3 Strengths')[22m
+
+
+      162 |     // Verify redirect to results
+      163 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+    > 164 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+          |                                                        ^
+      165 |   });
+      166 |
+      167 |   test("should support keyboard shortcuts", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:164:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--Mobile-Safari/error-context.md
+
+
+[1A[2K  37) [Mobile Safari] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+
+    TimeoutError: page.waitForURL: Timeout 20000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================
+
+      295 |
+      296 |     // Should redirect to results and show loading state
+    > 297 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+          |                ^
+      298 |
+      299 |     // Coaching should eventually appear
+      300 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:297:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-Mobile-Safari/error-context.md
+
+
+[1A[2K  37 failed
+    [chromium] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+    [chromium] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+    [chromium] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+    [chromium] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors 
+    [chromium] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+    [chromium] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+    [chromium] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+    [chromium] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+    [firefox] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+    [firefox] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+    [firefox] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+    [firefox] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors 
+    [firefox] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+    [firefox] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+    [firefox] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+    [firefox] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+    [webkit] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+    [webkit] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+    [webkit] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+    [webkit] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+    [webkit] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+    [webkit] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+    [webkit] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+    [Mobile Chrome] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+    [Mobile Chrome] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+    [Mobile Chrome] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+    [Mobile Chrome] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+    [Mobile Chrome] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+    [Mobile Chrome] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+    [Mobile Chrome] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+    [Mobile Safari] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+    [Mobile Safari] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+    [Mobile Safari] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+    [Mobile Safari] › e2e/guest-session.spec.ts:22:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+    [Mobile Safari] › e2e/guest-session.spec.ts:133:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+    [Mobile Safari] › e2e/guest-session.spec.ts:167:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+    [Mobile Safari] › e2e/guest-session.spec.ts:276:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+  133 passed (2.5m)
+
+[36m  Serving HTML report at http://localhost:52249. Press Ctrl+C to quit.[39m

@@ -1,0 +1,1958 @@
+
+> candidate-helper@1.0.0 test:e2e
+> playwright test
+
+
+Running 170 tests using 5 workers
+
+[1A[2K[1/170] [chromium] › e2e/a11y.spec.ts:5:7 › Accessibility Compliance (WCAG 2.2 AA) › homepage should have no accessibility violations
+[1A[2K[2/170] [chromium] › e2e/a11y.spec.ts:25:7 › Accessibility Compliance (WCAG 2.2 AA) › active session page should have no accessibility violations
+[1A[2K[3/170] [chromium] › e2e/a11y.spec.ts:15:7 › Accessibility Compliance (WCAG 2.2 AA) › practice setup page should have no accessibility violations
+[1A[2K[4/170] [chromium] › e2e/a11y.spec.ts:39:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on homepage
+[1A[2K[5/170] [chromium] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup
+[1A[2K[6/170] [chromium] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session
+[1A[2K[7/170] [chromium] › e2e/a11y.spec.ts:102:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper ARIA labels on form elements
+[1A[2K[8/170] [chromium] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy
+[1A[2K[9/170] [chromium] › e2e/a11y.spec.ts:135:7 › Accessibility Compliance (WCAG 2.2 AA) › should have sufficient color contrast
+[1A[2K[10/170] [chromium] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels
+[1A[2K  1) [chromium] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: <= [32m1[39m
+    Received:    [31m2[39m
+
+      129 |     for (let i = 1; i < headings.length; i++) {
+      130 |       const diff = headings[i] - headings[i - 1];
+    > 131 |       expect(Math.abs(diff)).toBeLessThanOrEqual(1);
+          |                              ^
+      132 |     }
+      133 |   });
+      134 |
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:131:30
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-92bb7-ve-proper-heading-hierarchy-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-92bb7-ve-proper-heading-hierarchy-chromium/error-context.md
+
+
+[1A[2K[11/170] [chromium] › e2e/a11y.spec.ts:160:7 › Accessibility Compliance (WCAG 2.2 AA) › buttons should have accessible names
+[1A[2K[12/170] [chromium] › e2e/a11y.spec.ts:174:7 › Accessibility Compliance (WCAG 2.2 AA) › images should have alt text
+[1A[2K  2) [chromium] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels 
+
+    Error: frame.evaluate: Error: No elements found for include in page Context
+        at validateContext (eval at evaluate (:290:30), <anonymous>:18905:15)
+        at new Context (eval at evaluate (:290:30), <anonymous>:18886:7)
+        at Object._getFrameContexts (eval at evaluate (:290:30), <anonymous>:18927:22)
+        at eval (eval at evaluate (:290:30), <anonymous>:4:27)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at validateContext (eval at evaluate (:290:30), <anonymous>:18905:15)
+        at Context (eval at evaluate (:290:30), <anonymous>:18886:7)
+        at Object._getFrameContexts (eval at evaluate (:290:30), <anonymous>:18927:22)
+        at eval (eval at evaluate (:290:30), <anonymous>:4:27)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at AxeBuilder.runPartialRecursive (/Users/paulbrown/Desktop/coding-projects/candidate-helper/node_modules/@axe-core/playwright/dist/index.js:315:39)
+        at AxeBuilder.analyze (/Users/paulbrown/Desktop/coding-projects/candidate-helper/node_modules/@axe-core/playwright/dist/index.js:245:39)
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:153:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-53a1a-ould-have-associated-labels-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-53a1a-ould-have-associated-labels-chromium/error-context.md
+
+
+[1A[2K[13/170] [chromium] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles
+[1A[2K[14/170] [chromium] › e2e/a11y.spec.ts:187:7 › Accessibility Compliance (WCAG 2.2 AA) › should support screen reader announcements for dynamic content
+[1A[2K[15/170] [chromium] › e2e/a11y.spec.ts:229:7 › Accessibility Compliance (WCAG 2.2 AA) › should not have any automatically playing audio or video
+[1A[2K  3) [chromium] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31m""[39m
+
+      224 |       (focusedElement?.boxShadow && focusedElement.boxShadow !== "none");
+      225 |
+    > 226 |     expect(hasFocusIndicator).toBeTruthy();
+          |                               ^
+      227 |   });
+      228 |
+      229 |   test("should not have any automatically playing audio or video", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:226:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-chromium/error-context.md
+
+
+[1A[2K[16/170] [chromium] › e2e/a11y.spec.ts:240:7 › Accessibility Compliance (WCAG 2.2 AA) › page should have a valid language attribute
+[1A[2K[17/170] [chromium] › e2e/a11y.spec.ts:248:7 › Accessibility Compliance (WCAG 2.2 AA) › should have skip to main content link
+[1A[2K[18/170] [chromium] › e2e/a11y.spec.ts:265:7 › Accessibility Compliance (WCAG 2.2 AA) › disabled elements should not be keyboard focusable
+[1A[2K[19/170] [chromium] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors
+[1A[2K[20/170] [chromium] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions
+[1A[2K  4) [chromium] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('#low-anxiety-toggle')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('#low-anxiety-toggle')[22m
+    [2m    9 × locator resolved to <input type="checkbox" id="low-anxiety-toggle" aria-label="Enable Low-Anxiety Mode for gentler interview practice" class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2"/>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      59 |     await page.keyboard.press("Tab");
+      60 |     const checkbox = page.locator("#low-anxiety-toggle");
+    > 61 |     await expect(checkbox).toBeFocused();
+         |                            ^
+      62 |
+      63 |     // Tab to question count select
+      64 |     await page.keyboard.press("Tab");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:61:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-chromium/error-context.md
+
+
+[1A[2K[21/170] [chromium] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions)
+[1A[2K[22/170] [chromium] › e2e/guest-session.spec.ts:111:7 › Guest Practice Session Flow › should enforce minimum answer length
+[1A[2K  5) [chromium] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Situation')
+    Expected: visible
+    Error: strict mode violation: locator('text=Situation') resolved to 2 elements:
+        1) <p class="text-lg mb-6">Describe a situation where you received critical …</p> aka getByText('Describe a situation where')
+        2) <div>…</div> aka getByText('Situation: Set the context')
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=Situation')[22m
+
+
+      46 |
+      47 |     // 8. Verify STAR hint is visible
+    > 48 |     await expect(page.locator("text=Situation")).toBeVisible();
+         |                                                  ^
+      49 |     await expect(page.locator("text=Task")).toBeVisible();
+      50 |     await expect(page.locator("text=Action")).toBeVisible();
+      51 |     await expect(page.locator("text=Result")).toBeVisible();
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:48:50
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-chromium/error-context.md
+
+
+[1A[2K[23/170] [chromium] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts
+[1A[2K[24/170] [chromium] › e2e/guest-session.spec.ts:183:7 › Guest Practice Session Flow › should show character count as user types
+[1A[2K[25/170] [chromium] › e2e/guest-session.spec.ts:203:7 › Guest Practice Session Flow › should handle navigation without answers
+[1A[2K[26/170] [chromium] › e2e/guest-session.spec.ts:220:7 › Guest Practice Session Flow › should display different question categories
+[1A[2K  6) [chromium] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+       97 |     // Submit with Enter
+       98 |     await page.keyboard.press("Enter");
+    >  99 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      100 |   });
+      101 |
+      102 |   test("should have proper ARIA labels on form elements", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:99:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-chromium/error-context.md
+
+
+[1A[2K[27/170] [chromium] › e2e/guest-session.spec.ts:253:7 › Guest Practice Session Flow › should prevent exceeding maximum characters
+[1A[2K[28/170] [chromium] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching
+[1A[2K  7) [chromium] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m3[27m of 3"[39m
+    Received string:    [31m"Question [7m2[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 2 of 3</h2>[22m
+    [2m      - unexpected value "Question 2 of 3"[22m
+
+
+      152 |
+      153 |       if (i < 3) {
+    > 154 |         await expect(page.locator("h2")).toContainText(`Question ${i + 1} of 3`, { timeout: 5000 });
+          |                                          ^
+      155 |       }
+      156 |     }
+      157 |
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:154:42
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--chromium/error-context.md
+
+
+[1A[2K[29/170] [chromium] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA
+[1A[2K  8) [chromium] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+      178 |
+      179 |     // Verify we moved to next question
+    > 180 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      181 |   });
+      182 |
+      183 |   test("should show character count as user types", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:180:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-chromium/error-context.md
+
+
+[1A[2K[30/170] [chromium] › e2e/guest-session.spec.ts:315:7 › Landing Page › should have accessible navigation
+[1A[2K  9) [chromium] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Try Practice Session')
+    Expected: visible
+    Error: strict mode violation: locator('text=Try Practice Session') resolved to 2 elements:
+        1) <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-10 px-4 py-2">Try Practice Session</button> aka getByRole('navigation').getByRole('button', { name: 'Try Practice Session' })
+        2) <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-11 rounded-md text-lg px-8 py-6">Try Practice Session</button> aka getByRole('main').getByRole('button', { name: 'Try Practice Session' })
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=Try Practice Session')[22m
+
+
+      303 |
+      304 |     await expect(page.locator("h1")).toContainText("Cindy from Cinder");
+    > 305 |     await expect(page.locator("text=Try Practice Session")).toBeVisible();
+          |                                                             ^
+      306 |   });
+      307 |
+      308 |   test("should navigate to practice setup from CTA", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:305:61
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Landing-Page-4c1db-splay-hero-section-with-CTA-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Landing-Page-4c1db-splay-hero-section-with-CTA-chromium/error-context.md
+
+
+[1A[2K[31/170] [chromium] › e2e/guest-session.spec.ts:308:7 › Landing Page › should navigate to practice setup from CTA
+[1A[2K[32/170] [chromium] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options
+[1A[2K[33/170] [chromium] › e2e/guest-session.spec.ts:325:7 › Practice Setup Page › should display all setup options
+[1A[2K[34/170] [chromium] › e2e/guest-session.spec.ts:345:7 › Practice Setup Page › should toggle Low-Anxiety Mode
+[1A[2K[35/170] [firefox] › e2e/a11y.spec.ts:5:7 › Accessibility Compliance (WCAG 2.2 AA) › homepage should have no accessibility violations
+[1A[2K[36/170] [firefox] › e2e/a11y.spec.ts:15:7 › Accessibility Compliance (WCAG 2.2 AA) › practice setup page should have no accessibility violations
+[1A[2K[37/170] [firefox] › e2e/a11y.spec.ts:25:7 › Accessibility Compliance (WCAG 2.2 AA) › active session page should have no accessibility violations
+[1A[2K[38/170] [firefox] › e2e/a11y.spec.ts:39:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on homepage
+[1A[2K[39/170] [firefox] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup
+[1A[2K  10) [chromium] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator:  locator('#question-count').locator('option[value="3"]')
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('#question-count').locator('option[value="3"]')[22m
+    [2m    9 × locator resolved to <option value="3">3 questions (~15 minutes)</option>[22m
+    [2m      - unexpected value "hidden"[22m
+
+
+      337 |
+      338 |     // Check options exist
+    > 339 |     await expect(select.locator('option[value="3"]')).toBeVisible();
+          |                                                       ^
+      340 |     await expect(select.locator('option[value="5"]')).toBeVisible();
+      341 |     await expect(select.locator('option[value="8"]')).toBeVisible();
+      342 |     await expect(select.locator('option[value="10"]')).toBeVisible();
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:339:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Practice-Set-15332--all-question-count-options-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Practice-Set-15332--all-question-count-options-chromium/error-context.md
+
+
+[1A[2K[40/170] [firefox] › e2e/a11y.spec.ts:102:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper ARIA labels on form elements
+[1A[2K[41/170] [firefox] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session
+[1A[2K[42/170] [firefox] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy
+[1A[2K  11) [firefox] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: <= [32m1[39m
+    Received:    [31m2[39m
+
+      129 |     for (let i = 1; i < headings.length; i++) {
+      130 |       const diff = headings[i] - headings[i - 1];
+    > 131 |       expect(Math.abs(diff)).toBeLessThanOrEqual(1);
+          |                              ^
+      132 |     }
+      133 |   });
+      134 |
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:131:30
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-92bb7-ve-proper-heading-hierarchy-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-92bb7-ve-proper-heading-hierarchy-firefox/error-context.md
+
+
+[1A[2K[43/170] [firefox] › e2e/a11y.spec.ts:135:7 › Accessibility Compliance (WCAG 2.2 AA) › should have sufficient color contrast
+[1A[2K[44/170] [firefox] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels
+[1A[2K  12) [firefox] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels 
+
+    Error: frame.evaluate: No elements found for include in page Context
+    validateContext@debugger eval code line 290 > eval:18905:15
+    Context@debugger eval code line 290 > eval:18886:22
+    _getFrameContexts@debugger eval code line 290 > eval:18927:22
+    @debugger eval code line 290 > eval:4:27
+    evaluate@debugger eval code:292:16
+    @debugger eval code:1:44
+
+        at validateContext@debugger eval code line 290 > eval:18905:15
+        at Context@debugger eval code line 290 > eval:18886:22
+        at _getFrameContexts@debugger eval code line 290 > eval:18927:22
+        at @debugger eval code line 290 > eval:4:27
+        at evaluate@debugger eval code:292:16
+        at @debugger eval code:1:44
+        at AxeBuilder.runPartialRecursive (/Users/paulbrown/Desktop/coding-projects/candidate-helper/node_modules/@axe-core/playwright/dist/index.js:315:39)
+        at AxeBuilder.analyze (/Users/paulbrown/Desktop/coding-projects/candidate-helper/node_modules/@axe-core/playwright/dist/index.js:245:39)
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:153:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-53a1a-ould-have-associated-labels-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-53a1a-ould-have-associated-labels-firefox/error-context.md
+
+
+[1A[2K[45/170] [firefox] › e2e/a11y.spec.ts:160:7 › Accessibility Compliance (WCAG 2.2 AA) › buttons should have accessible names
+[1A[2K  13) [firefox] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('#low-anxiety-toggle')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('#low-anxiety-toggle')[22m
+    [2m    9 × locator resolved to <input type="checkbox" id="low-anxiety-toggle" aria-label="Enable Low-Anxiety Mode for gentler interview practice" class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2"/>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      59 |     await page.keyboard.press("Tab");
+      60 |     const checkbox = page.locator("#low-anxiety-toggle");
+    > 61 |     await expect(checkbox).toBeFocused();
+         |                            ^
+      62 |
+      63 |     // Tab to question count select
+      64 |     await page.keyboard.press("Tab");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:61:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-firefox/error-context.md
+
+
+[1A[2K[46/170] [firefox] › e2e/a11y.spec.ts:174:7 › Accessibility Compliance (WCAG 2.2 AA) › images should have alt text
+[1A[2K  14) [firefox] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+       97 |     // Submit with Enter
+       98 |     await page.keyboard.press("Enter");
+    >  99 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      100 |   });
+      101 |
+      102 |   test("should have proper ARIA labels on form elements", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:99:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-firefox/error-context.md
+
+
+[1A[2K[47/170] [firefox] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles
+[1A[2K[48/170] [firefox] › e2e/a11y.spec.ts:187:7 › Accessibility Compliance (WCAG 2.2 AA) › should support screen reader announcements for dynamic content
+[1A[2K[49/170] [firefox] › e2e/a11y.spec.ts:229:7 › Accessibility Compliance (WCAG 2.2 AA) › should not have any automatically playing audio or video
+[1A[2K  15) [firefox] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31m""[39m
+
+      224 |       (focusedElement?.boxShadow && focusedElement.boxShadow !== "none");
+      225 |
+    > 226 |     expect(hasFocusIndicator).toBeTruthy();
+          |                               ^
+      227 |   });
+      228 |
+      229 |   test("should not have any automatically playing audio or video", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:226:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-firefox/error-context.md
+
+
+[1A[2K[50/170] [firefox] › e2e/a11y.spec.ts:248:7 › Accessibility Compliance (WCAG 2.2 AA) › should have skip to main content link
+[1A[2K[51/170] [firefox] › e2e/a11y.spec.ts:240:7 › Accessibility Compliance (WCAG 2.2 AA) › page should have a valid language attribute
+[1A[2K[52/170] [firefox] › e2e/a11y.spec.ts:265:7 › Accessibility Compliance (WCAG 2.2 AA) › disabled elements should not be keyboard focusable
+[1A[2K[53/170] [firefox] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors
+[1A[2K[54/170] [firefox] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions
+[1A[2K  16) [chromium] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+
+    TimeoutError: page.waitForURL: Timeout 20000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+      navigated to "http://localhost:3000/practice/session/4237bf0a-fb11-4e47-88d2-3b71c38830b8"
+      navigated to "http://localhost:3000/practice/session/4237bf0a-fb11-4e47-88d2-3b71c38830b8"
+      navigated to "http://localhost:3000/practice/session/4237bf0a-fb11-4e47-88d2-3b71c38830b8"
+      navigated to "http://localhost:3000/practice/session/4237bf0a-fb11-4e47-88d2-3b71c38830b8"
+      navigated to "http://localhost:3000/practice/session/4237bf0a-fb11-4e47-88d2-3b71c38830b8"
+      navigated to "http://localhost:3000/practice/session/4237bf0a-fb11-4e47-88d2-3b71c38830b8"
+    ============================================================
+
+      291 |
+      292 |     // Should redirect to results and show loading state
+    > 293 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+          |                ^
+      294 |
+      295 |     // Coaching should eventually appear
+      296 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:293:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-chromium/error-context.md
+
+
+[1A[2K[55/170] [firefox] › e2e/guest-session.spec.ts:111:7 › Guest Practice Session Flow › should enforce minimum answer length
+[1A[2K  17) [chromium] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('textarea')[22m
+
+
+      294 |
+      295 |     const textarea = page.locator("textarea");
+    > 296 |     await textarea.fill("x"); // Too short
+          |                    ^
+      297 |
+      298 |     // Check for aria-invalid or aria-describedby on validation
+      299 |     const hasValidationAria =
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:296:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-20c46-unce-form-validation-errors-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-20c46-unce-form-validation-errors-chromium/error-context.md
+
+
+[1A[2K[56/170] [firefox] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts
+[1A[2K[57/170] [firefox] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions)
+[1A[2K[58/170] [firefox] › e2e/guest-session.spec.ts:183:7 › Guest Practice Session Flow › should show character count as user types
+[1A[2K[59/170] [firefox] › e2e/guest-session.spec.ts:203:7 › Guest Practice Session Flow › should handle navigation without answers
+[1A[2K[60/170] [firefox] › e2e/guest-session.spec.ts:220:7 › Guest Practice Session Flow › should display different question categories
+[1A[2K  18) [firefox] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    8 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+      178 |
+      179 |     // Verify we moved to next question
+    > 180 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      181 |   });
+      182 |
+      183 |   test("should show character count as user types", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:180:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-firefox/error-context.md
+
+
+[1A[2K[61/170] [firefox] › e2e/guest-session.spec.ts:253:7 › Guest Practice Session Flow › should prevent exceeding maximum characters
+[1A[2K  19) [firefox] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 8"[39m
+    Received string:    [31m"Question [7m1[27m of 8"[39m
+    Timeout: 10000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 10000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    13 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 8</h2>[22m
+    [2m       - unexpected value "Question 1 of 8"[22m
+
+
+      74 |       // If not last question, verify we moved to next question
+      75 |       if (i < 8) {
+    > 76 |         await expect(page.locator("h2")).toContainText(`Question ${i + 1} of 8`, {
+         |                                          ^
+      77 |           timeout: 10000,
+      78 |         });
+      79 |       }
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:76:42
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-firefox/error-context.md
+
+
+[1A[2K[62/170] [firefox] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching
+[1A[2K  20) [firefox] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('textarea')[22m
+
+
+      294 |
+      295 |     const textarea = page.locator("textarea");
+    > 296 |     await textarea.fill("x"); // Too short
+          |                    ^
+      297 |
+      298 |     // Check for aria-invalid or aria-describedby on validation
+      299 |     const hasValidationAria =
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:296:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-20c46-unce-form-validation-errors-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-20c46-unce-form-validation-errors-firefox/error-context.md
+
+
+[1A[2K[63/170] [firefox] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA
+[1A[2K  21) [firefox] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Try Practice Session')
+    Expected: visible
+    Error: strict mode violation: locator('text=Try Practice Session') resolved to 2 elements:
+        1) <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-10 px-4 py-2">Try Practice Session</button> aka getByRole('navigation').getByRole('button', { name: 'Try Practice Session' })
+        2) <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-11 rounded-md text-lg px-8 py-6">Try Practice Session</button> aka getByRole('main').getByRole('button', { name: 'Try Practice Session' })
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=Try Practice Session')[22m
+
+
+      303 |
+      304 |     await expect(page.locator("h1")).toContainText("Cindy from Cinder");
+    > 305 |     await expect(page.locator("text=Try Practice Session")).toBeVisible();
+          |                                                             ^
+      306 |   });
+      307 |
+      308 |   test("should navigate to practice setup from CTA", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:305:61
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Landing-Page-4c1db-splay-hero-section-with-CTA-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Landing-Page-4c1db-splay-hero-section-with-CTA-firefox/error-context.md
+
+
+[1A[2K[64/170] [firefox] › e2e/guest-session.spec.ts:308:7 › Landing Page › should navigate to practice setup from CTA
+[1A[2K[65/170] [firefox] › e2e/guest-session.spec.ts:315:7 › Landing Page › should have accessible navigation
+[1A[2K[66/170] [firefox] › e2e/guest-session.spec.ts:325:7 › Practice Setup Page › should display all setup options
+[1A[2K  22) [firefox] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Top 3 Strengths')
+    Expected: visible
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 30000ms[22m
+    [2m  - waiting for locator('text=Top 3 Strengths')[22m
+
+
+      158 |     // Verify redirect to results
+      159 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+    > 160 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+          |                                                        ^
+      161 |   });
+      162 |
+      163 |   test("should support keyboard shortcuts", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:160:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--firefox/error-context.md
+
+
+[1A[2K[67/170] [firefox] › e2e/guest-session.spec.ts:345:7 › Practice Setup Page › should toggle Low-Anxiety Mode
+[1A[2K[68/170] [firefox] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options
+[1A[2K[69/170] [webkit] › e2e/a11y.spec.ts:5:7 › Accessibility Compliance (WCAG 2.2 AA) › homepage should have no accessibility violations
+[1A[2K[70/170] [webkit] › e2e/a11y.spec.ts:15:7 › Accessibility Compliance (WCAG 2.2 AA) › practice setup page should have no accessibility violations
+[1A[2K  23) [firefox] › e2e/guest-session.spec.ts:220:7 › Guest Practice Session Flow › should display different question categories 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('textarea')[22m
+
+
+      235 |       // Answer and move to next
+      236 |       const textarea = page.locator("textarea");
+    > 237 |       await textarea.fill(
+          |                      ^
+      238 |         `Answer to question ${i} with sufficient length to pass validation checks.`
+      239 |       );
+      240 |
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:237:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-88de5-fferent-question-categories-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-88de5-fferent-question-categories-firefox/error-context.md
+
+
+[1A[2K[71/170] [webkit] › e2e/a11y.spec.ts:39:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on homepage
+[1A[2K[72/170] [webkit] › e2e/a11y.spec.ts:25:7 › Accessibility Compliance (WCAG 2.2 AA) › active session page should have no accessibility violations
+[1A[2K[73/170] [webkit] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup
+[1A[2K  24) [firefox] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+
+    TimeoutError: page.waitForURL: Timeout 20000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+      navigated to "http://localhost:3000/practice/session/fc8f0a4b-7de4-48be-909a-bb043ace52e1"
+      navigated to "http://localhost:3000/practice/session/fc8f0a4b-7de4-48be-909a-bb043ace52e1"
+      navigated to "http://localhost:3000/practice/session/fc8f0a4b-7de4-48be-909a-bb043ace52e1"
+      navigated to "http://localhost:3000/practice/session/fc8f0a4b-7de4-48be-909a-bb043ace52e1"
+    ============================================================
+
+      291 |
+      292 |     // Should redirect to results and show loading state
+    > 293 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+          |                ^
+      294 |
+      295 |     // Coaching should eventually appear
+      296 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:293:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-firefox/error-context.md
+
+
+[1A[2K  25) [firefox] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator:  locator('#question-count').locator('option[value="3"]')
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('#question-count').locator('option[value="3"]')[22m
+    [2m    9 × locator resolved to <option value="3">3 questions (~15 minutes)</option>[22m
+    [2m      - unexpected value "hidden"[22m
+
+
+      337 |
+      338 |     // Check options exist
+    > 339 |     await expect(select.locator('option[value="3"]')).toBeVisible();
+          |                                                       ^
+      340 |     await expect(select.locator('option[value="5"]')).toBeVisible();
+      341 |     await expect(select.locator('option[value="8"]')).toBeVisible();
+      342 |     await expect(select.locator('option[value="10"]')).toBeVisible();
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:339:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Practice-Set-15332--all-question-count-options-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Practice-Set-15332--all-question-count-options-firefox/error-context.md
+
+
+[1A[2K[74/170] [webkit] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session
+[1A[2K[75/170] [webkit] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy
+[1A[2K[76/170] [webkit] › e2e/a11y.spec.ts:102:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper ARIA labels on form elements
+[1A[2K  26) [webkit] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: <= [32m1[39m
+    Received:    [31m2[39m
+
+      129 |     for (let i = 1; i < headings.length; i++) {
+      130 |       const diff = headings[i] - headings[i - 1];
+    > 131 |       expect(Math.abs(diff)).toBeLessThanOrEqual(1);
+          |                              ^
+      132 |     }
+      133 |   });
+      134 |
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:131:30
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-92bb7-ve-proper-heading-hierarchy-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-92bb7-ve-proper-heading-hierarchy-webkit/error-context.md
+
+
+[1A[2K  27) [firefox] › e2e/guest-session.spec.ts:253:7 › Guest Practice Session Flow › should prevent exceeding maximum characters 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('textarea')[22m
+
+
+      263 |     // Try to enter more than 5000 characters
+      264 |     const longText = "a".repeat(5001);
+    > 265 |     await textarea.fill(longText);
+          |                    ^
+      266 |
+      267 |     // Verify length is capped at 5000
+      268 |     const value = await textarea.inputValue();
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:265:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-bbd38-xceeding-maximum-characters-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-bbd38-xceeding-maximum-characters-firefox/error-context.md
+
+
+[1A[2K[77/170] [webkit] › e2e/a11y.spec.ts:160:7 › Accessibility Compliance (WCAG 2.2 AA) › buttons should have accessible names
+[1A[2K[78/170] [webkit] › e2e/a11y.spec.ts:135:7 › Accessibility Compliance (WCAG 2.2 AA) › should have sufficient color contrast
+[1A[2K[79/170] [webkit] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels
+[1A[2K[80/170] [webkit] › e2e/a11y.spec.ts:174:7 › Accessibility Compliance (WCAG 2.2 AA) › images should have alt text
+[1A[2K[81/170] [webkit] › e2e/a11y.spec.ts:187:7 › Accessibility Compliance (WCAG 2.2 AA) › should support screen reader announcements for dynamic content
+[1A[2K[82/170] [webkit] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles
+[1A[2K  28) [webkit] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels 
+
+    Error: frame.evaluate: Error: No elements found for include in page Context
+
+      151 |     await page.goto("/practice");
+      152 |
+    > 153 |     const accessibilityScanResults = await new AxeBuilder({ page }).include("form").analyze();
+          |                                      ^
+      154 |
+      155 |     const labelViolations = accessibilityScanResults.violations.filter((v) => v.id === "label");
+      156 |
+        at AxeBuilder.runPartialRecursive (/Users/paulbrown/Desktop/coding-projects/candidate-helper/node_modules/@axe-core/playwright/dist/index.js:315:39)
+        at AxeBuilder.analyze (/Users/paulbrown/Desktop/coding-projects/candidate-helper/node_modules/@axe-core/playwright/dist/index.js:245:39)
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:153:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-53a1a-ould-have-associated-labels-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-53a1a-ould-have-associated-labels-webkit/error-context.md
+
+
+[1A[2K[83/170] [webkit] › e2e/a11y.spec.ts:229:7 › Accessibility Compliance (WCAG 2.2 AA) › should not have any automatically playing audio or video
+[1A[2K  29) [webkit] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31m""[39m
+
+      224 |       (focusedElement?.boxShadow && focusedElement.boxShadow !== "none");
+      225 |
+    > 226 |     expect(hasFocusIndicator).toBeTruthy();
+          |                               ^
+      227 |   });
+      228 |
+      229 |   test("should not have any automatically playing audio or video", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:226:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-webkit/error-context.md
+
+
+[1A[2K  30) [webkit] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('#low-anxiety-toggle')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('#low-anxiety-toggle')[22m
+    [2m    9 × locator resolved to <input type="checkbox" id="low-anxiety-toggle" aria-label="Enable Low-Anxiety Mode for gentler interview practice" class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2"/>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      59 |     await page.keyboard.press("Tab");
+      60 |     const checkbox = page.locator("#low-anxiety-toggle");
+    > 61 |     await expect(checkbox).toBeFocused();
+         |                            ^
+      62 |
+      63 |     // Tab to question count select
+      64 |     await page.keyboard.press("Tab");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:61:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-webkit/error-context.md
+
+
+[1A[2K[84/170] [webkit] › e2e/a11y.spec.ts:265:7 › Accessibility Compliance (WCAG 2.2 AA) › disabled elements should not be keyboard focusable
+[1A[2K[85/170] [webkit] › e2e/a11y.spec.ts:240:7 › Accessibility Compliance (WCAG 2.2 AA) › page should have a valid language attribute
+[1A[2K[86/170] [webkit] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors
+[1A[2K[87/170] [webkit] › e2e/a11y.spec.ts:248:7 › Accessibility Compliance (WCAG 2.2 AA) › should have skip to main content link
+[1A[2K[88/170] [webkit] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions
+[1A[2K[89/170] [webkit] › e2e/guest-session.spec.ts:111:7 › Guest Practice Session Flow › should enforce minimum answer length
+[1A[2K[90/170] [webkit] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions)
+[1A[2K  31) [webkit] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('button:has-text("Submit Answer")')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('button:has-text("Submit Answer")')[22m
+    [2m    9 × locator resolved to <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-11 rounded-md px-8">Submit Answer</button>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      93 |     await page.keyboard.press("Tab");
+      94 |     const submitButton = page.locator('button:has-text("Submit Answer")');
+    > 95 |     await expect(submitButton).toBeFocused();
+         |                                ^
+      96 |
+      97 |     // Submit with Enter
+      98 |     await page.keyboard.press("Enter");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:95:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-webkit/error-context.md
+
+
+[1A[2K[91/170] [webkit] › e2e/guest-session.spec.ts:183:7 › Guest Practice Session Flow › should show character count as user types
+[1A[2K[92/170] [webkit] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts
+[1A[2K[93/170] [webkit] › e2e/guest-session.spec.ts:203:7 › Guest Practice Session Flow › should handle navigation without answers
+[1A[2K[94/170] [webkit] › e2e/guest-session.spec.ts:220:7 › Guest Practice Session Flow › should display different question categories
+[1A[2K  32) [webkit] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question 1 of 8"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+
+
+      39 |     // 6. Wait for questions to load and verify first question
+      40 |     await page.waitForURL(/\/practice\/session\//);
+    > 41 |     await expect(page.locator("h2")).toContainText("Question 1 of 8");
+         |                                      ^
+      42 |
+      43 |     // 7. Verify question text is displayed
+      44 |     const questionText = await page.locator("p.text-lg").first();
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:41:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-webkit/error-context.md
+
+
+[1A[2K  33) [webkit] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+      152 |
+      153 |       if (i < 3) {
+    > 154 |         await expect(page.locator("h2")).toContainText(`Question ${i + 1} of 3`, { timeout: 5000 });
+          |                                          ^
+      155 |       }
+      156 |     }
+      157 |
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:154:42
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--webkit/error-context.md
+
+
+[1A[2K[95/170] [webkit] › e2e/guest-session.spec.ts:253:7 › Guest Practice Session Flow › should prevent exceeding maximum characters
+[1A[2K[96/170] [webkit] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching
+[1A[2K[97/170] [webkit] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA
+[1A[2K  34) [webkit] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Try Practice Session')
+    Expected: visible
+    Error: strict mode violation: locator('text=Try Practice Session') resolved to 2 elements:
+        1) <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-10 px-4 py-2">Try Practice Session</button> aka getByRole('navigation').getByRole('button', { name: 'Try Practice Session' })
+        2) <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-11 rounded-md text-lg px-8 py-6">Try Practice Session</button> aka getByRole('main').getByRole('button', { name: 'Try Practice Session' })
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=Try Practice Session')[22m
+
+
+      303 |
+      304 |     await expect(page.locator("h1")).toContainText("Cindy from Cinder");
+    > 305 |     await expect(page.locator("text=Try Practice Session")).toBeVisible();
+          |                                                             ^
+      306 |   });
+      307 |
+      308 |   test("should navigate to practice setup from CTA", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:305:61
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Landing-Page-4c1db-splay-hero-section-with-CTA-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Landing-Page-4c1db-splay-hero-section-with-CTA-webkit/error-context.md
+
+
+[1A[2K[98/170] [webkit] › e2e/guest-session.spec.ts:315:7 › Landing Page › should have accessible navigation
+[1A[2K[99/170] [webkit] › e2e/guest-session.spec.ts:308:7 › Landing Page › should navigate to practice setup from CTA
+[1A[2K[100/170] [webkit] › e2e/guest-session.spec.ts:325:7 › Practice Setup Page › should display all setup options
+[1A[2K[101/170] [webkit] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options
+[1A[2K[102/170] [webkit] › e2e/guest-session.spec.ts:345:7 › Practice Setup Page › should toggle Low-Anxiety Mode
+[1A[2K[103/170] [Mobile Chrome] › e2e/a11y.spec.ts:5:7 › Accessibility Compliance (WCAG 2.2 AA) › homepage should have no accessibility violations
+[1A[2K[104/170] [Mobile Chrome] › e2e/a11y.spec.ts:15:7 › Accessibility Compliance (WCAG 2.2 AA) › practice setup page should have no accessibility violations
+[1A[2K[105/170] [Mobile Chrome] › e2e/a11y.spec.ts:25:7 › Accessibility Compliance (WCAG 2.2 AA) › active session page should have no accessibility violations
+[1A[2K[106/170] [Mobile Chrome] › e2e/a11y.spec.ts:39:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on homepage
+[1A[2K[107/170] [Mobile Chrome] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup
+[1A[2K  35) [webkit] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator:  locator('#question-count').locator('option[value="3"]')
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('#question-count').locator('option[value="3"]')[22m
+    [2m    9 × locator resolved to <option value="3">3 questions (~15 minutes)</option>[22m
+    [2m      - unexpected value "hidden"[22m
+
+
+      337 |
+      338 |     // Check options exist
+    > 339 |     await expect(select.locator('option[value="3"]')).toBeVisible();
+          |                                                       ^
+      340 |     await expect(select.locator('option[value="5"]')).toBeVisible();
+      341 |     await expect(select.locator('option[value="8"]')).toBeVisible();
+      342 |     await expect(select.locator('option[value="10"]')).toBeVisible();
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:339:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Practice-Set-15332--all-question-count-options-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Practice-Set-15332--all-question-count-options-webkit/error-context.md
+
+
+[1A[2K[108/170] [Mobile Chrome] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session
+[1A[2K  36) [Mobile Chrome] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('#low-anxiety-toggle')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('#low-anxiety-toggle')[22m
+    [2m    9 × locator resolved to <input type="checkbox" id="low-anxiety-toggle" aria-label="Enable Low-Anxiety Mode for gentler interview practice" class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2"/>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      59 |     await page.keyboard.press("Tab");
+      60 |     const checkbox = page.locator("#low-anxiety-toggle");
+    > 61 |     await expect(checkbox).toBeFocused();
+         |                            ^
+      62 |
+      63 |     // Tab to question count select
+      64 |     await page.keyboard.press("Tab");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:61:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-Mobile-Chrome/error-context.md
+
+
+[1A[2K[109/170] [Mobile Chrome] › e2e/a11y.spec.ts:102:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper ARIA labels on form elements
+[1A[2K[110/170] [Mobile Chrome] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy
+[1A[2K  37) [Mobile Chrome] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: <= [32m1[39m
+    Received:    [31m2[39m
+
+      129 |     for (let i = 1; i < headings.length; i++) {
+      130 |       const diff = headings[i] - headings[i - 1];
+    > 131 |       expect(Math.abs(diff)).toBeLessThanOrEqual(1);
+          |                              ^
+      132 |     }
+      133 |   });
+      134 |
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:131:30
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-92bb7-ve-proper-heading-hierarchy-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-92bb7-ve-proper-heading-hierarchy-Mobile-Chrome/error-context.md
+
+
+[1A[2K[111/170] [Mobile Chrome] › e2e/a11y.spec.ts:135:7 › Accessibility Compliance (WCAG 2.2 AA) › should have sufficient color contrast
+[1A[2K[112/170] [Mobile Chrome] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels
+[1A[2K  38) [Mobile Chrome] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+       97 |     // Submit with Enter
+       98 |     await page.keyboard.press("Enter");
+    >  99 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      100 |   });
+      101 |
+      102 |   test("should have proper ARIA labels on form elements", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:99:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-Mobile-Chrome/error-context.md
+
+
+[1A[2K  39) [Mobile Chrome] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels 
+
+    Error: frame.evaluate: Error: No elements found for include in page Context
+        at validateContext (eval at evaluate (:290:30), <anonymous>:18905:15)
+        at new Context (eval at evaluate (:290:30), <anonymous>:18886:7)
+        at Object._getFrameContexts (eval at evaluate (:290:30), <anonymous>:18927:22)
+        at eval (eval at evaluate (:290:30), <anonymous>:4:27)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at validateContext (eval at evaluate (:290:30), <anonymous>:18905:15)
+        at Context (eval at evaluate (:290:30), <anonymous>:18886:7)
+        at Object._getFrameContexts (eval at evaluate (:290:30), <anonymous>:18927:22)
+        at eval (eval at evaluate (:290:30), <anonymous>:4:27)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at AxeBuilder.runPartialRecursive (/Users/paulbrown/Desktop/coding-projects/candidate-helper/node_modules/@axe-core/playwright/dist/index.js:315:39)
+        at AxeBuilder.analyze (/Users/paulbrown/Desktop/coding-projects/candidate-helper/node_modules/@axe-core/playwright/dist/index.js:245:39)
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:153:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-53a1a-ould-have-associated-labels-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-53a1a-ould-have-associated-labels-Mobile-Chrome/error-context.md
+
+
+[1A[2K[113/170] [Mobile Chrome] › e2e/a11y.spec.ts:160:7 › Accessibility Compliance (WCAG 2.2 AA) › buttons should have accessible names
+[1A[2K[114/170] [Mobile Chrome] › e2e/a11y.spec.ts:174:7 › Accessibility Compliance (WCAG 2.2 AA) › images should have alt text
+[1A[2K[115/170] [Mobile Chrome] › e2e/a11y.spec.ts:187:7 › Accessibility Compliance (WCAG 2.2 AA) › should support screen reader announcements for dynamic content
+[1A[2K[116/170] [Mobile Chrome] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles
+[1A[2K[117/170] [Mobile Chrome] › e2e/a11y.spec.ts:229:7 › Accessibility Compliance (WCAG 2.2 AA) › should not have any automatically playing audio or video
+[1A[2K  40) [Mobile Chrome] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31m""[39m
+
+      224 |       (focusedElement?.boxShadow && focusedElement.boxShadow !== "none");
+      225 |
+    > 226 |     expect(hasFocusIndicator).toBeTruthy();
+          |                               ^
+      227 |   });
+      228 |
+      229 |   test("should not have any automatically playing audio or video", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:226:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-Mobile-Chrome/error-context.md
+
+
+[1A[2K[118/170] [Mobile Chrome] › e2e/a11y.spec.ts:248:7 › Accessibility Compliance (WCAG 2.2 AA) › should have skip to main content link
+[1A[2K[119/170] [Mobile Chrome] › e2e/a11y.spec.ts:240:7 › Accessibility Compliance (WCAG 2.2 AA) › page should have a valid language attribute
+[1A[2K[120/170] [Mobile Chrome] › e2e/a11y.spec.ts:265:7 › Accessibility Compliance (WCAG 2.2 AA) › disabled elements should not be keyboard focusable
+[1A[2K[121/170] [Mobile Chrome] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors
+[1A[2K[122/170] [Mobile Chrome] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions
+[1A[2K[123/170] [Mobile Chrome] › e2e/guest-session.spec.ts:111:7 › Guest Practice Session Flow › should enforce minimum answer length
+[1A[2K[124/170] [Mobile Chrome] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions)
+[1A[2K  41) [webkit] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('textarea')[22m
+
+
+      294 |
+      295 |     const textarea = page.locator("textarea");
+    > 296 |     await textarea.fill("x"); // Too short
+          |                    ^
+      297 |
+      298 |     // Check for aria-invalid or aria-describedby on validation
+      299 |     const hasValidationAria =
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:296:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-20c46-unce-form-validation-errors-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-20c46-unce-form-validation-errors-webkit/error-context.md
+
+
+[1A[2K[125/170] [Mobile Chrome] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts
+[1A[2K  42) [webkit] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+
+    TimeoutError: page.waitForURL: Timeout 20000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+      navigated to "http://localhost:3000/practice/session/f07288b6-8ce4-4177-8b07-062d3c528af8"
+      navigated to "http://localhost:3000/practice/session/f07288b6-8ce4-4177-8b07-062d3c528af8"
+      navigated to "http://localhost:3000/practice/session/f07288b6-8ce4-4177-8b07-062d3c528af8"
+      navigated to "http://localhost:3000/practice/session/f07288b6-8ce4-4177-8b07-062d3c528af8"
+      navigated to "http://localhost:3000/practice/session/f07288b6-8ce4-4177-8b07-062d3c528af8"
+      navigated to "http://localhost:3000/practice/session/f07288b6-8ce4-4177-8b07-062d3c528af8"
+      navigated to "http://localhost:3000/practice/session/f07288b6-8ce4-4177-8b07-062d3c528af8"
+    ============================================================
+
+      291 |
+      292 |     // Should redirect to results and show loading state
+    > 293 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+          |                ^
+      294 |
+      295 |     // Coaching should eventually appear
+      296 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:293:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-webkit/error-context.md
+
+
+[1A[2K  43) [webkit] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('textarea')[22m
+
+
+      170 |
+      171 |     const textarea = page.locator("textarea");
+    > 172 |     await textarea.fill(
+          |                    ^
+      173 |       "This answer is long enough to be submitted via keyboard shortcut. It contains sufficient detail."
+      174 |     );
+      175 |
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:172:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-webkit/error-context.md
+
+
+[1A[2K[126/170] [Mobile Chrome] › e2e/guest-session.spec.ts:183:7 › Guest Practice Session Flow › should show character count as user types
+[1A[2K[127/170] [Mobile Chrome] › e2e/guest-session.spec.ts:203:7 › Guest Practice Session Flow › should handle navigation without answers
+[1A[2K[128/170] [Mobile Chrome] › e2e/guest-session.spec.ts:220:7 › Guest Practice Session Flow › should display different question categories
+[1A[2K[129/170] [Mobile Chrome] › e2e/guest-session.spec.ts:253:7 › Guest Practice Session Flow › should prevent exceeding maximum characters
+[1A[2K[130/170] [Mobile Chrome] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching
+[1A[2K  44) [Mobile Chrome] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+      178 |
+      179 |     // Verify we moved to next question
+    > 180 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      181 |   });
+      182 |
+      183 |   test("should show character count as user types", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:180:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-Mobile-Chrome/error-context.md
+
+
+[1A[2K[131/170] [Mobile Chrome] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA
+[1A[2K  45) [Mobile Chrome] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Try Practice Session')
+    Expected: visible
+    Error: strict mode violation: locator('text=Try Practice Session') resolved to 2 elements:
+        1) <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-10 px-4 py-2">Try Practice Session</button> aka getByRole('navigation').getByRole('button', { name: 'Try Practice Session' })
+        2) <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-11 rounded-md text-lg px-8 py-6">Try Practice Session</button> aka getByRole('main').getByRole('button', { name: 'Try Practice Session' })
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=Try Practice Session')[22m
+
+
+      303 |
+      304 |     await expect(page.locator("h1")).toContainText("Cindy from Cinder");
+    > 305 |     await expect(page.locator("text=Try Practice Session")).toBeVisible();
+          |                                                             ^
+      306 |   });
+      307 |
+      308 |   test("should navigate to practice setup from CTA", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:305:61
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Landing-Page-4c1db-splay-hero-section-with-CTA-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Landing-Page-4c1db-splay-hero-section-with-CTA-Mobile-Chrome/error-context.md
+
+
+[1A[2K[132/170] [Mobile Chrome] › e2e/guest-session.spec.ts:308:7 › Landing Page › should navigate to practice setup from CTA
+[1A[2K  46) [Mobile Chrome] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 8"[39m
+    Received string:    [31m"Question [7m1[27m of 8"[39m
+    Timeout: 10000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 10000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    14 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 8</h2>[22m
+    [2m       - unexpected value "Question 1 of 8"[22m
+
+
+      74 |       // If not last question, verify we moved to next question
+      75 |       if (i < 8) {
+    > 76 |         await expect(page.locator("h2")).toContainText(`Question ${i + 1} of 8`, {
+         |                                          ^
+      77 |           timeout: 10000,
+      78 |         });
+      79 |       }
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:76:42
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-Mobile-Chrome/error-context.md
+
+
+[1A[2K[133/170] [Mobile Chrome] › e2e/guest-session.spec.ts:325:7 › Practice Setup Page › should display all setup options
+[1A[2K[134/170] [Mobile Chrome] › e2e/guest-session.spec.ts:315:7 › Landing Page › should have accessible navigation
+[1A[2K[135/170] [Mobile Chrome] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options
+[1A[2K[136/170] [Mobile Chrome] › e2e/guest-session.spec.ts:345:7 › Practice Setup Page › should toggle Low-Anxiety Mode
+[1A[2K[137/170] [Mobile Safari] › e2e/a11y.spec.ts:5:7 › Accessibility Compliance (WCAG 2.2 AA) › homepage should have no accessibility violations
+[1A[2K[138/170] [Mobile Safari] › e2e/a11y.spec.ts:15:7 › Accessibility Compliance (WCAG 2.2 AA) › practice setup page should have no accessibility violations
+[1A[2K[139/170] [Mobile Safari] › e2e/a11y.spec.ts:25:7 › Accessibility Compliance (WCAG 2.2 AA) › active session page should have no accessibility violations
+[1A[2K[140/170] [Mobile Safari] › e2e/a11y.spec.ts:39:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on homepage
+[1A[2K[141/170] [Mobile Safari] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup
+[1A[2K[142/170] [Mobile Safari] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session
+[1A[2K  47) [Mobile Chrome] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator:  locator('#question-count').locator('option[value="3"]')
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('#question-count').locator('option[value="3"]')[22m
+    [2m    9 × locator resolved to <option value="3">3 questions (~15 minutes)</option>[22m
+    [2m      - unexpected value "hidden"[22m
+
+
+      337 |
+      338 |     // Check options exist
+    > 339 |     await expect(select.locator('option[value="3"]')).toBeVisible();
+          |                                                       ^
+      340 |     await expect(select.locator('option[value="5"]')).toBeVisible();
+      341 |     await expect(select.locator('option[value="8"]')).toBeVisible();
+      342 |     await expect(select.locator('option[value="10"]')).toBeVisible();
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:339:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Practice-Set-15332--all-question-count-options-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Practice-Set-15332--all-question-count-options-Mobile-Chrome/error-context.md
+
+
+[1A[2K[143/170] [Mobile Safari] › e2e/a11y.spec.ts:102:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper ARIA labels on form elements
+[1A[2K[144/170] [Mobile Safari] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy
+[1A[2K  48) [Mobile Safari] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: <= [32m1[39m
+    Received:    [31m2[39m
+
+      129 |     for (let i = 1; i < headings.length; i++) {
+      130 |       const diff = headings[i] - headings[i - 1];
+    > 131 |       expect(Math.abs(diff)).toBeLessThanOrEqual(1);
+          |                              ^
+      132 |     }
+      133 |   });
+      134 |
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:131:30
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-92bb7-ve-proper-heading-hierarchy-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-92bb7-ve-proper-heading-hierarchy-Mobile-Safari/error-context.md
+
+
+[1A[2K[145/170] [Mobile Safari] › e2e/a11y.spec.ts:135:7 › Accessibility Compliance (WCAG 2.2 AA) › should have sufficient color contrast
+[1A[2K  49) [Mobile Safari] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('#low-anxiety-toggle')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('#low-anxiety-toggle')[22m
+    [2m    9 × locator resolved to <input type="checkbox" id="low-anxiety-toggle" aria-label="Enable Low-Anxiety Mode for gentler interview practice" class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2"/>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      59 |     await page.keyboard.press("Tab");
+      60 |     const checkbox = page.locator("#low-anxiety-toggle");
+    > 61 |     await expect(checkbox).toBeFocused();
+         |                            ^
+      62 |
+      63 |     // Tab to question count select
+      64 |     await page.keyboard.press("Tab");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:61:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-fd47d-navigable-on-practice-setup-Mobile-Safari/error-context.md
+
+
+[1A[2K[146/170] [Mobile Safari] › e2e/a11y.spec.ts:160:7 › Accessibility Compliance (WCAG 2.2 AA) › buttons should have accessible names
+[1A[2K[147/170] [Mobile Safari] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels
+[1A[2K[148/170] [Mobile Safari] › e2e/a11y.spec.ts:174:7 › Accessibility Compliance (WCAG 2.2 AA) › images should have alt text
+[1A[2K[149/170] [Mobile Safari] › e2e/a11y.spec.ts:187:7 › Accessibility Compliance (WCAG 2.2 AA) › should support screen reader announcements for dynamic content
+[1A[2K  50) [Mobile Safari] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels 
+
+    Error: frame.evaluate: Error: No elements found for include in page Context
+
+      151 |     await page.goto("/practice");
+      152 |
+    > 153 |     const accessibilityScanResults = await new AxeBuilder({ page }).include("form").analyze();
+          |                                      ^
+      154 |
+      155 |     const labelViolations = accessibilityScanResults.violations.filter((v) => v.id === "label");
+      156 |
+        at AxeBuilder.runPartialRecursive (/Users/paulbrown/Desktop/coding-projects/candidate-helper/node_modules/@axe-core/playwright/dist/index.js:315:39)
+        at AxeBuilder.analyze (/Users/paulbrown/Desktop/coding-projects/candidate-helper/node_modules/@axe-core/playwright/dist/index.js:245:39)
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:153:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-53a1a-ould-have-associated-labels-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-53a1a-ould-have-associated-labels-Mobile-Safari/error-context.md
+
+
+[1A[2K  51) [Mobile Safari] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('button:has-text("Submit Answer")')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('button:has-text("Submit Answer")')[22m
+    [2m    9 × locator resolved to <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-11 rounded-md px-8">Submit Answer</button>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+      93 |     await page.keyboard.press("Tab");
+      94 |     const submitButton = page.locator('button:has-text("Submit Answer")');
+    > 95 |     await expect(submitButton).toBeFocused();
+         |                                ^
+      96 |
+      97 |     // Submit with Enter
+      98 |     await page.keyboard.press("Enter");
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:95:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-4aa75-avigation-in-active-session-Mobile-Safari/error-context.md
+
+
+[1A[2K[150/170] [Mobile Safari] › e2e/a11y.spec.ts:229:7 › Accessibility Compliance (WCAG 2.2 AA) › should not have any automatically playing audio or video
+[1A[2K[151/170] [Mobile Safari] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles
+[1A[2K[152/170] [Mobile Safari] › e2e/a11y.spec.ts:240:7 › Accessibility Compliance (WCAG 2.2 AA) › page should have a valid language attribute
+[1A[2K[153/170] [Mobile Safari] › e2e/a11y.spec.ts:248:7 › Accessibility Compliance (WCAG 2.2 AA) › should have skip to main content link
+[1A[2K[154/170] [Mobile Safari] › e2e/a11y.spec.ts:265:7 › Accessibility Compliance (WCAG 2.2 AA) › disabled elements should not be keyboard focusable
+[1A[2K  52) [Mobile Safari] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31m""[39m
+
+      224 |       (focusedElement?.boxShadow && focusedElement.boxShadow !== "none");
+      225 |
+    > 226 |     expect(hasFocusIndicator).toBeTruthy();
+          |                               ^
+      227 |   });
+      228 |
+      229 |   test("should not have any automatically playing audio or video", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/a11y.spec.ts:226:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-Accessibility-Complia-f2882--visible-with-custom-styles-Mobile-Safari/error-context.md
+
+
+[1A[2K[155/170] [Mobile Safari] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors
+[1A[2K[156/170] [Mobile Safari] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions
+[1A[2K[157/170] [Mobile Safari] › e2e/guest-session.spec.ts:111:7 › Guest Practice Session Flow › should enforce minimum answer length
+[1A[2K[158/170] [Mobile Safari] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions)
+[1A[2K[159/170] [Mobile Safari] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts
+[1A[2K  53) [Mobile Safari] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question 1 of 8"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+
+
+      39 |     // 6. Wait for questions to load and verify first question
+      40 |     await page.waitForURL(/\/practice\/session\//);
+    > 41 |     await expect(page.locator("h2")).toContainText("Question 1 of 8");
+         |                                      ^
+      42 |
+      43 |     // 7. Verify question text is displayed
+      44 |     const questionText = await page.locator("p.text-lg").first();
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:41:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-9828b-st-session-with-8-questions-Mobile-Safari/error-context.md
+
+
+[1A[2K[160/170] [Mobile Safari] › e2e/guest-session.spec.ts:183:7 › Guest Practice Session Flow › should show character count as user types
+[1A[2K  54) [Mobile Chrome] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Top 3 Strengths')
+    Expected: visible
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 30000ms[22m
+    [2m  - waiting for locator('text=Top 3 Strengths')[22m
+
+
+      158 |     // Verify redirect to results
+      159 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+    > 160 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+          |                                                        ^
+      161 |   });
+      162 |
+      163 |   test("should support keyboard shortcuts", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:160:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--Mobile-Chrome/error-context.md
+
+
+[1A[2K[161/170] [Mobile Safari] › e2e/guest-session.spec.ts:203:7 › Guest Practice Session Flow › should handle navigation without answers
+[1A[2K  55) [Mobile Safari] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h2')
+    Expected substring: [32m"Question [7m2[27m of 3"[39m
+    Received string:    [31m"Question [7m1[27m of 3"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h2')[22m
+    [2m    9 × locator resolved to <h2 class="text-2xl font-semibold mb-2">Question 1 of 3</h2>[22m
+    [2m      - unexpected value "Question 1 of 3"[22m
+
+
+      178 |
+      179 |     // Verify we moved to next question
+    > 180 |     await expect(page.locator("h2")).toContainText("Question 2 of 3", { timeout: 5000 });
+          |                                      ^
+      181 |   });
+      182 |
+      183 |   test("should show character count as user types", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:180:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-179de--support-keyboard-shortcuts-Mobile-Safari/error-context.md
+
+
+[1A[2K[162/170] [Mobile Safari] › e2e/guest-session.spec.ts:253:7 › Guest Practice Session Flow › should prevent exceeding maximum characters
+[1A[2K[163/170] [Mobile Safari] › e2e/guest-session.spec.ts:220:7 › Guest Practice Session Flow › should display different question categories
+[1A[2K[164/170] [Mobile Safari] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching
+[1A[2K[165/170] [Mobile Safari] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA
+[1A[2K  56) [Mobile Safari] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Try Practice Session')
+    Expected: visible
+    Error: strict mode violation: locator('text=Try Practice Session') resolved to 2 elements:
+        1) <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-10 px-4 py-2">Try Practice Session</button> aka getByRole('navigation').getByRole('button', { name: 'Try Practice Session' })
+        2) <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 h-11 rounded-md text-lg px-8 py-6">Try Practice Session</button> aka getByRole('main').getByRole('button', { name: 'Try Practice Session' })
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=Try Practice Session')[22m
+
+
+      303 |
+      304 |     await expect(page.locator("h1")).toContainText("Cindy from Cinder");
+    > 305 |     await expect(page.locator("text=Try Practice Session")).toBeVisible();
+          |                                                             ^
+      306 |   });
+      307 |
+      308 |   test("should navigate to practice setup from CTA", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:305:61
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Landing-Page-4c1db-splay-hero-section-with-CTA-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Landing-Page-4c1db-splay-hero-section-with-CTA-Mobile-Safari/error-context.md
+
+
+[1A[2K[166/170] [Mobile Safari] › e2e/guest-session.spec.ts:308:7 › Landing Page › should navigate to practice setup from CTA
+[1A[2K[167/170] [Mobile Safari] › e2e/guest-session.spec.ts:315:7 › Landing Page › should have accessible navigation
+[1A[2K[168/170] [Mobile Safari] › e2e/guest-session.spec.ts:325:7 › Practice Setup Page › should display all setup options
+[1A[2K[169/170] [Mobile Safari] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options
+[1A[2K  57) [Mobile Chrome] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+
+    TimeoutError: page.waitForURL: Timeout 20000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+      navigated to "http://localhost:3000/practice/session/30138f5f-e683-4fb6-95ce-a70ce44d7159"
+      navigated to "http://localhost:3000/practice/session/30138f5f-e683-4fb6-95ce-a70ce44d7159"
+      navigated to "http://localhost:3000/practice/session/30138f5f-e683-4fb6-95ce-a70ce44d7159"
+      navigated to "http://localhost:3000/practice/session/30138f5f-e683-4fb6-95ce-a70ce44d7159"
+      navigated to "http://localhost:3000/practice/session/30138f5f-e683-4fb6-95ce-a70ce44d7159"
+      navigated to "http://localhost:3000/practice/session/30138f5f-e683-4fb6-95ce-a70ce44d7159"
+      navigated to "http://localhost:3000/practice/session/30138f5f-e683-4fb6-95ce-a70ce44d7159"
+      navigated to "http://localhost:3000/practice/session/30138f5f-e683-4fb6-95ce-a70ce44d7159"
+      navigated to "http://localhost:3000/practice/session/30138f5f-e683-4fb6-95ce-a70ce44d7159"
+      navigated to "http://localhost:3000/practice/session/30138f5f-e683-4fb6-95ce-a70ce44d7159"
+    ============================================================
+
+      291 |
+      292 |     // Should redirect to results and show loading state
+    > 293 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+          |                ^
+      294 |
+      295 |     // Coaching should eventually appear
+      296 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:293:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-Mobile-Chrome/error-context.md
+
+
+[1A[2K[170/170] [Mobile Safari] › e2e/guest-session.spec.ts:345:7 › Practice Setup Page › should toggle Low-Anxiety Mode
+[1A[2K  58) [Mobile Safari] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator:  locator('#question-count').locator('option[value="3"]')
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('#question-count').locator('option[value="3"]')[22m
+    [2m    9 × locator resolved to <option value="3">3 questions (~15 minutes)</option>[22m
+    [2m      - unexpected value "hidden"[22m
+
+
+      337 |
+      338 |     // Check options exist
+    > 339 |     await expect(select.locator('option[value="3"]')).toBeVisible();
+          |                                                       ^
+      340 |     await expect(select.locator('option[value="5"]')).toBeVisible();
+      341 |     await expect(select.locator('option[value="8"]')).toBeVisible();
+      342 |     await expect(select.locator('option[value="10"]')).toBeVisible();
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:339:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Practice-Set-15332--all-question-count-options-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Practice-Set-15332--all-question-count-options-Mobile-Safari/error-context.md
+
+
+[1A[2K  59) [Mobile Safari] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Top 3 Strengths')
+    Expected: visible
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 30000ms[22m
+    [2m  - waiting for locator('text=Top 3 Strengths')[22m
+
+
+      158 |     // Verify redirect to results
+      159 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+    > 160 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+          |                                                        ^
+      161 |   });
+      162 |
+      163 |   test("should support keyboard shortcuts", async ({ page }) => {
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:160:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-89b8a-w-Anxiety-Mode-3-questions--Mobile-Safari/error-context.md
+
+
+[1A[2K  60) [Mobile Safari] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+
+    TimeoutError: page.waitForURL: Timeout 20000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+      navigated to "http://localhost:3000/practice/session/2857431d-2bb6-4dd9-abc3-3efe1ca5b1fc"
+      navigated to "http://localhost:3000/practice/session/2857431d-2bb6-4dd9-abc3-3efe1ca5b1fc"
+    ============================================================
+
+      291 |
+      292 |     // Should redirect to results and show loading state
+    > 293 |     await page.waitForURL(/\/practice\/results\//, { timeout: 20000 });
+          |                ^
+      294 |
+      295 |     // Coaching should eventually appear
+      296 |     await expect(page.locator("text=Top 3 Strengths")).toBeVisible({ timeout: 30000 });
+        at /Users/paulbrown/Desktop/coding-projects/candidate-helper/e2e/guest-session.spec.ts:293:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-session-Guest-Practi-b875e-e-while-generating-coaching-Mobile-Safari/error-context.md
+
+
+[1A[2K  60 failed
+    [chromium] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+    [chromium] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+    [chromium] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy 
+    [chromium] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels 
+    [chromium] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+    [chromium] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors 
+    [chromium] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+    [chromium] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+    [chromium] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+    [chromium] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+    [chromium] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA 
+    [chromium] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options 
+    [firefox] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+    [firefox] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+    [firefox] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy 
+    [firefox] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels 
+    [firefox] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+    [firefox] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors 
+    [firefox] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+    [firefox] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+    [firefox] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+    [firefox] › e2e/guest-session.spec.ts:220:7 › Guest Practice Session Flow › should display different question categories 
+    [firefox] › e2e/guest-session.spec.ts:253:7 › Guest Practice Session Flow › should prevent exceeding maximum characters 
+    [firefox] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+    [firefox] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA 
+    [firefox] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options 
+    [webkit] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+    [webkit] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+    [webkit] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy 
+    [webkit] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels 
+    [webkit] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+    [webkit] › e2e/a11y.spec.ts:290:7 › Accessibility Compliance (WCAG 2.2 AA) › should announce form validation errors 
+    [webkit] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+    [webkit] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+    [webkit] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+    [webkit] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+    [webkit] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA 
+    [webkit] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options 
+    [Mobile Chrome] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+    [Mobile Chrome] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+    [Mobile Chrome] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy 
+    [Mobile Chrome] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels 
+    [Mobile Chrome] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+    [Mobile Chrome] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+    [Mobile Chrome] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+    [Mobile Chrome] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+    [Mobile Chrome] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+    [Mobile Chrome] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA 
+    [Mobile Chrome] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options 
+    [Mobile Safari] › e2e/a11y.spec.ts:50:7 › Accessibility Compliance (WCAG 2.2 AA) › should be keyboard navigable on practice setup 
+    [Mobile Safari] › e2e/a11y.spec.ts:78:7 › Accessibility Compliance (WCAG 2.2 AA) › should support keyboard navigation in active session 
+    [Mobile Safari] › e2e/a11y.spec.ts:112:7 › Accessibility Compliance (WCAG 2.2 AA) › should have proper heading hierarchy 
+    [Mobile Safari] › e2e/a11y.spec.ts:150:7 › Accessibility Compliance (WCAG 2.2 AA) › form inputs should have associated labels 
+    [Mobile Safari] › e2e/a11y.spec.ts:201:7 › Accessibility Compliance (WCAG 2.2 AA) › focus should be visible with custom styles 
+    [Mobile Safari] › e2e/guest-session.spec.ts:18:7 › Guest Practice Session Flow › should complete full guest session with 8 questions 
+    [Mobile Safari] › e2e/guest-session.spec.ts:129:7 › Guest Practice Session Flow › should work with Low-Anxiety Mode (3 questions) 
+    [Mobile Safari] › e2e/guest-session.spec.ts:163:7 › Guest Practice Session Flow › should support keyboard shortcuts 
+    [Mobile Safari] › e2e/guest-session.spec.ts:272:7 › Guest Practice Session Flow › should show loading state while generating coaching 
+    [Mobile Safari] › e2e/guest-session.spec.ts:301:7 › Landing Page › should display hero section with CTA 
+    [Mobile Safari] › e2e/guest-session.spec.ts:333:7 › Practice Setup Page › should support all question count options 
+  110 passed (2.8m)
+
+[36m  Serving HTML report at http://localhost:53268. Press Ctrl+C to quit.[39m

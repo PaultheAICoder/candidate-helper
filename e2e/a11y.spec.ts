@@ -1,7 +1,15 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { cleanupAllTestData } from "./helpers/db-cleanup";
 
 test.describe("Accessibility Compliance (WCAG 2.2 AA)", () => {
+  // Clean up database before each test to avoid constraint violations
+  test.beforeEach(async () => {
+    // Delete ALL test data to ensure completely clean state
+    // This uses the nuclear option since tests run fast and data isn't "stale" yet
+    await cleanupAllTestData();
+  });
+
   test("homepage should have no accessibility violations", async ({ page }) => {
     await page.goto("/");
 
@@ -52,9 +60,9 @@ test.describe("Accessibility Compliance (WCAG 2.2 AA)", () => {
 
     // Tab through nav links to get to page content
     await page.keyboard.press("Tab"); // Home link
-    await page.keyboard.press("Tab"); // Login link  
+    await page.keyboard.press("Tab"); // Login link
     await page.keyboard.press("Tab"); // Practice button
-    
+
     // Tab to low-anxiety toggle
     await page.keyboard.press("Tab");
     const checkbox = page.locator("#low-anxiety-toggle");
@@ -64,7 +72,7 @@ test.describe("Accessibility Compliance (WCAG 2.2 AA)", () => {
     await page.keyboard.press("Tab");
     const select = page.locator("#question-count");
     await expect(select).toBeFocused();
-    
+
     // Tab to start button
     await page.keyboard.press("Tab");
     const button = page.locator('button:has-text("Start Practice")');
