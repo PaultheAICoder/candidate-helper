@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { createClient as createServiceClient } from "@supabase/supabase-js";
 import { generateCoaching, generateComprehensiveReport } from "@/lib/openai/coaching";
 import { parseSTARScores, calculateAverageSTAR, formatScoresForDB } from "@/lib/scoring/star";
 import type { CoachingResponse } from "@/types/models";
@@ -179,7 +180,12 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
     }));
 
     // Delete existing report if it exists (for test idempotency)
-    await supabase.from("reports").delete().eq("session_id", sessionId);
+    // Use service role client to bypass RLS for cleanup operations
+    const serviceSupabase = createServiceClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL || "",
+      process.env.SUPABASE_SERVICE_ROLE_KEY || ""
+    );
+    await serviceSupabase.from("reports").delete().eq("session_id", sessionId);
 
     // Insert report
     const { data: report, error: reportError } = await supabase

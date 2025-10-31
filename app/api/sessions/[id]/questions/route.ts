@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { createClient as createServiceClient } from "@supabase/supabase-js";
 
 /**
  * POST /api/sessions/[id]/questions
@@ -68,7 +69,13 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
     // Questions count mismatch or don't exist - will regenerate below
     // Delete existing questions with mismatched count before inserting new ones
     if (existingCount && existingCount > 0) {
-      const { error: deleteError } = await supabase
+      // Use service role client to bypass RLS for cleanup operations
+      const serviceSupabase = createServiceClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL || "",
+        process.env.SUPABASE_SERVICE_ROLE_KEY || ""
+      );
+
+      const { error: deleteError } = await serviceSupabase
         .from("questions")
         .delete()
         .eq("session_id", sessionId);
