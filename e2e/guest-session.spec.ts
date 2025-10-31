@@ -23,8 +23,9 @@ test.describe("Guest Practice Session Flow", () => {
     // 4. Configure session (8 questions, text-only)
     await page.selectOption("#question-count", "8");
 
-    // Verify Low-Anxiety Mode toggle is present
-    await expect(page.locator('label:has-text("Low-Anxiety Mode")')).toBeVisible();
+    // Enable Low-Anxiety Mode to disable adaptive follow-up questions and test core question progression
+    await page.click("#low-anxiety-toggle");
+    await expect(page.locator("#low-anxiety-toggle")).toBeChecked();
 
     // 5. Start practice session
     await page.click("text=Start Practice");
@@ -157,6 +158,8 @@ test.describe("Guest Practice Session Flow", () => {
     await page.goto("/practice");
 
     await page.selectOption("#question-count", "3");
+    // Enable Low-Anxiety Mode to disable adaptive follow-ups and isolate keyboard shortcut testing
+    await page.click("#low-anxiety-toggle");
     await page.click("text=Start Practice");
 
     await page.waitForURL(/\/practice\/session\//);
@@ -266,6 +269,8 @@ test.describe("Guest Practice Session Flow", () => {
     await page.goto("/practice");
 
     await page.selectOption("#question-count", "3");
+    // Enable Low-Anxiety Mode to disable adaptive follow-ups for quick session completion
+    await page.click("#low-anxiety-toggle");
     await page.click("text=Start Practice");
 
     await page.waitForURL(/\/practice\/session\//);
