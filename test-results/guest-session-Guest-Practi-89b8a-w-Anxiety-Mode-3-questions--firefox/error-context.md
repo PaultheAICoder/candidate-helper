@@ -15,7 +15,7 @@
         - generic [ref=e11]:
             - generic [ref=e12]: ⚠️
             - heading "Unable to Generate Report" [level=1] [ref=e13]
-            - paragraph [ref=e14]: Failed to create report
+            - paragraph [ref=e14]: Failed to fetch report
             - button "Start New Session" [ref=e15]
     - contentinfo [ref=e16]:
         - generic [ref=e17]:

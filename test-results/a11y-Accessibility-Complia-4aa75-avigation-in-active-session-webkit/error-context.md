@@ -22,7 +22,7 @@
                 - generic [ref=e25]: 33%
             - generic [ref=e26]:
                 - heading "Question 1 of 3" [level=2] [ref=e27]
-                - paragraph [ref=e28]: Can you share an example of when you had to deliver difficult news or feedback to someone?
+                - paragraph [ref=e28]: Can you share an example of when you went above and beyond what was expected of you?
                 - generic [ref=e29]:
                     - 'heading "Tip: Use the STAR Framework" [level=3] [ref=e30]'
                     - generic [ref=e31]:

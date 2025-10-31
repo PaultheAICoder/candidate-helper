@@ -18,11 +18,11 @@
                 - paragraph [ref=e14]: Let's dive a bit deeper to help you shine!
             - generic [ref=e15]:
                 - generic [ref=e16]:
-                    - generic [ref=e17]: Question 1 of 8
-                    - generic [ref=e21]: 13%
+                    - generic [ref=e17]: Question 8 of 8
+                    - generic [ref=e21]: 100%
                 - generic [ref=e22]:
-                    - heading "Question 1 of 8" [level=2] [ref=e23]
-                    - paragraph [ref=e24]: Can you tell me more about the situation that prompted you to take initiative and identify the problem?
+                    - heading "Question 8 of 8" [level=2] [ref=e23]
+                    - paragraph [ref=e24]: Can you tell me more about the initial situation and how the miscommunication occurred in your previous role?
                     - generic [ref=e25]:
                         - 'heading "Tip: Use the STAR Framework" [level=3] [ref=e26]'
                         - generic [ref=e27]:

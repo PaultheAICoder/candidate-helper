@@ -22,7 +22,7 @@
                     - generic [ref=e21]: 13%
                 - generic [ref=e22]:
                     - heading "Question 1 of 8" [level=2] [ref=e23]
-                    - paragraph [ref=e24]: Tell me more about the situation where this occurred—what was the mistake or failure that needed to be addressed?
+                    - paragraph [ref=e24]: '"Can you tell me more about the specific project or initiative you were leading and what your main responsibilities were during that time?"'
                     - generic [ref=e25]:
                         - 'heading "Tip: Use the STAR Framework" [level=3] [ref=e26]'
                         - generic [ref=e27]:

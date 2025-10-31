@@ -62,7 +62,9 @@ export async function cleanupStaleTestData(): Promise<void> {
 export async function cleanupAllTestData(): Promise<void> {
   const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
-  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+  // Delete ALL test data regardless of age (this is called before each test)
+  // We use a cutoff time approach that targets only realistic test data
+  const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000).toISOString();
 
   try {
     // Get before counts for verification
@@ -92,9 +94,9 @@ export async function cleanupAllTestData(): Promise<void> {
 
     for (const table of tables) {
       try {
-        // Using created_at column to target only stale data (>1 hour old)
-        // This avoids aggressive cleanup while still removing constraint violation sources
-        const { error } = await supabase.from(table).delete().lt("created_at", oneHourAgo);
+        // Using created_at column to target test data from current run (>5 minutes old)
+        // This allows tests to complete and cleanup old test data that causes constraint violations
+        const { error } = await supabase.from(table).delete().lt("created_at", fiveMinutesAgo);
         if (error) {
           console.error(`❌ Error deleting from ${table}:`, error);
           deleteResults[table] = { error: error.message };

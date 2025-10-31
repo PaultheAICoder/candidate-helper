@@ -1,0 +1,89 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+    - navigation [ref=e2]:
+        - generic [ref=e4]:
+            - link "Cindy from Cinder" [ref=e6]:
+                - /url: /
+            - generic [ref=e7]:
+                - link "Sign In" [ref=e8]:
+                    - /url: /login
+                - link "Try Practice Session" [ref=e9]:
+                    - /url: /practice
+    - main [ref=e10]:
+        - generic [ref=e12]:
+            - heading "Practice Session" [level=1] [ref=e14]
+            - button "Save & Exit" [ref=e15]
+        - paragraph [ref=e18]: Failed to generate questions
+        - generic [ref=e19]:
+            - generic [ref=e20]:
+                - generic [ref=e21]: Question 1 of 3
+                - generic [ref=e25]: 33%
+            - generic [ref=e26]:
+                - heading "Question 1 of 3" [level=2] [ref=e27]
+                - paragraph [ref=e28]: Describe a situation where you received critical feedback. How did you respond and what changes did you make?
+                - generic [ref=e29]:
+                    - 'heading "Tip: Use the STAR Framework" [level=3] [ref=e30]'
+                    - generic [ref=e31]:
+                        - generic [ref=e32]:
+                            - strong [ref=e33]: S
+                            - text: "ituation: Set the context"
+                        - generic [ref=e34]:
+                            - strong [ref=e35]: T
+                            - text: "ask: Describe your responsibility"
+                        - generic [ref=e36]:
+                            - strong [ref=e37]: A
+                            - text: "ction: Explain what you did"
+                        - generic [ref=e38]:
+                            - strong [ref=e39]: R
+                            - text: "esult: Share the outcome"
+                - generic [ref=e40]:
+                    - text: Your Answer
+                    - textbox "Your Answer" [active] [ref=e41]:
+                        - /placeholder: Type your answer here... Be specific and include examples.
+                    - generic [ref=e42]:
+                        - paragraph
+                        - generic [ref=e43]: 0 / 5000
+                - generic [ref=e44]:
+                    - generic [ref=e45]: Take your time - there's no time limit for text mode
+                    - button "Submit Answer" [disabled]
+            - paragraph [ref=e47]: Need a break? Your progress is saved automatically every 30 seconds.
+    - contentinfo [ref=e48]:
+        - generic [ref=e49]:
+            - generic [ref=e50]:
+                - generic [ref=e51]:
+                    - heading "Cindy from Cinder" [level=3] [ref=e52]
+                    - paragraph [ref=e53]: AI-powered interview coaching to help you ace your next job interview.
+                - generic [ref=e54]:
+                    - heading "Product" [level=4] [ref=e55]
+                    - list [ref=e56]:
+                        - listitem [ref=e57]:
+                            - link "Practice Sessions" [ref=e58]:
+                                - /url: /practice
+                        - listitem [ref=e59]:
+                            - link "Features" [ref=e60]:
+                                - /url: /features
+                - generic [ref=e61]:
+                    - heading "Company" [level=4] [ref=e62]
+                    - list [ref=e63]:
+                        - listitem [ref=e64]:
+                            - link "About" [ref=e65]:
+                                - /url: /about
+                        - listitem [ref=e66]:
+                            - link "Cinder AI" [ref=e67]:
+                                - /url: https://teamcinder.com
+                - generic [ref=e68]:
+                    - heading "Legal" [level=4] [ref=e69]
+                    - list [ref=e70]:
+                        - listitem [ref=e71]:
+                            - link "Terms of Service" [ref=e72]:
+                                - /url: /terms
+                        - listitem [ref=e73]:
+                            - link "Privacy Policy" [ref=e74]:
+                                - /url: /privacy
+            - paragraph [ref=e76]: © 2025 Cinder AI. All rights reserved.
+    - region "Notifications (F8)":
+        - list
+    - alert [ref=e77]
+```
