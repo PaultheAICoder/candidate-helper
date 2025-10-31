@@ -85,7 +85,10 @@ test.describe("Accessibility Compliance (WCAG 2.2 AA)", () => {
 
   test("should support keyboard navigation in active session", async ({ page }) => {
     await page.goto("/practice");
-    await page.selectOption("#question-count", "3");
+
+    // Enable low-anxiety mode (3 questions, no follow-ups) to isolate keyboard nav testing
+    await page.click("#low-anxiety-toggle");
+
     await page.click("text=Start Practice");
     await page.waitForURL(/\/practice\/session\//);
 
