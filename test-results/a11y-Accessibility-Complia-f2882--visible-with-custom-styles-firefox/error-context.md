@@ -6,108 +6,105 @@
         - generic [ref=e4]:
             - link "Cindy from Cinder" [active] [ref=e6] [cursor=pointer]:
                 - /url: /
-                - generic [ref=e7]: Cindy from Cinder
-            - generic [ref=e8]:
-                - link "Sign In" [ref=e9] [cursor=pointer]:
+            - generic [ref=e7]:
+                - link "Sign In" [ref=e8] [cursor=pointer]:
                     - /url: /login
-                    - button "Sign In" [ref=e10]
-                - link "Try Practice Session" [ref=e11] [cursor=pointer]:
+                - link "Try Practice Session" [ref=e9] [cursor=pointer]:
                     - /url: /practice
-                    - button "Try Practice Session" [ref=e12]
-    - main [ref=e13]:
-        - generic [ref=e14]:
+    - main [ref=e10]:
+        - generic [ref=e11]:
+            - generic [ref=e12]:
+                - heading "Set Up Your Practice Session" [level=1] [ref=e13]
+                - paragraph [ref=e14]: Customize your interview practice experience
             - generic [ref=e15]:
-                - heading "Set Up Your Practice Session" [level=1] [ref=e16]
-                - paragraph [ref=e17]: Customize your interview practice experience
-            - generic [ref=e18]:
-                - generic [ref=e19]:
-                    - generic [ref=e20]:
-                        - checkbox "Enable Low-Anxiety Mode for gentler interview practice" [ref=e21]
+                - generic [ref=e16]:
+                    - generic [ref=e17]:
+                        - checkbox "Enable Low-Anxiety Mode for gentler interview practice" [ref=e18]
                         - checkbox
-                        - generic [ref=e22] [cursor=pointer]: Low-Anxiety Mode
-                    - paragraph [ref=e23]: A gentler experience with only 3 questions, no numeric scores, and supportive feedback. Perfect if you're feeling nervous about interviews.
-                - generic [ref=e24]:
+                        - generic [ref=e19] [cursor=pointer]: Low-Anxiety Mode
+                    - paragraph [ref=e20]: A gentler experience with only 3 questions, no numeric scores, and supportive feedback. Perfect if you're feeling nervous about interviews.
+                - generic [ref=e21]:
                     - text: Question Count
-                    - combobox "Number of questions to practice" [ref=e25]:
+                    - combobox "Number of questions to practice" [ref=e22]:
                         - option "3 questions (~15 minutes)"
                         - option "5 questions (~25 minutes)"
                         - option "8 questions (~40 minutes)" [selected]
                         - option "10 questions (~50 minutes)"
-                    - paragraph [ref=e26]: More questions provide more comprehensive feedback but take longer to complete.
-                - generic [ref=e27]:
+                    - paragraph [ref=e23]: More questions provide more comprehensive feedback but take longer to complete.
+                - generic [ref=e24]:
                     - text: Response Mode
-                    - generic [ref=e29]:
-                        - generic [ref=e30]: ✍️
-                        - generic [ref=e31]:
-                            - heading "Text Mode" [level=4] [ref=e32]
-                            - paragraph [ref=e33]: Type your answers using the text editor. Great for accessibility and thoughtful responses.
-                    - paragraph [ref=e34]:
-                        - strong [ref=e35]: Want audio mode?
+                    - generic [ref=e26]:
+                        - generic [ref=e27]: ✍️
+                        - generic [ref=e28]:
+                            - heading "Text Mode" [level=4] [ref=e29]
+                            - paragraph [ref=e30]: Type your answers using the text editor. Great for accessibility and thoughtful responses.
+                    - paragraph [ref=e31]:
+                        - strong [ref=e32]: Want audio mode?
                         - text: Create a free account to unlock audio recording with real-time transcription.
-                - generic [ref=e36]:
-                    - heading "What to Expect" [level=3] [ref=e37]
-                    - list [ref=e38]:
-                        - listitem [ref=e39]:
-                            - generic [ref=e40]: •
-                            - generic [ref=e41]:
+                - generic [ref=e33]:
+                    - heading "What to Expect" [level=3] [ref=e34]
+                    - list [ref=e35]:
+                        - listitem [ref=e36]:
+                            - generic [ref=e37]: •
+                            - generic [ref=e38]:
                                 - text: You'll receive
-                                - strong [ref=e42]: generic behavioral questions
+                                - strong [ref=e39]: generic behavioral questions
                                 - text: about conflict, leadership, and collaboration
-                        - listitem [ref=e43]:
-                            - generic [ref=e44]: •
-                            - generic [ref=e45]:
+                        - listitem [ref=e40]:
+                            - generic [ref=e41]: •
+                            - generic [ref=e42]:
                                 - text: Answer each question thoughtfully using the
-                                - strong [ref=e46]: STAR framework
+                                - strong [ref=e43]: STAR framework
                                 - text: (Situation, Task, Action, Result)
-                        - listitem [ref=e47]:
-                            - generic [ref=e48]: •
-                            - generic [ref=e49]:
+                        - listitem [ref=e44]:
+                            - generic [ref=e45]: •
+                            - generic [ref=e46]:
                                 - text: Get
-                                - strong [ref=e50]: detailed coaching feedback
+                                - strong [ref=e47]: detailed coaching feedback
                                 - text: at the end with strengths and example improved answers
-                        - listitem [ref=e51]:
-                            - generic [ref=e52]: •
-                            - generic [ref=e53]:
+                        - listitem [ref=e48]:
+                            - generic [ref=e49]: •
+                            - generic [ref=e50]:
                                 - text: Your session takes about
-                                - strong [ref=e54]: 40 minutes
+                                - strong [ref=e51]: 40 minutes
                                 - text: to complete
-                - button "Start Practice" [ref=e55]
-                - paragraph [ref=e56]: No account required • Free forever • Your data stays private
-    - contentinfo [ref=e57]:
-        - generic [ref=e58]:
-            - generic [ref=e59]:
+                - button "Start Practice" [ref=e52]
+                - paragraph [ref=e53]: No account required • Free forever • Your data stays private
+    - contentinfo [ref=e54]:
+        - generic [ref=e55]:
+            - generic [ref=e56]:
+                - generic [ref=e57]:
+                    - heading "Cindy from Cinder" [level=3] [ref=e58]
+                    - paragraph [ref=e59]: AI-powered interview coaching to help you ace your next job interview.
                 - generic [ref=e60]:
-                    - heading "Cindy from Cinder" [level=3] [ref=e61]
-                    - paragraph [ref=e62]: AI-powered interview coaching to help you ace your next job interview.
-                - generic [ref=e63]:
-                    - heading "Product" [level=4] [ref=e64]
-                    - list [ref=e65]:
-                        - listitem [ref=e66]:
-                            - link "Practice Sessions" [ref=e67] [cursor=pointer]:
+                    - heading "Product" [level=4] [ref=e61]
+                    - list [ref=e62]:
+                        - listitem [ref=e63]:
+                            - link "Practice Sessions" [ref=e64] [cursor=pointer]:
                                 - /url: /practice
-                        - listitem [ref=e68]:
-                            - link "Features" [ref=e69] [cursor=pointer]:
+                        - listitem [ref=e65]:
+                            - link "Features" [ref=e66] [cursor=pointer]:
                                 - /url: /features
-                - generic [ref=e70]:
-                    - heading "Company" [level=4] [ref=e71]
-                    - list [ref=e72]:
-                        - listitem [ref=e73]:
-                            - link "About" [ref=e74] [cursor=pointer]:
+                - generic [ref=e67]:
+                    - heading "Company" [level=4] [ref=e68]
+                    - list [ref=e69]:
+                        - listitem [ref=e70]:
+                            - link "About" [ref=e71] [cursor=pointer]:
                                 - /url: /about
-                        - listitem [ref=e75]:
-                            - link "Cinder AI" [ref=e76] [cursor=pointer]:
+                        - listitem [ref=e72]:
+                            - link "Cinder AI" [ref=e73] [cursor=pointer]:
                                 - /url: https://teamcinder.com
-                - generic [ref=e77]:
-                    - heading "Legal" [level=4] [ref=e78]
-                    - list [ref=e79]:
-                        - listitem [ref=e80]:
-                            - link "Terms of Service" [ref=e81] [cursor=pointer]:
+                - generic [ref=e74]:
+                    - heading "Legal" [level=4] [ref=e75]
+                    - list [ref=e76]:
+                        - listitem [ref=e77]:
+                            - link "Terms of Service" [ref=e78] [cursor=pointer]:
                                 - /url: /terms
-                        - listitem [ref=e82]:
-                            - link "Privacy Policy" [ref=e83] [cursor=pointer]:
+                        - listitem [ref=e79]:
+                            - link "Privacy Policy" [ref=e80] [cursor=pointer]:
                                 - /url: /privacy
-            - paragraph [ref=e85]: © 2025 Cinder AI. All rights reserved.
+            - paragraph [ref=e82]: © 2025 Cinder AI. All rights reserved.
     - region "Notifications (F8)":
         - list
-    - alert [ref=e86]
+    - alert [ref=e83]
 ```

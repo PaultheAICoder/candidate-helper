@@ -66,8 +66,18 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
     }
 
     // Questions count mismatch or don't exist - will regenerate below
-    // Don't try to delete since this endpoint may not have RLS permission to do so
-    // Test cleanup hooks should handle cleaning up stale sessions/questions
+    // Delete existing questions with mismatched count before inserting new ones
+    if (existingCount && existingCount > 0) {
+      const { error: deleteError } = await supabase
+        .from("questions")
+        .delete()
+        .eq("session_id", sessionId);
+
+      if (deleteError) {
+        console.error("Error deleting mismatched questions:", deleteError);
+        // Continue anyway - we'll try to insert and let the unique constraint error bubble up if needed
+      }
+    }
 
     // Generate new questions
     // For US1 (guest sessions), use in-memory question bank

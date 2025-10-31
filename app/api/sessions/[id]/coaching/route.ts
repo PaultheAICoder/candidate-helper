@@ -178,6 +178,9 @@ export async function POST(_request: NextRequest, { params }: { params: { id: st
       example_answer: r.coaching.example_answer,
     }));
 
+    // Delete existing report if it exists (for test idempotency)
+    await supabase.from("reports").delete().eq("session_id", sessionId);
+
     // Insert report
     const { data: report, error: reportError } = await supabase
       .from("reports")
