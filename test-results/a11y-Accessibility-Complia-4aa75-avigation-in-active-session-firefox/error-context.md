@@ -25,7 +25,7 @@
                     - generic [ref=e24]: 33%
                 - generic [ref=e25]:
                     - heading "Question 1 of 3" [level=2] [ref=e26]
-                    - paragraph [ref=e27]: Tell me more about the situation that led to you receiving this critical feedback.
+                    - paragraph [ref=e27]: Tell me more about the initial situation of the project and what circumstances led to it not going as planned.
                     - generic [ref=e28]:
                         - 'heading "Tip: Use the STAR Framework" [level=3] [ref=e29]'
                         - generic [ref=e30]:

@@ -25,7 +25,7 @@
                     - generic [ref=e24]: 67%
                 - generic [ref=e25]:
                     - heading "Question 2 of 3" [level=2] [ref=e26]
-                    - paragraph [ref=e27]: '"Tell me more about the situation you were in when you identified this problem."'
+                    - paragraph [ref=e27]: Tell me more about the situation that led to the conflict within your team. What were the circumstances that required your attention?
                     - generic [ref=e28]:
                         - 'heading "Tip: Use the STAR Framework" [level=3] [ref=e29]'
                         - generic [ref=e30]:

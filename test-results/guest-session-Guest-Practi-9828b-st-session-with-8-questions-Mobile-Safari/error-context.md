@@ -25,7 +25,7 @@
                     - generic [ref=e24]: 13%
                 - generic [ref=e25]:
                     - heading "Question 1 of 8" [level=2] [ref=e26]
-                    - paragraph [ref=e27]: Tell me more about the specific task or responsibility you had in helping your team member grow and develop their skills.
+                    - paragraph [ref=e27]: Can you walk me through what specific new approach or task you were attempting in that situation?
                     - generic [ref=e28]:
                         - 'heading "Tip: Use the STAR Framework" [level=3] [ref=e29]'
                         - generic [ref=e30]:

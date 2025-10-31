@@ -12,18 +12,20 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between">
           <div className="flex">
-            <Link href="/" className="flex items-center">
-              <span className="text-xl font-bold text-gray-900">Cindy from Cinder</span>
-            </Link>
+            <Button asChild variant="link" className="text-xl font-bold px-0 hover:no-underline">
+              <Link href="/" className="flex items-center">
+                Cindy from Cinder
+              </Link>
+            </Button>
           </div>
 
           <div className="flex items-center gap-4">
-            <Link href="/login">
-              <Button variant="ghost">Sign In</Button>
-            </Link>
-            <Link href="/practice">
-              <Button>Try Practice Session</Button>
-            </Link>
+            <Button asChild variant="ghost">
+              <Link href="/login">Sign In</Link>
+            </Button>
+            <Button asChild>
+              <Link href="/practice">Try Practice Session</Link>
+            </Button>
           </div>
         </div>
       </div>

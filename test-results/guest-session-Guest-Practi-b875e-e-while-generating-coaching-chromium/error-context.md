@@ -25,7 +25,7 @@
                     - generic [ref=e24]: 67%
                 - generic [ref=e25]:
                     - heading "Question 2 of 3" [level=2] [ref=e26]
-                    - paragraph [ref=e27]: '"Tell me more about the situation you were in when you needed to rely on teamwork for that project."'
+                    - paragraph [ref=e27]: Tell me more about the situation—what was happening at the time that prompted you to go above and beyond?
                     - generic [ref=e28]:
                         - 'heading "Tip: Use the STAR Framework" [level=3] [ref=e29]'
                         - generic [ref=e30]:
