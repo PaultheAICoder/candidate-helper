@@ -189,13 +189,13 @@
 
 - [x] T103 [US3] Update POST /api/sessions/[id]/coaching route: Enhance to generate three-pane report structure (strengths, clarifications, per-question feedback), use OpenAI to compare answers against JD for strengths, identify gaps for clarifications, ensure encouraging/non-penalizing tone, store in reports.strengths and reports.clarifications as JSONB arrays
 - [x] T104 [US3] Update coaching results page app/(coach)/practice/results/[id]/page.tsx: Add three-pane layout (Pane 1: Top 3 Strengths, Pane 2: 3 Clarifications, Pane 3: Per-Question Feedback), render strengths with evidence bullets, render clarifications with suggestion + rationale, render per-question narrative + example improved answers
-- [ ] T105 [US3] Create ReportPane component in components/coach/ReportPane.tsx (reusable component for strengths/clarifications sections, display JSONB arrays with icons and formatting)
+- [x] T105 [US3] Create ReportPane component in components/coach/ReportPane.tsx (reusable component for strengths/clarifications sections, display JSONB arrays with icons and formatting)
 - [x] T106 [US3] Create honesty nudge logic in lib/openai/coaching.ts: If answer contradicts resume/JD, flag in OpenAI prompt, return clarifying follow-up question, add note to report: "Consider making this connection clearer in your resume or cover letter"
-- [ ] T107 [US3] Create PDF generation utility in lib/pdf/generate-report.ts (use pdf-lib to create PDF with report branding, include strengths section, clarifications section, per-question feedback with STAR scores and example answers, Cindy avatar illustration, footer with "Generated with Claude Code")
-- [ ] T108 [US3] Create GET /api/reports/[id]/pdf route in app/api/reports/[id]/pdf/route.ts (fetch report from database, call PDF generation utility, upload PDF to Supabase Storage, update reports.pdf_storage_path, stream PDF to response with Content-Type: application/pdf)
-- [ ] T109 [US3] Add PDF download button to results page: "Download Report as PDF" button that calls GET /api/reports/[sessionId]/pdf
-- [ ] T110 [US3] Add per-question coaching toggle to practice session setup: Checkbox for "Show coaching after each question (vs end-of-session)", store in sessions.per_question_coaching
-- [ ] T111 [US3] Update active session page to support per-question coaching: If per_question_coaching=true, call POST /api/sessions/[id]/coaching with perQuestion=true after each answer, display CoachingFeedback modal before next question
+- [x] T107 [US3] Create PDF generation utility in lib/pdf/generate-report.ts (use pdf-lib to create PDF with report branding, include strengths section, clarifications section, per-question feedback with STAR scores and example answers, Cindy avatar illustration, footer with "Generated with Claude Code")
+- [x] T108 [US3] Create GET /api/reports/[id]/pdf route in app/api/reports/[id]/pdf/route.ts (fetch report from database, call PDF generation utility, upload PDF to Supabase Storage, update reports.pdf_storage_path, stream PDF to response with Content-Type: application/pdf)
+- [x] T109 [US3] Add PDF download button to results page: "Download Report as PDF" button that calls GET /api/reports/[sessionId]/pdf
+- [x] T110 [US3] Add per-question coaching toggle to practice session setup: Checkbox for "Show coaching after each question (vs end-of-session)", store in sessions.per_question_coaching
+- [x] T111 [US3] Update active session page to support per-question coaching: If per_question_coaching=true, call POST /api/sessions/[id]/coaching with perQuestion=true after each answer, display CoachingFeedback modal before next question
 
 **Checkpoint**: All P1 user stories (US1, US2, US3) should now be independently functional - this is MVP-ready
 
