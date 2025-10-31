@@ -1,0 +1,57 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+    - navigation [ref=e2]:
+        - generic [ref=e4]:
+            - link "Cindy from Cinder" [ref=e6]:
+                - /url: /
+            - generic [ref=e7]:
+                - link "Sign In" [ref=e8]:
+                    - /url: /login
+                - link "Try Practice Session" [ref=e9]:
+                    - /url: /practice
+    - main [ref=e10]:
+        - generic [ref=e11]:
+            - generic [ref=e12]: ⚠️
+            - heading "Unable to Generate Report" [level=1] [ref=e13]
+            - paragraph [ref=e14]: Failed to generate coaching feedback
+            - button "Start New Session" [ref=e15]
+    - contentinfo [ref=e16]:
+        - generic [ref=e17]:
+            - generic [ref=e18]:
+                - generic [ref=e19]:
+                    - heading "Cindy from Cinder" [level=3] [ref=e20]
+                    - paragraph [ref=e21]: AI-powered interview coaching to help you ace your next job interview.
+                - generic [ref=e22]:
+                    - heading "Product" [level=4] [ref=e23]
+                    - list [ref=e24]:
+                        - listitem [ref=e25]:
+                            - link "Practice Sessions" [ref=e26]:
+                                - /url: /practice
+                        - listitem [ref=e27]:
+                            - link "Features" [ref=e28]:
+                                - /url: /features
+                - generic [ref=e29]:
+                    - heading "Company" [level=4] [ref=e30]
+                    - list [ref=e31]:
+                        - listitem [ref=e32]:
+                            - link "About" [ref=e33]:
+                                - /url: /about
+                        - listitem [ref=e34]:
+                            - link "Cinder AI" [ref=e35]:
+                                - /url: https://teamcinder.com
+                - generic [ref=e36]:
+                    - heading "Legal" [level=4] [ref=e37]
+                    - list [ref=e38]:
+                        - listitem [ref=e39]:
+                            - link "Terms of Service" [ref=e40]:
+                                - /url: /terms
+                        - listitem [ref=e41]:
+                            - link "Privacy Policy" [ref=e42]:
+                                - /url: /privacy
+            - paragraph [ref=e44]: © 2025 Cinder AI. All rights reserved.
+    - region "Notifications (F8)":
+        - list
+    - alert [ref=e45]
+```

@@ -29,6 +29,7 @@ export default function ResultsPage({ params }: ResultsPageProps) {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isGuest, setIsGuest] = useState(true);
+  const [isDownloadingPDF, setIsDownloadingPDF] = useState(false);
 
   useEffect(() => {
     async function generateAndFetchReport() {
@@ -68,6 +69,34 @@ export default function ResultsPage({ params }: ResultsPageProps) {
 
     generateAndFetchReport();
   }, [sessionId]);
+
+  async function handleDownloadPDF() {
+    setIsDownloadingPDF(true);
+    try {
+      const response = await fetch(`/api/reports/${report?.id}/pdf`);
+      if (!response.ok) {
+        throw new Error("Failed to download PDF");
+      }
+
+      // Get the PDF blob
+      const blob = await response.blob();
+
+      // Create a download link
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `coaching-report-${report?.id}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Error downloading PDF:", err);
+      alert("Failed to download PDF. Please try again.");
+    } finally {
+      setIsDownloadingPDF(false);
+    }
+  }
 
   // Loading state
   if (isLoading || isGenerating) {
@@ -199,8 +228,13 @@ export default function ResultsPage({ params }: ResultsPageProps) {
           </Button>
 
           {!isGuest && (
-            <Button variant="outline" size="lg">
-              Download Report as PDF
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={handleDownloadPDF}
+              disabled={isDownloadingPDF}
+            >
+              {isDownloadingPDF ? "Downloading..." : "Download Report as PDF"}
             </Button>
           )}
         </div>

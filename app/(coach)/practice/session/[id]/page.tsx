@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 import { AnswerInput } from "@/components/coach/AnswerInput";
 import { AudioRecorder } from "@/components/coach/AudioRecorder";
 import { MicTestModal } from "@/components/coach/MicTestModal";
+import { CoachingFeedback } from "@/components/coach/CoachingFeedback";
 import { Button } from "@/components/ui/Button";
+import type { PerQuestionFeedback } from "@/types/models";
 
 interface Question {
   id: string;
@@ -20,6 +22,7 @@ interface Session {
   id: string;
   mode: "audio" | "text";
   lowAnxietyEnabled: boolean;
+  perQuestionCoaching: boolean;
 }
 
 interface SessionPageProps {
@@ -44,6 +47,8 @@ export default function SessionPage({ params }: SessionPageProps) {
   const [currentTranscript, setCurrentTranscript] = useState("");
   const [showFollowUp, setShowFollowUp] = useState(false);
   const [followUpQuestion, setFollowUpQuestion] = useState<string | null>(null);
+  const [showCoachingModal, setShowCoachingModal] = useState(false);
+  const [currentCoaching, setCurrentCoaching] = useState<PerQuestionFeedback | null>(null);
 
   // Fetch session and questions on mount
   useEffect(() => {
@@ -62,6 +67,7 @@ export default function SessionPage({ params }: SessionPageProps) {
           id: sessionData.id,
           mode: sessionData.mode,
           lowAnxietyEnabled: sessionData.low_anxiety_enabled,
+          perQuestionCoaching: sessionData.per_question_coaching || false,
         });
 
         // Show mic test if audio mode and first question
@@ -122,8 +128,29 @@ export default function SessionPage({ params }: SessionPageProps) {
       newAnswered.add(questions[currentQuestionIndex].id);
       setAnsweredQuestions(newAnswered);
 
-      // Handle follow-up question if present
-      if (answerData.followUp && !session?.lowAnxietyEnabled) {
+      // Handle per-question coaching if enabled
+      if (session?.perQuestionCoaching && !session?.lowAnxietyEnabled) {
+        try {
+          const coachingResponse = await fetch(
+            `/api/sessions/${sessionId}/coaching?perQuestion=true`,
+            {
+              method: "POST",
+            }
+          );
+
+          if (coachingResponse.ok) {
+            const coachingData = await coachingResponse.json();
+            if (coachingData.feedback) {
+              setCurrentCoaching(coachingData.feedback);
+              setShowCoachingModal(true);
+            }
+          }
+        } catch (err) {
+          console.error("Error fetching per-question coaching:", err);
+          // Continue without coaching if it fails
+        }
+      } else if (answerData.followUp && !session?.lowAnxietyEnabled) {
+        // Handle follow-up question if present
         setFollowUpQuestion(answerData.followUp);
         setShowFollowUp(true);
       } else {
@@ -186,6 +213,20 @@ export default function SessionPage({ params }: SessionPageProps) {
     }
   };
 
+  const handleDismissCoachingModal = () => {
+    setShowCoachingModal(false);
+    setCurrentCoaching(null);
+
+    // Move to next question
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setCurrentTranscript("");
+    } else {
+      // All questions answered, navigate to results
+      router.push(`/practice/results/${sessionId}`);
+    }
+  };
+
   // Loading state
   if (isLoading) {
     return (
@@ -223,6 +264,32 @@ export default function SessionPage({ params }: SessionPageProps) {
             There was a problem loading your questions. Please try again.
           </p>
           <Button onClick={() => router.push("/practice")}>Return to Setup</Button>
+        </div>
+      </main>
+    );
+  }
+
+  // Coaching modal view
+  if (showCoachingModal && currentCoaching) {
+    return (
+      <main className="flex min-h-screen flex-col py-12 px-6">
+        <div className="w-full max-w-4xl mx-auto">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold">Coaching Feedback</h1>
+            <p className="text-muted-foreground mt-2">Here's how you did on this question</p>
+          </div>
+
+          <CoachingFeedback
+            feedback={currentCoaching}
+            questionNumber={currentQuestionIndex + 1}
+            lowAnxietyMode={session?.lowAnxietyEnabled}
+          />
+
+          <div className="mt-8 flex justify-center">
+            <Button size="lg" onClick={handleDismissCoachingModal}>
+              Next Question
+            </Button>
+          </div>
         </div>
       </main>
     );

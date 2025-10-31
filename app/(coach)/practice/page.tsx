@@ -25,6 +25,7 @@ export default function PracticeSetupPage() {
   const [resumeParseStatus, setResumeParseStatus] = useState<string | null>(null);
   const [jobDescription, setJobDescription] = useState("");
   const [tailorQuestions, setTailorQuestions] = useState(true);
+  const [perQuestionCoaching, setPerQuestionCoaching] = useState(false);
 
   // Check if user is authenticated
   useEffect(() => {
@@ -85,6 +86,7 @@ export default function PracticeSetupPage() {
         lowAnxietyEnabled: lowAnxietyMode,
         jobDescriptionText: jobDescription || undefined,
         tailorQuestions: user && tailorQuestions,
+        perQuestionCoaching: perQuestionCoaching && !lowAnxietyMode,
       };
 
       const response = await fetch("/api/sessions", {
@@ -187,6 +189,25 @@ export default function PracticeSetupPage() {
                   Generate tailored questions
                 </Label>
               </div>
+
+              {/* Per-Question Coaching Toggle */}
+              <div className="mt-3 flex items-center gap-2">
+                <Checkbox
+                  id="per-question-coaching"
+                  checked={perQuestionCoaching}
+                  onCheckedChange={(checked) => {
+                    if (typeof checked === "boolean") setPerQuestionCoaching(checked);
+                  }}
+                  aria-label="Get coaching feedback after each question instead of at the end"
+                />
+                <Label htmlFor="per-question-coaching" className="text-sm cursor-pointer">
+                  Coaching after each question
+                </Label>
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">
+                Get instant feedback on each answer instead of waiting until the end. Takes longer
+                but more interactive.
+              </p>
             </div>
           )}
 

@@ -1,7 +1,7 @@
 # Page snapshot
 
 ```yaml
-- generic [ref=e1]:
+- generic [active] [ref=e1]:
     - navigation [ref=e2]:
         - generic [ref=e4]:
             - link "Cindy from Cinder" [ref=e6]:
@@ -12,78 +12,45 @@
                 - link "Try Practice Session" [ref=e9]:
                     - /url: /practice
     - main [ref=e10]:
-        - generic [ref=e11]:
-            - generic [ref=e12]:
-                - heading "Follow-up Question" [level=1] [ref=e13]
-                - paragraph [ref=e14]: Let's dive a bit deeper to help you shine!
-            - generic [ref=e15]:
-                - generic [ref=e16]:
-                    - generic [ref=e17]: Question 8 of 8
-                    - generic [ref=e21]: 100%
-                - generic [ref=e22]:
-                    - heading "Question 8 of 8" [level=2] [ref=e23]
-                    - paragraph [ref=e24]: Can you tell me more about the situation that led you to try something new in your previous role?
-                    - generic [ref=e25]:
-                        - 'heading "Tip: Use the STAR Framework" [level=3] [ref=e26]'
-                        - generic [ref=e27]:
-                            - generic [ref=e28]:
-                                - strong [ref=e29]: S
-                                - text: "ituation: Set the context"
-                            - generic [ref=e30]:
-                                - strong [ref=e31]: T
-                                - text: "ask: Describe your responsibility"
-                            - generic [ref=e32]:
-                                - strong [ref=e33]: A
-                                - text: "ction: Explain what you did"
-                            - generic [ref=e34]:
-                                - strong [ref=e35]: R
-                                - text: "esult: Share the outcome"
-                    - generic [ref=e36]:
-                        - text: Your Answer
-                        - textbox "Your Answer" [active] [ref=e37]:
-                            - /placeholder: Type your answer here... Be specific and include examples.
-                        - generic [ref=e38]:
-                            - paragraph
-                            - generic [ref=e39]: 0 / 5000
-                    - generic [ref=e40]:
-                        - generic [ref=e41]: Take your time - there's no time limit for text mode
-                        - button "Submit Answer" [disabled]
-                - paragraph [ref=e43]: Need a break? Your progress is saved automatically every 30 seconds.
-    - contentinfo [ref=e44]:
-        - generic [ref=e45]:
-            - generic [ref=e46]:
-                - generic [ref=e47]:
-                    - heading "Cindy from Cinder" [level=3] [ref=e48]
-                    - paragraph [ref=e49]: AI-powered interview coaching to help you ace your next job interview.
-                - generic [ref=e50]:
-                    - heading "Product" [level=4] [ref=e51]
-                    - list [ref=e52]:
-                        - listitem [ref=e53]:
-                            - link "Practice Sessions" [ref=e54]:
+        - generic [ref=e13]:
+            - heading "Generating Your Report" [level=2] [ref=e14]
+            - paragraph [ref=e15]: Our AI coach is analyzing your answers and preparing personalized feedback...
+            - paragraph [ref=e16]: This typically takes 10-15 seconds
+    - contentinfo [ref=e17]:
+        - generic [ref=e18]:
+            - generic [ref=e19]:
+                - generic [ref=e20]:
+                    - heading "Cindy from Cinder" [level=3] [ref=e21]
+                    - paragraph [ref=e22]: AI-powered interview coaching to help you ace your next job interview.
+                - generic [ref=e23]:
+                    - heading "Product" [level=4] [ref=e24]
+                    - list [ref=e25]:
+                        - listitem [ref=e26]:
+                            - link "Practice Sessions" [ref=e27]:
                                 - /url: /practice
-                        - listitem [ref=e55]:
-                            - link "Features" [ref=e56]:
+                        - listitem [ref=e28]:
+                            - link "Features" [ref=e29]:
                                 - /url: /features
-                - generic [ref=e57]:
-                    - heading "Company" [level=4] [ref=e58]
-                    - list [ref=e59]:
-                        - listitem [ref=e60]:
-                            - link "About" [ref=e61]:
+                - generic [ref=e30]:
+                    - heading "Company" [level=4] [ref=e31]
+                    - list [ref=e32]:
+                        - listitem [ref=e33]:
+                            - link "About" [ref=e34]:
                                 - /url: /about
-                        - listitem [ref=e62]:
-                            - link "Cinder AI" [ref=e63]:
+                        - listitem [ref=e35]:
+                            - link "Cinder AI" [ref=e36]:
                                 - /url: https://teamcinder.com
-                - generic [ref=e64]:
-                    - heading "Legal" [level=4] [ref=e65]
-                    - list [ref=e66]:
-                        - listitem [ref=e67]:
-                            - link "Terms of Service" [ref=e68]:
+                - generic [ref=e37]:
+                    - heading "Legal" [level=4] [ref=e38]
+                    - list [ref=e39]:
+                        - listitem [ref=e40]:
+                            - link "Terms of Service" [ref=e41]:
                                 - /url: /terms
-                        - listitem [ref=e69]:
-                            - link "Privacy Policy" [ref=e70]:
+                        - listitem [ref=e42]:
+                            - link "Privacy Policy" [ref=e43]:
                                 - /url: /privacy
-            - paragraph [ref=e72]: © 2025 Cinder AI. All rights reserved.
+            - paragraph [ref=e45]: © 2025 Cinder AI. All rights reserved.
     - region "Notifications (F8)":
         - list
-    - alert [ref=e73]
+    - alert [ref=e46]
 ```
