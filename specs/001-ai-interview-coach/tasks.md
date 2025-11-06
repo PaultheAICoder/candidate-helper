@@ -254,14 +254,14 @@
 
 ### Implementation for User Story 6
 
-- [ ] T131 [P] [US6] Create survey component in components/coach/SurveyForm.tsx (3 Likert items: helpfulness, advice quality, preparedness with Like/Neutral/Dislike radio buttons, if Low-Anxiety session add open-ended textarea: "Anything we should improve about Low-Anxiety Mode?")
-- [ ] T132 [US6] Create POST /api/surveys route in app/api/surveys/route.ts (accept survey responses, insert into events table with event_type='survey_submitted', payload={responses, sessionId}, track survey_submitted event)
-- [ ] T133 [US6] Update coaching results page app/(coach)/practice/results/[id]/page.tsx: Add SurveyForm component at bottom, show after report is viewed
-- [ ] T134 [US6] Create referral link generator utility in lib/utils/referral.ts (generate unique referral code, encode with user_id, create shareable link: teamcinder.com/coach?ref=<code>)
-- [ ] T135 [US6] Update coaching results page: Add referral section with "Share with Friends" heading, show shareable link with copy button, track share_link_clicked event on copy
-- [ ] T136 [US6] Create referral tracking middleware in middleware.ts: Detect ?ref=<code> query param on landing page, decode user_id, insert event with event_type='share_link_clicked', payload={referrer_user_id, source: 'referral'}
-- [ ] T137 [US6] Create admin analytics dashboard page in app/(auth)/admin/analytics/page.tsx (require admin role via middleware, display survey tallies with Like/Neutral/Dislike percentages, show referral click count and conversion rate, show total sessions and completion rates)
-- [ ] T138 [US6] Create GET /api/admin/analytics route in app/api/admin/analytics/route.ts (query events table for survey tallies, referral clicks, session stats, return AnalyticsDashboard schema, require admin authentication)
+- [x] T131 [P] [US6] Create survey component in components/coach/SurveyForm.tsx (3 Likert items: helpfulness, advice quality, preparedness with Like/Neutral/Dislike radio buttons, if Low-Anxiety session add open-ended textarea: "Anything we should improve about Low-Anxiety Mode?")
+- [x] T132 [US6] Create POST /api/surveys route in app/api/surveys/route.ts (accept survey responses, insert into events table with event_type='survey_submitted', payload={responses, sessionId}, track survey_submitted event)
+- [x] T133 [US6] Update coaching results page app/(coach)/practice/results/[id]/page.tsx: Add SurveyForm component at bottom, show after report is viewed
+- [x] T134 [US6] Create referral link generator utility in lib/utils/referral.ts (generate unique referral code, encode with user_id, create shareable link: teamcinder.com/coach?ref=<code>)
+- [x] T135 [US6] Update coaching results page: Add referral section with "Share with Friends" heading, show shareable link with copy button, track share_link_clicked event on copy
+- [x] T136 [US6] Create referral tracking middleware in middleware.ts: Detect ?ref=<code> query param on landing page, decode user_id, insert event with event_type='share_link_clicked', payload={referrer_user_id, source: 'referral'}
+- [x] T137 [US6] Create admin analytics dashboard page in app/(auth)/admin/analytics/page.tsx (require admin role via middleware, display survey tallies with Like/Neutral/Dislike percentages, show referral click count and conversion rate, show total sessions and completion rates)
+- [x] T138 [US6] Create GET /api/admin/analytics route in app/api/admin/analytics/route.ts (query events table for survey tallies, referral clicks, session stats, return AnalyticsDashboard schema, require admin authentication)
 
 **Checkpoint**: All user stories (US1-US6) should now be independently functional
 

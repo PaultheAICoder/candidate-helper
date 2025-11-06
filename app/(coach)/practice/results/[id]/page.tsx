@@ -4,7 +4,10 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { CoachingFeedback } from "@/components/coach/CoachingFeedback";
+import { SurveyForm } from "@/components/coach/SurveyForm";
 import { Button } from "@/components/ui/Button";
+import { createClient } from "@/lib/supabase/client";
+import { createReferralLink } from "@/lib/utils/referral";
 import type { Strength, Clarification, PerQuestionFeedback } from "@/types/models";
 
 interface Report {
@@ -31,6 +34,8 @@ export default function ResultsPage({ params }: ResultsPageProps) {
   const [error, setError] = useState<string | null>(null);
   const [isGuest, setIsGuest] = useState(true);
   const [isDownloadingPDF, setIsDownloadingPDF] = useState(false);
+  const [referralLink, setReferralLink] = useState<string | null>(null);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   useEffect(() => {
     async function generateAndFetchReport() {
@@ -71,6 +76,25 @@ export default function ResultsPage({ params }: ResultsPageProps) {
     generateAndFetchReport();
   }, [sessionId]);
 
+  // Generate referral link for authenticated users
+  useEffect(() => {
+    async function generateReferral() {
+      if (isGuest) return;
+
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        const link = createReferralLink(user.id, window.location.origin + "/coach");
+        setReferralLink(link);
+      }
+    }
+
+    generateReferral();
+  }, [isGuest]);
+
   async function handleDownloadPDF() {
     setIsDownloadingPDF(true);
     try {
@@ -96,6 +120,39 @@ export default function ResultsPage({ params }: ResultsPageProps) {
       alert("Failed to download PDF. Please try again.");
     } finally {
       setIsDownloadingPDF(false);
+    }
+  }
+
+  async function handleCopyReferralLink() {
+    if (!referralLink) return;
+
+    try {
+      await navigator.clipboard.writeText(referralLink);
+      setLinkCopied(true);
+
+      // Track share_link_clicked event
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        await supabase.from("events").insert({
+          user_id: user.id,
+          event_type: "share_link_clicked",
+          session_id: sessionId,
+          payload: {
+            action: "copy",
+            referralLink,
+          },
+        });
+      }
+
+      // Reset copied state after 3 seconds
+      setTimeout(() => setLinkCopied(false), 3000);
+    } catch (err) {
+      console.error("Error copying link:", err);
+      alert("Failed to copy link. Please try again.");
     }
   }
 
@@ -243,6 +300,44 @@ export default function ResultsPage({ params }: ResultsPageProps) {
               {isDownloadingPDF ? "Downloading..." : "Download Report as PDF"}
             </Button>
           )}
+        </div>
+
+        {/* Referral Section - For authenticated users only */}
+        {!isGuest && referralLink && (
+          <div className="max-w-2xl mx-auto bg-gradient-to-r from-primary/10 to-primary/5 border-2 border-primary/30 rounded-lg p-6">
+            <div className="text-center space-y-4">
+              <div className="text-3xl">🎁</div>
+              <h3 className="text-xl font-semibold">Share with Friends</h3>
+              <p className="text-muted-foreground">
+                Know someone who could benefit from interview practice? Share this link to help them
+                get started!
+              </p>
+
+              <div className="flex items-center gap-2 bg-background border rounded-lg p-3">
+                <input
+                  type="text"
+                  value={referralLink}
+                  readOnly
+                  className="flex-1 bg-transparent text-sm outline-none"
+                  aria-label="Referral link"
+                />
+                <Button variant="outline" size="sm" onClick={handleCopyReferralLink}>
+                  {linkCopied ? "✓ Copied!" : "Copy"}
+                </Button>
+              </div>
+
+              {linkCopied && (
+                <p className="text-sm text-primary font-medium">
+                  Link copied! Share it with someone who needs interview help.
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Survey Form */}
+        <div className="max-w-2xl mx-auto">
+          <SurveyForm sessionId={sessionId} lowAnxietyMode={report.lowAnxietyMode} />
         </div>
 
         {/* Footer Message */}

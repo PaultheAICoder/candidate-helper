@@ -6,6 +6,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 import type { Database } from "@/types/database";
+import { decodeReferralCode } from "@/lib/utils/referral";
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -65,6 +66,33 @@ export async function updateSession(request: NextRequest) {
         url.pathname = "/eligibility";
         return NextResponse.redirect(url);
       }
+    }
+  }
+
+  // Track referral clicks on landing page
+  const isLandingPage = request.nextUrl.pathname === "/" || request.nextUrl.pathname === "/coach";
+  const referralCode = request.nextUrl.searchParams.get("ref");
+
+  if (isLandingPage && referralCode) {
+    try {
+      const referrerUserId = decodeReferralCode(referralCode);
+
+      if (referrerUserId) {
+        // Track the referral click event
+        await supabase.from("events").insert({
+          user_id: null, // The referred user hasn't signed up yet
+          event_type: "share_link_clicked",
+          session_id: null,
+          payload: {
+            referrer_user_id: referrerUserId,
+            source: "referral",
+            referral_code: referralCode,
+          },
+        });
+      }
+    } catch (error) {
+      console.error("Error tracking referral:", error);
+      // Don't block the request if tracking fails
     }
   }
 
