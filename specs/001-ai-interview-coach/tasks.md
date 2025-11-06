@@ -235,12 +235,12 @@
 
 ### Implementation for User Story 5
 
-- [ ] T125 [US5] Update practice session setup page app/(coach)/practice/page.tsx: Add Low-Anxiety Mode toggle with explanation tooltip, when enabled force question_count=3 and disable adaptive follow-ups, show gentler UI messaging
-- [ ] T126 [US5] Update POST /api/sessions route: When low_anxiety_enabled=TRUE, validate question_count=3, set per_question_coaching=FALSE
-- [ ] T127 [US5] Update POST /api/sessions/[id]/questions route: When low_anxiety_enabled=TRUE, select gentler-worded questions from question bank (add is_gentle flag to questions table during seed), adjust pacing hints in response
-- [ ] T128 [US5] Update POST /api/answers route: Skip adaptive follow-up generation if session.low_anxiety_enabled=TRUE
-- [ ] T129 [US5] Update CoachingFeedback component: When low_anxiety_enabled=TRUE, hide all numeric STAR scores, show only narrative feedback and qualitative rubric tags (e.g., "clear" instead of "4/5")
-- [ ] T130 [US5] Update coaching results page app/(coach)/practice/results/[id]/page.tsx: Detect Low-Anxiety Mode, hide score displays, use gentler language in UI ("strengths" instead of "performance")
+- [x] T125 [US5] Update practice session setup page app/(coach)/practice/page.tsx: Add Low-Anxiety Mode toggle with explanation tooltip, when enabled force question_count=3 and disable adaptive follow-ups, show gentler UI messaging
+- [x] T126 [US5] Update POST /api/sessions route: When low_anxiety_enabled=TRUE, validate question_count=3, set per_question_coaching=FALSE
+- [x] T127 [US5] Update POST /api/sessions/[id]/questions route: When low_anxiety_enabled=TRUE, select gentler-worded questions from question bank (add is_gentle flag to questions table during seed), adjust pacing hints in response
+- [x] T128 [US5] Update POST /api/answers route: Skip adaptive follow-up generation if session.low_anxiety_enabled=TRUE
+- [x] T129 [US5] Update CoachingFeedback component: When low_anxiety_enabled=TRUE, hide all numeric STAR scores, show only narrative feedback and qualitative rubric tags (e.g., "clear" instead of "4/5")
+- [x] T130 [US5] Update coaching results page app/(coach)/practice/results/[id]/page.tsx: Detect Low-Anxiety Mode, hide score displays, use gentler language in UI ("strengths" instead of "performance")
 
 **Checkpoint**: User Story 5 complete and independently testable
 

@@ -12,6 +12,7 @@ interface Report {
   strengths: Strength[];
   clarifications: Clarification[];
   per_question_feedback: PerQuestionFeedback[];
+  lowAnxietyMode?: boolean;
 }
 
 interface ResultsPageProps {
@@ -138,7 +139,9 @@ export default function ResultsPage({ params }: ResultsPageProps) {
           <div className="text-5xl">🎯</div>
           <h1 className="text-4xl font-bold">Your Coaching Report</h1>
           <p className="text-lg text-muted-foreground">
-            Here's how you did and where you can improve
+            {report.lowAnxietyMode
+              ? "Here are your strengths and areas to highlight"
+              : "Here's how you did and where you can improve"}
           </p>
         </div>
 
@@ -187,7 +190,9 @@ export default function ResultsPage({ params }: ResultsPageProps) {
           <div className="bg-card border rounded-lg p-6 space-y-4">
             <div className="flex items-center gap-3 mb-4">
               <div className="text-3xl">📝</div>
-              <h2 className="text-2xl font-bold">3 Clarifications</h2>
+              <h2 className="text-2xl font-bold">
+                {report.lowAnxietyMode ? "Areas to Highlight" : "3 Clarifications"}
+              </h2>
             </div>
 
             <div className="space-y-4">
@@ -216,6 +221,7 @@ export default function ResultsPage({ params }: ResultsPageProps) {
                 key={feedback.question_id}
                 feedback={feedback}
                 questionNumber={index + 1}
+                lowAnxietyMode={report.lowAnxietyMode}
               />
             ))}
           </div>
@@ -242,7 +248,9 @@ export default function ResultsPage({ params }: ResultsPageProps) {
         {/* Footer Message */}
         <div className="text-center text-sm text-muted-foreground space-y-2">
           <p>
-            Remember: This feedback is based on your practice answers. Keep practicing to improve!
+            {report.lowAnxietyMode
+              ? "You're doing great! This feedback is here to support you as you prepare for interviews."
+              : "Remember: This feedback is based on your practice answers. Keep practicing to improve!"}
           </p>
           {isGuest && (
             <p className="font-semibold">

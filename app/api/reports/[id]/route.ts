@@ -34,7 +34,8 @@ export async function GET(_request: NextRequest, { params }: { params: { id: str
         clarifications,
         per_question_feedback,
         sessions (
-          user_id
+          user_id,
+          low_anxiety_enabled
         )
       `
       )
@@ -46,7 +47,10 @@ export async function GET(_request: NextRequest, { params }: { params: { id: str
     }
 
     // Check authorization (user owns session OR it's a guest session)
-    const session = report.sessions as { user_id: string | null };
+    const session = report.sessions as {
+      user_id: string | null;
+      low_anxiety_enabled: boolean | null;
+    };
     if (session.user_id && session.user_id !== user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
     }
@@ -57,6 +61,7 @@ export async function GET(_request: NextRequest, { params }: { params: { id: str
       clarifications: report.clarifications,
       per_question_feedback: report.per_question_feedback,
       isGuest: !session.user_id,
+      lowAnxietyMode: session.low_anxiety_enabled ?? false,
     });
   } catch (error) {
     console.error("Unexpected error in GET /api/reports/[id]:", error);

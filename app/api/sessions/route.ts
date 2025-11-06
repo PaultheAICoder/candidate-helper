@@ -38,13 +38,18 @@ export async function POST(request: NextRequest) {
       data: { user },
     } = await supabase.auth.getUser();
 
-    // Low-Anxiety Mode validation: must have exactly 3 questions
+    // Low-Anxiety Mode validation: must have exactly 3 questions and no per-question coaching
     if (data.lowAnxietyEnabled && data.questionCount !== 3) {
       return NextResponse.json(
         { error: "Low-Anxiety Mode requires exactly 3 questions" },
         { status: 400 }
       );
     }
+
+    // Enforce per-question coaching disabled in Low-Anxiety Mode
+    const perQuestionCoaching = data.lowAnxietyEnabled
+      ? false
+      : (data.perQuestionCoaching ?? false);
 
     // Check daily session limit for authenticated users
     if (user) {
@@ -79,7 +84,7 @@ export async function POST(request: NextRequest) {
         user_id: user?.id ?? null, // NULL for guest sessions
         mode: data.mode,
         low_anxiety_enabled: data.lowAnxietyEnabled ?? false,
-        per_question_coaching: data.perQuestionCoaching ?? false,
+        per_question_coaching: perQuestionCoaching,
         job_description_text: data.jobDescriptionText ?? null,
         target_role_override: data.targetRoleOverride ?? null,
         question_count: data.questionCount,
