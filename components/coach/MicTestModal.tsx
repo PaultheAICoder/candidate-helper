@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/Button";
 import { X } from "lucide-react";
@@ -47,9 +47,9 @@ export function MicTestModal({ open, onClose, onMicCheckPassed }: MicTestModalPr
   // Stop recording when modal closes
   useEffect(() => {
     if (!open) {
-      stopRecording();
+      void stopRecording();
     }
-  }, [open]);
+  }, [open, stopRecording]);
 
   const startRecording = async () => {
     try {
@@ -119,7 +119,7 @@ export function MicTestModal({ open, onClose, onMicCheckPassed }: MicTestModalPr
     }
   };
 
-  const stopRecording = async () => {
+  const stopRecording = useCallback(async () => {
     if (mediaRecorderRef.current && isRecording) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
@@ -139,9 +139,8 @@ export function MicTestModal({ open, onClose, onMicCheckPassed }: MicTestModalPr
       clearInterval(timerRef.current);
       timerRef.current = null;
     }
-
     setVolume(0);
-  };
+  }, [isRecording]);
 
   const playRecording = () => {
     if (audioBlob && !audioElementRef.current) {

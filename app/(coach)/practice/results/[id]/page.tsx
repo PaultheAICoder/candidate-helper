@@ -1,358 +1,164 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { ReportPane } from "@/components/coach/ReportPane";
 import { CoachingFeedback } from "@/components/coach/CoachingFeedback";
 import { SurveyForm } from "@/components/coach/SurveyForm";
 import { Button } from "@/components/ui/Button";
-import { createClient } from "@/lib/supabase/client";
-import { createReferralLink } from "@/lib/utils/referral";
-import type { Strength, Clarification, PerQuestionFeedback } from "@/types/models";
 
-interface Report {
+interface ReportResponse {
   id: string;
-  strengths: Strength[];
-  clarifications: Clarification[];
-  per_question_feedback: PerQuestionFeedback[];
-  lowAnxietyMode?: boolean;
+  strengths: Array<{ text: string; evidence: string }>;
+  clarifications: Array<{ suggestion: string; rationale: string }>;
+  per_question_feedback: Array<{
+    question_id: string;
+    narrative: string;
+    example_answer: string;
+    scores?: {
+      situation: number;
+      task: number;
+      action: number;
+      result: number;
+      specificity_tag: string;
+      impact_tag: string;
+      clarity_tag: string;
+    };
+  }>;
+  lowAnxietyMode: boolean;
 }
 
-interface ResultsPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function ResultsPage({ params }: ResultsPageProps) {
+export default function ResultsPage({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const sessionId = params.id;
-
-  const [report, setReport] = useState<Report | null>(null);
+  const [report, setReport] = useState<ReportResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isGuest, setIsGuest] = useState(true);
-  const [isDownloadingPDF, setIsDownloadingPDF] = useState(false);
-  const [referralLink, setReferralLink] = useState<string | null>(null);
-  const [linkCopied, setLinkCopied] = useState(false);
+  const [retrying, setRetrying] = useState(false);
 
-  useEffect(() => {
-    async function generateAndFetchReport() {
-      setIsGenerating(true);
-      setError(null);
-
-      try {
-        // Generate coaching (triggers OpenAI analysis)
-        const coachingResponse = await fetch(`/api/sessions/${sessionId}/coaching`, {
-          method: "POST",
-        });
-
-        if (!coachingResponse.ok) {
-          const errorData = await coachingResponse.json();
-          throw new Error(errorData.error || "Failed to generate coaching");
-        }
-
-        const { reportId } = await coachingResponse.json();
-
-        // Fetch the complete report
-        const reportResponse = await fetch(`/api/reports/${reportId}`);
-
-        if (!reportResponse.ok) {
-          throw new Error("Failed to fetch report");
-        }
-
-        const reportData = await reportResponse.json();
-        setReport(reportData);
-        setIsGuest(reportData.isGuest ?? true);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
-      } finally {
-        setIsGenerating(false);
-        setIsLoading(false);
-      }
-    }
-
-    generateAndFetchReport();
-  }, [sessionId]);
-
-  // Generate referral link for authenticated users
-  useEffect(() => {
-    async function generateReferral() {
-      if (isGuest) return;
-
-      const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      if (user) {
-        const link = createReferralLink(user.id, window.location.origin + "/coach");
-        setReferralLink(link);
-      }
-    }
-
-    generateReferral();
-  }, [isGuest]);
-
-  async function handleDownloadPDF() {
-    setIsDownloadingPDF(true);
+  const loadReport = async () => {
+    setError(null);
+    setIsLoading(true);
     try {
-      const response = await fetch(`/api/reports/${report?.id}/pdf`);
-      if (!response.ok) {
-        throw new Error("Failed to download PDF");
+      // Try to fetch existing report first
+      const existing = await fetch(`/api/reports/${params.id}`, { cache: "no-store" });
+      if (existing.ok) {
+        const data = (await existing.json()) as ReportResponse;
+        setReport(data);
+        return;
       }
 
-      // Get the PDF blob
-      const blob = await response.blob();
-
-      // Create a download link
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `coaching-report-${report?.id}.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
+      // Fallback: generate coaching/report
+      const res = await fetch(`/api/sessions/${params.id}/coaching`, {
+        method: "POST",
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Unable to load report");
+      }
+      const data = (await res.json()) as ReportResponse;
+      setReport(data);
     } catch (err) {
-      console.error("Error downloading PDF:", err);
-      alert("Failed to download PDF. Please try again.");
+      setError(err instanceof Error ? err.message : "Unexpected error");
     } finally {
-      setIsDownloadingPDF(false);
+      setIsLoading(false);
+      setRetrying(false);
     }
-  }
+  };
 
-  async function handleCopyReferralLink() {
-    if (!referralLink) return;
+  useEffect(() => {
+    loadReport();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.id]);
 
-    try {
-      await navigator.clipboard.writeText(referralLink);
-      setLinkCopied(true);
-
-      // Track share_link_clicked event
-      const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      if (user) {
-        await supabase.from("events").insert({
-          user_id: user.id,
-          event_type: "share_link_clicked",
-          session_id: sessionId,
-          payload: {
-            action: "copy",
-            referralLink,
-          },
-        });
-      }
-
-      // Reset copied state after 3 seconds
-      setTimeout(() => setLinkCopied(false), 3000);
-    } catch (err) {
-      console.error("Error copying link:", err);
-      alert("Failed to copy link. Please try again.");
-    }
-  }
-
-  // Loading state
-  if (isLoading || isGenerating) {
+  if (isLoading) {
     return (
       <main className="flex min-h-screen items-center justify-center">
-        <div className="text-center space-y-6 max-w-md">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-primary mx-auto"></div>
-          <div>
-            <h2 className="text-2xl font-bold mb-2">Generating Your Report</h2>
-            <p className="text-muted-foreground">
-              Our AI coach is analyzing your answers and preparing personalized feedback...
-            </p>
-            <p className="text-sm text-muted-foreground mt-4">This typically takes 10-15 seconds</p>
-          </div>
+        <div className="space-y-2 text-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          <p className="text-muted-foreground">Generating your coaching report...</p>
         </div>
       </main>
     );
   }
 
-  // Error state
   if (error || !report) {
     return (
       <main className="flex min-h-screen items-center justify-center px-6">
-        <div className="max-w-md w-full text-center space-y-4">
-          <div className="text-destructive text-5xl mb-4">⚠️</div>
-          <h1 className="text-2xl font-bold">Unable to Generate Report</h1>
-          <p className="text-muted-foreground">{error || "An unexpected error occurred"}</p>
-          <Button onClick={() => router.push("/practice")}>Start New Session</Button>
+        <div className="max-w-md text-center space-y-3">
+          <h1 className="text-2xl font-bold">We hit a snag</h1>
+          <p className="text-muted-foreground">{error || "Unable to load your results."}</p>
+          <div className="flex items-center justify-center gap-3">
+            <Button variant="outline" onClick={() => {
+              setRetrying(true);
+              void loadReport();
+            }} disabled={retrying}>
+              {retrying ? "Retrying..." : "Retry"}
+            </Button>
+            <Button variant="ghost" onClick={() => router.push("/practice")}>
+              Start a new session
+            </Button>
+          </div>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen py-12 px-6">
-      <div className="max-w-6xl mx-auto space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <div className="text-5xl">🎯</div>
-          <h1 className="text-4xl font-bold">Your Coaching Report</h1>
-          <p className="text-lg text-muted-foreground">
-            {report.lowAnxietyMode
-              ? "Here are your strengths and areas to highlight"
-              : "Here's how you did and where you can improve"}
+    <main className="min-h-screen px-6 py-10">
+      <div className="max-w-5xl mx-auto space-y-8">
+        <header className="space-y-2">
+          <p className="text-sm text-muted-foreground">
+            Session {params.id.slice(0, 8)} •{" "}
+            {report.lowAnxietyMode ? "Low-Anxiety Mode" : "Standard Mode"}
           </p>
+          <h1 className="text-3xl font-bold">Your Coaching Report</h1>
+          <p className="text-muted-foreground">
+            Top strengths, clarifications to add, and feedback for each answer.
+          </p>
+          <div className="flex gap-3 pt-2">
+            <Button
+              variant="outline"
+              onClick={() => window.open(`/api/reports/${report.id ?? params.id}/pdf`, "_blank")}
+            >
+              Download PDF
+            </Button>
+          </div>
+        </header>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <ReportPane
+            type="strengths"
+            title="Top Strengths"
+            icon="💪"
+            items={report.strengths}
+          />
+          <ReportPane
+            type="clarifications"
+            title="Clarifications to Add"
+            icon="📝"
+            items={report.clarifications}
+          />
         </div>
 
-        {/* Guest Sign-up Nudge Banner */}
-        {isGuest && (
-          <div className="bg-gradient-to-r from-primary/10 to-primary/5 border-2 border-primary/30 rounded-lg p-6">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Want to Unlock More Features?</h3>
-                <p className="text-muted-foreground">
-                  Create a free account to upload your resume, practice with audio recording, get
-                  tailored questions, and receive daily job matches!
-                </p>
-              </div>
-              <Link href="/login">
-                <Button size="lg" className="whitespace-nowrap">
-                  Create Free Account
-                </Button>
-              </Link>
-            </div>
-          </div>
-        )}
-
-        {/* Three-Pane Report */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Pane 1: Top 3 Strengths */}
-          <div className="bg-card border rounded-lg p-6 space-y-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="text-3xl">💪</div>
-              <h2 className="text-2xl font-bold">Top 3 Strengths</h2>
-            </div>
-
-            <div className="space-y-4">
-              {report.strengths.map((strength, index) => (
-                <div key={index} className="bg-primary/5 border border-primary/20 rounded-lg p-4">
-                  <h4 className="font-semibold mb-2">{strength.text}</h4>
-                  <p className="text-sm text-muted-foreground">
-                    <strong>Evidence:</strong> {strength.evidence}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Pane 2: 3 Clarifications */}
-          <div className="bg-card border rounded-lg p-6 space-y-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="text-3xl">📝</div>
-              <h2 className="text-2xl font-bold">
-                {report.lowAnxietyMode ? "Areas to Highlight" : "3 Clarifications"}
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              {report.clarifications.map((clarification, index) => (
-                <div key={index} className="bg-muted/50 border rounded-lg p-4">
-                  <h4 className="font-semibold mb-2">{clarification.suggestion}</h4>
-                  <p className="text-sm text-muted-foreground">
-                    <strong>Why:</strong> {clarification.rationale}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Pane 3: Per-Question Feedback */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="text-3xl">💬</div>
-            <h2 className="text-2xl font-bold">Per-Question Feedback</h2>
-          </div>
-
+        <section className="space-y-4">
+          <h2 className="text-2xl font-bold">Per-Question Coaching</h2>
           <div className="space-y-4">
-            {report.per_question_feedback.map((feedback, index) => (
+            {report.per_question_feedback.map((feedback, idx) => (
               <CoachingFeedback
                 key={feedback.question_id}
                 feedback={feedback}
-                questionNumber={index + 1}
+                questionNumber={idx + 1}
                 lowAnxietyMode={report.lowAnxietyMode}
+                hideScores={report.lowAnxietyMode}
               />
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
-          <Button size="lg" onClick={() => router.push("/practice")}>
-            Start New Practice Session
-          </Button>
-
-          {!isGuest && (
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={handleDownloadPDF}
-              disabled={isDownloadingPDF}
-            >
-              {isDownloadingPDF ? "Downloading..." : "Download Report as PDF"}
-            </Button>
-          )}
-        </div>
-
-        {/* Referral Section - For authenticated users only */}
-        {!isGuest && referralLink && (
-          <div className="max-w-2xl mx-auto bg-gradient-to-r from-primary/10 to-primary/5 border-2 border-primary/30 rounded-lg p-6">
-            <div className="text-center space-y-4">
-              <div className="text-3xl">🎁</div>
-              <h3 className="text-xl font-semibold">Share with Friends</h3>
-              <p className="text-muted-foreground">
-                Know someone who could benefit from interview practice? Share this link to help them
-                get started!
-              </p>
-
-              <div className="flex items-center gap-2 bg-background border rounded-lg p-3">
-                <input
-                  type="text"
-                  value={referralLink}
-                  readOnly
-                  className="flex-1 bg-transparent text-sm outline-none"
-                  aria-label="Referral link"
-                />
-                <Button variant="outline" size="sm" onClick={handleCopyReferralLink}>
-                  {linkCopied ? "✓ Copied!" : "Copy"}
-                </Button>
-              </div>
-
-              {linkCopied && (
-                <p className="text-sm text-primary font-medium">
-                  Link copied! Share it with someone who needs interview help.
-                </p>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* Survey Form */}
-        <div className="max-w-2xl mx-auto">
-          <SurveyForm sessionId={sessionId} lowAnxietyMode={report.lowAnxietyMode} />
-        </div>
-
-        {/* Footer Message */}
-        <div className="text-center text-sm text-muted-foreground space-y-2">
-          <p>
-            {report.lowAnxietyMode
-              ? "You're doing great! This feedback is here to support you as you prepare for interviews."
-              : "Remember: This feedback is based on your practice answers. Keep practicing to improve!"}
-          </p>
-          {isGuest && (
-            <p className="font-semibold">
-              Create an account to save your reports and track your progress over time.
-            </p>
-          )}
-        </div>
+        <section>
+          <SurveyForm sessionId={params.id} lowAnxietyMode={report.lowAnxietyMode} />
+        </section>
       </div>
     </main>
   );

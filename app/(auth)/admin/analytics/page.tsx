@@ -1,237 +1,133 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/Button";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 
-interface SurveyTallies {
-  helpfulness: { like: number; neutral: number; dislike: number };
-  adviceQuality: { like: number; neutral: number; dislike: number };
-  preparedness: { like: number; neutral: number; dislike: number };
-}
+const LazyCostDashboard = dynamic(
+  () => import("@/components/admin/CostDashboard").then((m) => m.CostDashboard),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="border rounded-lg p-4">
+        <p className="text-sm text-muted-foreground">Loading cost data...</p>
+      </div>
+    ),
+  }
+);
 
-interface AnalyticsData {
-  surveyTallies: SurveyTallies;
+interface AnalyticsResponse {
   totalSurveys: number;
-  referralClicks: {
-    total: number;
-    conversionRate: number;
-  };
-  sessionStats: {
-    total: number;
-    completed: number;
-    avgCompletionRate: number;
-    avgStarScore: number;
-  };
+  surveyTallies: Record<string, unknown>;
+  referralClicks: { total: number; conversionRate: number };
+  sessionStats: { total: number; completed: number; avgCompletionRate: number; avgStarScore: number };
 }
 
-export default function AnalyticsPage() {
-  const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+export default function AdminAnalyticsPage() {
+  const router = useRouter();
+  const [data, setData] = useState<AnalyticsResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [retrying, setRetrying] = useState(false);
+
+  const load = async () => {
+    setError(null);
+    try {
+      const res = await fetch("/api/admin/analytics", { cache: "no-store" });
+      if (!res.ok) {
+        setError("Access denied or failed to load analytics.");
+        return;
+      }
+      const json = await res.json();
+      setData(json);
+    } catch (err) {
+      console.error("Admin analytics load error:", err);
+      setError("Unexpected error loading analytics.");
+    } finally {
+      setLoading(false);
+      setRetrying(false);
+    }
+  };
 
   useEffect(() => {
-    async function fetchAnalytics() {
-      try {
-        const response = await fetch("/api/admin/analytics");
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch analytics");
-        }
-
-        const data = await response.json();
-        setAnalytics(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchAnalytics();
+    load();
   }, []);
 
-  if (isLoading) {
+  const surveyTallies = useMemo(
+    () => (data ? JSON.stringify(data.surveyTallies, null, 2) : "{}"),
+    [data]
+  );
+
+  if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-primary mx-auto mb-4"></div>
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="space-y-2 text-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
           <p className="text-muted-foreground">Loading analytics...</p>
         </div>
-      </main>
+      </div>
     );
   }
 
-  if (error || !analytics) {
+  if (error || !data) {
     return (
-      <main className="flex min-h-screen items-center justify-center px-6">
-        <div className="text-center">
-          <div className="text-destructive text-5xl mb-4">⚠️</div>
-          <h1 className="text-2xl font-bold mb-2">Error Loading Analytics</h1>
-          <p className="text-muted-foreground">{error || "Failed to load analytics data"}</p>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="space-y-3 text-center">
+          <p className="text-destructive font-semibold">{error}</p>
+          <div className="flex items-center justify-center gap-3">
+            <button
+              className="text-primary underline text-sm"
+              onClick={() => {
+                setRetrying(true);
+                setLoading(true);
+                void load();
+              }}
+              disabled={retrying}
+            >
+              {retrying ? "Retrying..." : "Retry"}
+            </button>
+            <button className="text-sm underline" onClick={() => router.push("/")}>
+              Go home
+            </button>
+          </div>
         </div>
-      </main>
+      </div>
     );
   }
 
   return (
-    <main className="min-h-screen py-12 px-6">
-      <div className="max-w-7xl mx-auto space-y-8">
-        {/* Header */}
-        <div>
-          <h1 className="text-4xl font-bold mb-2">Analytics Dashboard</h1>
+    <main className="min-h-screen px-6 py-10">
+      <div className="max-w-4xl mx-auto space-y-8">
+        <header className="space-y-2">
+          <h1 className="text-3xl font-bold">Admin Analytics</h1>
           <p className="text-muted-foreground">
-            Track user feedback, referral performance, and session metrics
+            Survey tallies, referral clicks, and session stats (admin access required).
           </p>
-        </div>
+        </header>
 
-        {/* Session Stats */}
-        <div className="grid md:grid-cols-4 gap-6">
-          <div className="bg-card border rounded-lg p-6">
-            <div className="text-sm text-muted-foreground mb-1">Total Sessions</div>
-            <div className="text-3xl font-bold">{analytics.sessionStats.total}</div>
-          </div>
-          <div className="bg-card border rounded-lg p-6">
-            <div className="text-sm text-muted-foreground mb-1">Completed</div>
-            <div className="text-3xl font-bold">{analytics.sessionStats.completed}</div>
-          </div>
-          <div className="bg-card border rounded-lg p-6">
-            <div className="text-sm text-muted-foreground mb-1">Avg Completion</div>
-            <div className="text-3xl font-bold">{analytics.sessionStats.avgCompletionRate}%</div>
-          </div>
-          <div className="bg-card border rounded-lg p-6">
-            <div className="text-sm text-muted-foreground mb-1">Avg STAR Score</div>
-            <div className="text-3xl font-bold">{analytics.sessionStats.avgStarScore}/5</div>
-          </div>
-        </div>
+        <section className="border rounded-lg p-4">
+          <h2 className="font-semibold mb-2">Survey Responses</h2>
+          <pre className="text-xs bg-muted p-3 rounded">{surveyTallies}</pre>
+        </section>
 
-        {/* Survey Tallies */}
-        <div className="bg-card border rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-6">Survey Feedback</h2>
-          <div className="text-sm text-muted-foreground mb-4">
-            Based on {analytics.totalSurveys} survey{analytics.totalSurveys !== 1 ? "s" : ""}
-          </div>
+        <section className="border rounded-lg p-4">
+          <h2 className="font-semibold mb-2">Referral Clicks</h2>
+          <p className="text-sm text-muted-foreground">
+            Total: {data.referralClicks.total} • Estimated Conversion: {data.referralClicks.conversionRate}%
+          </p>
+        </section>
 
-          <div className="space-y-6">
-            {/* Helpfulness */}
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-semibold">How helpful was this practice session?</h3>
-              </div>
-              <div className="grid grid-cols-3 gap-4">
-                <div className="text-center">
-                  <div className="text-2xl mb-1">👍</div>
-                  <div className="text-sm text-muted-foreground">Like</div>
-                  <div className="text-xl font-bold text-green-600">
-                    {analytics.surveyTallies.helpfulness.like}%
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-1">😐</div>
-                  <div className="text-sm text-muted-foreground">Neutral</div>
-                  <div className="text-xl font-bold text-yellow-600">
-                    {analytics.surveyTallies.helpfulness.neutral}%
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-1">👎</div>
-                  <div className="text-sm text-muted-foreground">Dislike</div>
-                  <div className="text-xl font-bold text-red-600">
-                    {analytics.surveyTallies.helpfulness.dislike}%
-                  </div>
-                </div>
-              </div>
-            </div>
+        <section className="border rounded-lg p-4">
+          <h2 className="font-semibold mb-2">Session Stats</h2>
+          <ul className="text-sm text-muted-foreground space-y-1">
+            <li>Total: {data.sessionStats.total}</li>
+            <li>Completed: {data.sessionStats.completed}</li>
+            <li>Avg Completion Rate: {data.sessionStats.avgCompletionRate}%</li>
+            <li>Avg STAR Score: {data.sessionStats.avgStarScore}</li>
+          </ul>
+        </section>
 
-            {/* Advice Quality */}
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-semibold">
-                  How would you rate the quality of the coaching advice?
-                </h3>
-              </div>
-              <div className="grid grid-cols-3 gap-4">
-                <div className="text-center">
-                  <div className="text-2xl mb-1">👍</div>
-                  <div className="text-sm text-muted-foreground">Like</div>
-                  <div className="text-xl font-bold text-green-600">
-                    {analytics.surveyTallies.adviceQuality.like}%
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-1">😐</div>
-                  <div className="text-sm text-muted-foreground">Neutral</div>
-                  <div className="text-xl font-bold text-yellow-600">
-                    {analytics.surveyTallies.adviceQuality.neutral}%
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-1">👎</div>
-                  <div className="text-sm text-muted-foreground">Dislike</div>
-                  <div className="text-xl font-bold text-red-600">
-                    {analytics.surveyTallies.adviceQuality.dislike}%
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Preparedness */}
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-semibold">
-                  Do you feel more prepared for your interviews now?
-                </h3>
-              </div>
-              <div className="grid grid-cols-3 gap-4">
-                <div className="text-center">
-                  <div className="text-2xl mb-1">👍</div>
-                  <div className="text-sm text-muted-foreground">Like</div>
-                  <div className="text-xl font-bold text-green-600">
-                    {analytics.surveyTallies.preparedness.like}%
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-1">😐</div>
-                  <div className="text-sm text-muted-foreground">Neutral</div>
-                  <div className="text-xl font-bold text-yellow-600">
-                    {analytics.surveyTallies.preparedness.neutral}%
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-1">👎</div>
-                  <div className="text-sm text-muted-foreground">Dislike</div>
-                  <div className="text-xl font-bold text-red-600">
-                    {analytics.surveyTallies.preparedness.dislike}%
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Referral Metrics */}
-        <div className="bg-card border rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-6">Referral Performance</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <div className="text-sm text-muted-foreground mb-1">Total Referral Clicks</div>
-              <div className="text-3xl font-bold">{analytics.referralClicks.total}</div>
-            </div>
-            <div>
-              <div className="text-sm text-muted-foreground mb-1">Estimated Conversion Rate</div>
-              <div className="text-3xl font-bold">{analytics.referralClicks.conversionRate}%</div>
-              <div className="text-xs text-muted-foreground mt-1">
-                Based on total users / referral clicks
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Refresh Button */}
-        <div className="text-center">
-          <Button onClick={() => window.location.reload()} variant="outline">
-            Refresh Data
-          </Button>
-        </div>
+        <LazyCostDashboard />
       </div>
     </main>
   );

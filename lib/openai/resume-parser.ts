@@ -6,6 +6,21 @@
 import { OpenAI } from "openai";
 import { trackCost, calculateGPTCost } from "@/lib/utils/cost-tracker";
 
+type BetaChatCompletions = {
+  parse: (args: unknown) => Promise<unknown>;
+};
+
+type ParsedCompletionResponse = {
+  choices: Array<{
+    message: { content?: string | null };
+  }>;
+  usage?: {
+    prompt_tokens: number;
+    completion_tokens: number;
+    total_tokens: number;
+  };
+};
+
 interface ParsedResume {
   fullName?: string;
   email?: string;
@@ -33,8 +48,11 @@ const openai = new OpenAI({
 
 export async function parseResume(resumeText: string): Promise<ParsedResume> {
   try {
+    const betaCompletions = (openai as unknown as { beta: { chat: { completions: BetaChatCompletions } } }).beta
+      .chat.completions;
+
     // Use the beta API for structured output (parse method)
-    const response = await ((openai as any).beta.chat.completions as any).parse({
+    const response = (await betaCompletions.parse({
       model: "gpt-4o",
       messages: [
         {
@@ -119,10 +137,10 @@ Be thorough but accurate - only extract information that is explicitly mentioned
           },
         },
       },
-    } as any);
+    })) as ParsedCompletionResponse;
 
     // Extract the parsed content
-    const content = (response as any).choices[0].message.content;
+    const content = response.choices[0]?.message.content;
     if (!content) {
       throw new Error("No content returned from OpenAI");
     }

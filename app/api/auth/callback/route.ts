@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
+import { ensureUserAndProfile } from "@/lib/supabase/user";
 
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
@@ -17,6 +18,12 @@ export async function GET(request: NextRequest) {
           new URL("/login?error=auth_failed", requestUrl.origin)
         );
       }
+
+      // Ensure backing user/profile rows exist for the authenticated user
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      await ensureUserAndProfile(supabase, user);
 
       // Redirect to dashboard on successful login
       return NextResponse.redirect(new URL("/dashboard", requestUrl.origin));

@@ -4,6 +4,7 @@
  */
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 
 export function Navbar() {
@@ -14,8 +15,9 @@ export function Navbar() {
           <div className="flex">
             <Link
               href="/"
-              className="flex items-center text-xl font-bold text-gray-900 hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded-md"
+              className="flex items-center gap-2 text-xl font-bold text-gray-900 hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded-md"
             >
+              <Image src="/images/cindy-avatar.svg" alt="Cindy avatar" width={28} height={28} />
               Cindy from Cinder
             </Link>
           </div>

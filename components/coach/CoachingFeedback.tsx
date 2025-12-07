@@ -8,12 +8,14 @@ interface CoachingFeedbackProps {
   feedback: PerQuestionFeedback;
   questionNumber: number;
   lowAnxietyMode?: boolean;
+  hideScores?: boolean;
 }
 
 export function CoachingFeedback({
   feedback,
   questionNumber,
   lowAnxietyMode: _lowAnxietyMode = false,
+  hideScores = false,
 }: CoachingFeedbackProps) {
   const [showExample, setShowExample] = useState(false);
 
@@ -29,6 +31,16 @@ export function CoachingFeedback({
         <h4 className="font-semibold">Coaching Feedback</h4>
         <p className="text-muted-foreground leading-relaxed">{feedback.narrative}</p>
       </div>
+
+      {!hideScores && feedback.scores && (
+        <div className="text-sm text-muted-foreground">
+          <p>
+            STAR Scores — S:{feedback.scores.situation} T:{feedback.scores.task} A:
+            {feedback.scores.action} R:{feedback.scores.result}
+          </p>
+          <p>Specificity: {feedback.specificity_tag} • Impact: {feedback.impact_tag} • Clarity: {feedback.clarity_tag}</p>
+        </div>
+      )}
 
       {/* Example Improved Answer (Collapsible) */}
       <div className="space-y-3">

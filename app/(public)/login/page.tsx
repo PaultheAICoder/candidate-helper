@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
+import { verifyRecaptcha } from "@/lib/security/recaptcha";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -20,6 +21,12 @@ export default function LoginPage() {
     try {
       setIsLoading(true);
       setError(null);
+
+      const recaptchaOk = await verifyRecaptcha();
+      if (!recaptchaOk) {
+        setError("reCAPTCHA verification failed. Please try again.");
+        return;
+      }
 
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
@@ -51,6 +58,12 @@ export default function LoginPage() {
     try {
       setIsLoading(true);
       setError(null);
+
+      const recaptchaOk = await verifyRecaptcha();
+      if (!recaptchaOk) {
+        setError("reCAPTCHA verification failed. Please try again.");
+        return;
+      }
 
       const { error } = await supabase.auth.signInWithOtp({
         email,

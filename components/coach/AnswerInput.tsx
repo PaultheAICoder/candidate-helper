@@ -1,30 +1,35 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { memo, useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Textarea } from "@/components/ui/Textarea";
 import { Label } from "@/components/ui/Label";
+import type { KeyboardEvent } from "react";
 
 interface AnswerInputProps {
   questionText: string;
   questionNumber: number;
   totalQuestions: number;
   onSubmit: (answer: string) => void;
+  onChangeText?: (value: string) => void;
+  initialAnswer?: string;
   isSubmitting?: boolean;
   isFollowUp?: boolean;
 }
 
-export function AnswerInput({
+function AnswerInputComponent({
   questionText,
   questionNumber,
   totalQuestions,
   onSubmit,
+  onChangeText,
+  initialAnswer = "",
   isSubmitting = false,
   isFollowUp: _isFollowUp = false,
 }: AnswerInputProps) {
   // isFollowUp is passed but not used; the component behaves the same way
   void _isFollowUp;
-  const [answer, setAnswer] = useState("");
+  const [answer, setAnswer] = useState(initialAnswer);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const maxLength = 5000;
   const minLength = 10;
@@ -34,14 +39,19 @@ export function AnswerInput({
     textareaRef.current?.focus();
   }, [questionText]);
 
+  useEffect(() => {
+    setAnswer(initialAnswer);
+  }, [initialAnswer, questionText]);
+
   const handleSubmit = () => {
     if (answer.trim().length >= minLength) {
       onSubmit(answer.trim());
       setAnswer(""); // Clear for next question
+      onChangeText?.("");
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
     // Allow Ctrl+Enter or Cmd+Enter to submit
     if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
       e.preventDefault();
@@ -106,7 +116,10 @@ export function AnswerInput({
             ref={textareaRef}
             id="answer-input"
             value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
+            onChange={(e) => {
+              setAnswer(e.target.value);
+              onChangeText?.(e.target.value);
+            }}
             onKeyDown={handleKeyDown}
             placeholder="Type your answer here... Be specific and include examples."
             className="min-h-[300px] text-base"
@@ -150,3 +163,5 @@ export function AnswerInput({
     </div>
   );
 }
+
+export const AnswerInput = memo(AnswerInputComponent);

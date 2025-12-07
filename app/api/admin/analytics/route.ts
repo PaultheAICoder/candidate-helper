@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, createServiceRoleClient } from "@/lib/supabase/server";
 
 /**
  * GET /api/admin/analytics
@@ -14,10 +14,8 @@ import { createClient } from "@/lib/supabase/server";
  */
 export async function GET(_request: NextRequest) {
   try {
-    // Create Supabase client
+    // Auth check with anon client
     const supabase = await createClient();
-
-    // Get current user
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -26,12 +24,25 @@ export async function GET(_request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // TODO: Check if user is admin
-    // For MVP, we'll allow any authenticated user to view analytics
-    // In production, implement proper admin role checking
+    // Admin guard: allowlist domain OR explicit admin flag on users.admin
+    const { data: userRow } = await supabase
+      .from("users")
+      .select("admin")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    const isDomainAdmin = user.email?.endsWith("@teamcinder.com");
+    const isFlagAdmin = userRow?.admin === true;
+
+    if (!isDomainAdmin && !isFlagAdmin) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
+    // Use service role for unrestricted aggregates
+    const service = createServiceRoleClient();
 
     // Fetch survey events
-    const { data: surveyEvents, error: surveyError } = await supabase
+    const { data: surveyEvents, error: surveyError } = await service
       .from("events")
       .select("payload")
       .eq("event_type", "survey_submitted");
@@ -112,7 +123,7 @@ export async function GET(_request: NextRequest) {
     };
 
     // Fetch referral click events
-    const { count: referralClicks, error: referralError } = await supabase
+    const { count: referralClicks, error: referralError } = await service
       .from("events")
       .select("*", { count: "exact", head: true })
       .eq("event_type", "share_link_clicked");
@@ -123,7 +134,7 @@ export async function GET(_request: NextRequest) {
 
     // Calculate conversion rate (users who signed up after clicking a referral link)
     // For MVP, we'll estimate this based on the ratio of referral clicks to new user sign-ups
-    const { count: totalUsers, error: usersError } = await supabase
+    const { count: totalUsers, error: usersError } = await service
       .from("users")
       .select("*", { count: "exact", head: true });
 
@@ -137,7 +148,7 @@ export async function GET(_request: NextRequest) {
         : 0;
 
     // Fetch session statistics
-    const { data: sessions, error: sessionsError } = await supabase
+    const { data: sessions, error: sessionsError } = await service
       .from("sessions")
       .select("completed_at, completion_rate, avg_star_score");
 

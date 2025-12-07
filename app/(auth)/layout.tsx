@@ -7,6 +7,7 @@ import { EligibilityModal } from "@/components/shared/EligibilityModal";
 import { ConsentModal } from "@/components/shared/ConsentModal";
 import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
+import { ensureUserAndProfile } from "@/lib/supabase/user";
 import type { Session } from "@supabase/supabase-js";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
@@ -33,6 +34,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         }
 
         setSession(currentSession);
+        await ensureUserAndProfile(supabase, currentSession.user);
 
         // Check if user has confirmed eligibility and consent
         const { data: userData, error: userError } = await supabase

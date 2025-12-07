@@ -1,27 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, createServiceRoleClient } from "@/lib/supabase/server";
 import { generateCoachingReportPDF } from "@/lib/pdf/generate-report";
 
-/**
- * GET /api/reports/[id]/pdf
- * Generate and download a coaching report as PDF
- *
- * Returns:
- * - PDF file with report branding and content
- */
 export async function GET(_request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const reportId = params.id;
-
-    // Create Supabase client
     const supabase = await createClient();
-
-    // Get current user (may be null for guests)
     const {
       data: { user },
     } = await supabase.auth.getUser();
 
-    // Fetch report with session details
+    // Fetch report with session for auth
     const { data: report, error: reportError } = await supabase
       .from("reports")
       .select(
@@ -30,49 +18,65 @@ export async function GET(_request: NextRequest, { params }: { params: { id: str
         strengths,
         clarifications,
         per_question_feedback,
-        sessions (
-          user_id,
-          low_anxiety_enabled
-        )
+        pdf_storage_path,
+        sessions (user_id, low_anxiety_enabled)
       `
       )
-      .eq("id", reportId)
+      .eq("id", params.id)
       .single();
 
     if (reportError || !report) {
       return NextResponse.json({ error: "Report not found" }, { status: 404 });
     }
 
-    // Check authorization (user owns session OR it's a guest session)
     const session = report.sessions as { user_id: string | null; low_anxiety_enabled: boolean };
     if (session.user_id && session.user_id !== user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
     }
 
-    // Generate PDF with type casting for dynamic Supabase data
-    const reportData = {
-      strengths: Array.isArray(report.strengths) ? report.strengths : [],
-      clarifications: Array.isArray(report.clarifications) ? report.clarifications : [],
-      per_question_feedback: Array.isArray(report.per_question_feedback)
-        ? report.per_question_feedback
-        : [],
-      isLowAnxietyMode: session.low_anxiety_enabled || false,
-    };
-    const pdfBytes = await generateCoachingReportPDF(reportData);
+    // If PDF already stored, stream from storage
+    if (report.pdf_storage_path) {
+      const { data: file, error: downloadError } = await supabase.storage
+        .from("reports")
+        .download(report.pdf_storage_path);
+      if (!downloadError && file) {
+        return new NextResponse(file, {
+          status: 200,
+          headers: {
+            "Content-Type": "application/pdf",
+            "Content-Disposition": `attachment; filename="report-${params.id}.pdf"`,
+          },
+        });
+      }
+    }
 
-    // Convert Uint8Array to Buffer for proper Response compatibility
-    const pdfBuffer = Buffer.from(pdfBytes);
+    // Generate PDF on the fly
+    const pdfBytes = await generateCoachingReportPDF({
+      strengths: report.strengths as unknown[],
+      clarifications: report.clarifications as unknown[],
+      per_question_feedback: report.per_question_feedback as unknown[],
+      isLowAnxietyMode: session.low_anxiety_enabled,
+    });
 
-    // Return PDF file as Response
-    return new Response(pdfBuffer, {
+    // Upload PDF for future requests
+    const storagePath = `${params.id}/report.pdf`;
+    const service = createServiceRoleClient();
+    await service.storage.from("reports").upload(storagePath, pdfBytes, {
+      contentType: "application/pdf",
+      upsert: true,
+    });
+
+    await service.from("reports").update({ pdf_storage_path: storagePath }).eq("id", params.id);
+
+    return new NextResponse(pdfBytes, {
+      status: 200,
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="coaching-report-${reportId}.pdf"`,
-        "Content-Length": pdfBuffer.length.toString(),
+        "Content-Disposition": `attachment; filename="report-${params.id}.pdf"`,
       },
     });
   } catch (error) {
-    console.error("Error generating PDF:", error);
+    console.error("Unexpected error in GET /api/reports/[id]/pdf:", error);
     return NextResponse.json({ error: "Failed to generate PDF" }, { status: 500 });
   }
 }

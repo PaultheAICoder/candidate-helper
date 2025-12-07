@@ -77,6 +77,18 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Enforce audio availability via system_config (service role)
+    if (data.mode === "audio") {
+      const service = createServiceRoleClient();
+      const { data: audioEnabled } = await service.rpc("is_audio_mode_enabled");
+      if (audioEnabled === false) {
+        return NextResponse.json(
+          { error: "Audio mode temporarily unavailable. Please use text mode." },
+          { status: 503 }
+        );
+      }
+    }
+
     // Create session record
     const { data: session, error: sessionError } = await supabase
       .from("sessions")

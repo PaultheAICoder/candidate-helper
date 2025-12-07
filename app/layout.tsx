@@ -22,6 +22,13 @@ export const metadata: Metadata = {
     siteName: "Cindy from Cinder",
     locale: "en_US",
     type: "website",
+    images: ["/images/cindy-avatar.svg"],
+  },
+  twitter: {
+    card: "summary",
+    title: "Cindy from Cinder - AI Interview Coach",
+    description: "Free AI interview and application coach for job seekers",
+    images: ["/images/cindy-avatar.svg"],
   },
 };
 

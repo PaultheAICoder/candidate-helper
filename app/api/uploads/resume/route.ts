@@ -3,43 +3,9 @@ import { createClient } from "@/lib/supabase/server";
 import { scanFile } from "@/lib/security/virus-scan";
 import { detectAndRedactPII } from "@/lib/security/pii-detection";
 import { parseResume, extractSkills, extractSeniority } from "@/lib/openai/resume-parser";
+import { extractTextFromFile, ALLOWED_MIMETYPES } from "@/lib/uploads/extract-text";
 
 const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB
-const ALLOWED_MIMETYPES = [
-  "application/pdf",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .docx
-  "text/plain", // .txt
-  "text/markdown", // .md
-];
-
-/**
- * Extract text from different file types
- */
-async function extractTextFromFile(
-  file: File,
-  buffer: Buffer
-): Promise<string> {
-  const mimetype = file.type;
-
-  if (mimetype === "application/pdf") {
-    // For MVP, require text file or use pdf-parse
-    // For now, return helpful error
-    throw new Error(
-      "PDF parsing requires additional setup. Please upload as TXT or MD file for MVP."
-    );
-  } else if (
-    mimetype ===
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-  ) {
-    // For .docx, we would need mammoth library
-    // For MVP, return helpful error
-    throw new Error("DOCX support coming soon. Please export to PDF or TXT.");
-  } else if (mimetype === "text/plain" || mimetype === "text/markdown") {
-    return buffer.toString("utf-8");
-  } else {
-    throw new Error(`Unsupported file type: ${mimetype}`);
-  }
-}
 
 export async function POST(request: NextRequest) {
   try {
@@ -74,7 +40,7 @@ export async function POST(request: NextRequest) {
     if (!ALLOWED_MIMETYPES.includes(file.type)) {
       return NextResponse.json(
         {
-          error: `Unsupported file type. Supported: PDF, TXT, MD. Got: ${file.type}`,
+          error: `Unsupported file type. Supported: PDF, DOCX, TXT, MD. Got: ${file.type}`,
         },
         { status: 400 }
       );

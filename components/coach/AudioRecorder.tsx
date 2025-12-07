@@ -9,6 +9,7 @@ const EXTENSION_DURATION = 30; // +30 seconds once
 
 interface AudioRecorderProps {
   onTranscript: (transcript: string, isPartial: boolean) => void;
+  onFinal?: (data: { transcript: string; durationSeconds: number; retakeUsed: boolean; extensionUsed: boolean }) => void;
   onRecordingStart?: () => void;
   onRecordingStop?: () => void;
   disabled?: boolean;
@@ -17,6 +18,7 @@ interface AudioRecorderProps {
 
 export function AudioRecorder({
   onTranscript,
+  onFinal,
   onRecordingStart,
   onRecordingStop,
   disabled = false,
@@ -130,6 +132,15 @@ export function AudioRecorder({
 
       setCaptions(transcript);
       onTranscript(transcript, isPartial);
+
+      if (!isPartial && onFinal) {
+        onFinal({
+          transcript,
+          durationSeconds: duration,
+          retakeUsed,
+          extensionUsed,
+        });
+      }
     } catch (err) {
       const message = err instanceof Error ? err.message : "Transcription error";
       setError(message);

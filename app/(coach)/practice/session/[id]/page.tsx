@@ -1,421 +1,342 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnswerInput } from "@/components/coach/AnswerInput";
 import { AudioRecorder } from "@/components/coach/AudioRecorder";
-import { MicTestModal } from "@/components/coach/MicTestModal";
-import { CoachingFeedback } from "@/components/coach/CoachingFeedback";
-import { Button } from "@/components/ui/Button";
-import type { PerQuestionFeedback } from "@/types/models";
 
 interface Question {
   id: string;
-  text: string;
-  order: number;
-  category: string;
-  followUpQuestion?: string;
-  followUpUsed?: boolean;
+  question_text: string;
+  question_order: number;
 }
 
-interface Session {
+interface SessionDetails {
   id: string;
-  mode: "audio" | "text";
-  lowAnxietyEnabled: boolean;
-  perQuestionCoaching: boolean;
+  question_count: number;
+  low_anxiety_enabled: boolean;
 }
 
-interface SessionPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function SessionPage({ params }: SessionPageProps) {
+export default function ActiveSessionPage({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const sessionId = params.id;
-
-  const [session, setSession] = useState<Session | null>(null);
+  const [session, setSession] = useState<SessionDetails | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [currentIdx, setCurrentIdx] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [answeredQuestions, setAnsweredQuestions] = useState<Set<string>>(new Set());
-  const [showMicTest, setShowMicTest] = useState(false);
-  const [micTestPassed, setMicTestPassed] = useState(false);
-  const [currentTranscript, setCurrentTranscript] = useState("");
-  const [showFollowUp, setShowFollowUp] = useState(false);
-  const [followUpQuestion, setFollowUpQuestion] = useState<string | null>(null);
-  const [showCoachingModal, setShowCoachingModal] = useState(false);
-  const [currentCoaching, setCurrentCoaching] = useState<PerQuestionFeedback | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [mode, setMode] = useState<"audio" | "text">("text");
+  const [pendingNext, setPendingNext] = useState(false);
+  const [pendingCompletion, setPendingCompletion] = useState(false);
+  const [draftAnswers, setDraftAnswers] = useState<Record<string, string>>({});
+  const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
+  const [draftLoaded, setDraftLoaded] = useState(false);
+  const [restored, setRestored] = useState(false);
 
-  // Fetch session and questions on mount
   useEffect(() => {
-    async function fetchSessionAndQuestions() {
-      setIsLoading(true);
-      setError(null);
-
+    const loadData = async () => {
       try {
-        // Fetch session details
-        const sessionResponse = await fetch(`/api/sessions/${sessionId}`);
-        if (!sessionResponse.ok) {
-          throw new Error("Failed to fetch session details");
+        const sessionRes = await fetch(`/api/sessions/${params.id}`, { cache: "no-store" });
+        if (!sessionRes.ok) {
+          setError("Session not found");
+          return;
         }
-        const sessionData = await sessionResponse.json();
+        const sessionData = await sessionRes.json();
         setSession({
           id: sessionData.id,
-          mode: sessionData.mode,
-          lowAnxietyEnabled: sessionData.low_anxiety_enabled,
-          perQuestionCoaching: sessionData.per_question_coaching || false,
+          question_count: sessionData.question_count,
+          low_anxiety_enabled: sessionData.low_anxiety_enabled ?? false,
         });
+        setMode(sessionData.mode);
 
-        // Show mic test if audio mode and first question
-        if (sessionData.mode === "audio" && currentQuestionIndex === 0 && !micTestPassed) {
-          setShowMicTest(true);
-        }
-
-        // Fetch questions
-        const questionsResponse = await fetch(`/api/sessions/${sessionId}/questions`, {
-          method: "POST",
+        const questionsRes = await fetch(`/api/sessions/${params.id}/questions`, {
+          cache: "no-store",
         });
-
-        if (!questionsResponse.ok) {
-          const errorData = await questionsResponse.json();
-          throw new Error(errorData.error || "Failed to fetch questions");
+        if (!questionsRes.ok) {
+          setError("Unable to load questions for this session.");
+          return;
         }
-
-        const data = await questionsResponse.json();
-        setQuestions(data.questions || []);
+        const questionsData = await questionsRes.json();
+        setQuestions(questionsData.questions || []);
+        setDraftLoaded(false); // re-fetch draft after questions load
       } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
+        console.error(err);
+        setError("An unexpected error occurred while loading the session.");
       } finally {
         setIsLoading(false);
       }
-    }
+    };
 
-    fetchSessionAndQuestions();
-  }, [sessionId]);
+    loadData();
+  }, [params.id]);
 
-  const handleSubmitAnswer = async (answerText: string) => {
-    if (!questions[currentQuestionIndex]) return;
+  const currentQuestion = useMemo(() => questions[currentIdx], [questions, currentIdx]);
 
-    setIsSubmitting(true);
-    setError(null);
-
+  const loadDraft = useCallback(async () => {
+    if (!session || questions.length === 0 || draftLoaded) return;
     try {
-      const response = await fetch("/api/answers", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          sessionId,
-          questionId: questions[currentQuestionIndex].id,
-          transcriptText: answerText,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to submit answer");
-      }
-
-      const answerData = await response.json();
-
-      // Mark question as answered
-      const newAnswered = new Set(answeredQuestions);
-      newAnswered.add(questions[currentQuestionIndex].id);
-      setAnsweredQuestions(newAnswered);
-
-      // Handle per-question coaching if enabled
-      if (session?.perQuestionCoaching && !session?.lowAnxietyEnabled) {
-        try {
-          const coachingResponse = await fetch(
-            `/api/sessions/${sessionId}/coaching?perQuestion=true`,
-            {
-              method: "POST",
-            }
-          );
-
-          if (coachingResponse.ok) {
-            const coachingData = await coachingResponse.json();
-            if (coachingData.feedback) {
-              setCurrentCoaching(coachingData.feedback);
-              setShowCoachingModal(true);
-            }
+      const res = await fetch(`/api/sessions/${params.id}/draft`, { cache: "no-store" });
+      if (!res.ok) return;
+      const data = await res.json();
+      const draft = data.draft as
+        | {
+            currentQuestionId?: string;
+            currentIndex?: number;
+            answers?: Record<string, { text?: string }>;
+            mode?: "audio" | "text";
+            updatedAt?: string;
           }
-        } catch (err) {
-          console.error("Error fetching per-question coaching:", err);
-          // Continue without coaching if it fails
+        | null;
+      if (draft?.answers) {
+        const mapped: Record<string, string> = {};
+        Object.entries(draft.answers).forEach(([qid, value]) => {
+          if (value?.text) mapped[qid] = value.text;
+        });
+        setDraftAnswers(mapped);
+      }
+      let nextIndex: number | null = null;
+      if (typeof draft?.currentIndex === "number" && draft.currentIndex < questions.length) {
+        nextIndex = draft.currentIndex;
+      } else if (draft?.currentQuestionId) {
+        const idx = questions.findIndex((q) => q.id === draft.currentQuestionId);
+        if (idx >= 0) nextIndex = idx;
+      } else if (draft?.answers && Object.keys(draft.answers).length > 0) {
+        // Fallback: continue after the highest-ordered answered question
+        const answeredIds = new Set(Object.keys(draft.answers));
+        const maxAnsweredIdx = questions.reduce((max, q, idx) => {
+          if (answeredIds.has(q.id) && idx > max) return idx;
+          return max;
+        }, -1);
+        if (maxAnsweredIdx >= 0) {
+          nextIndex = Math.min(maxAnsweredIdx + 1, questions.length - 1);
         }
-      } else if (answerData.followUp && !session?.lowAnxietyEnabled) {
-        // Handle follow-up question if present
-        setFollowUpQuestion(answerData.followUp);
-        setShowFollowUp(true);
+      }
+      if (nextIndex !== null && nextIndex >= 0 && nextIndex < questions.length) {
+        setCurrentIdx(nextIndex);
+      }
+      if (draft?.mode) setMode(draft.mode);
+      if (draft?.updatedAt) setLastSavedAt(draft.updatedAt);
+      setRestored(true);
+    } catch {
+      // silent draft load failure
+    } finally {
+      setDraftLoaded(true);
+    }
+  }, [draftLoaded, params.id, questions, session]);
+
+  useEffect(() => {
+    void loadDraft();
+  }, [loadDraft]);
+
+  const handleAnswerSubmit = useCallback(
+    async (
+      answer: string,
+      extras?: { durationSeconds?: number; retakeUsed?: boolean; extensionUsed?: boolean }
+    ) => {
+      if (!session || !currentQuestion) return;
+
+      const previousIndex = currentIdx;
+      const nextIndex = previousIndex + 1;
+      const isLastQuestion = nextIndex >= questions.length;
+
+      setIsSubmitting(true);
+      setError(null);
+
+      if (isLastQuestion) {
+        setPendingCompletion(true);
       } else {
-        // Move to next question or results page
-        if (currentQuestionIndex < questions.length - 1) {
-          setCurrentQuestionIndex(currentQuestionIndex + 1);
-          setCurrentTranscript("");
+        setPendingNext(true);
+        setCurrentIdx(nextIndex); // optimistic advance
+      }
+
+      try {
+        const payload = {
+          sessionId: session.id,
+          questionId: currentQuestion.id,
+          transcriptText: answer,
+          durationSeconds: extras?.durationSeconds,
+          retakeUsed: extras?.retakeUsed,
+          extensionUsed: extras?.extensionUsed,
+          isFollowUp: false,
+        };
+
+        const res = await fetch("/api/answers", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) {
+          const data = await res.json();
+          throw new Error(data.error || "Failed to submit answer");
+        }
+
+        if (isLastQuestion) {
+      await fetch(`/api/sessions/${session.id}/draft`, { method: "DELETE" });
+      router.push(`/practice/results/${session.id}`);
         } else {
-          // All questions answered, navigate to results
-          router.push(`/practice/results/${sessionId}`);
+          setDraftAnswers((prev) => {
+            const next = { ...prev };
+            delete next[currentQuestion.id];
+            return next;
+          });
         }
+      } catch (err) {
+        if (!isLastQuestion) {
+          setCurrentIdx(previousIndex); // rollback optimistic jump
+        }
+        setError(err instanceof Error ? err.message : "Failed to submit answer");
+      } finally {
+        setPendingNext(false);
+        setPendingCompletion(false);
+        setIsSubmitting(false);
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    },
+    [currentIdx, currentQuestion, questions.length, router, session]
+  );
 
-  const handleTranscript = (text: string, isPartial: boolean) => {
-    setCurrentTranscript(text);
-    if (!isPartial) {
-      handleSubmitAnswer(text);
-    }
-  };
+  const saveDraft = useCallback(async () => {
+    if (!session || !currentQuestion) return;
+    if (isSubmitting || pendingNext || pendingCompletion) return;
 
-  const handleFollowUpAnswer = async (answerText: string) => {
-    if (!followUpQuestion) return;
+    const hasContent = Object.keys(draftAnswers).length > 0;
+    if (!hasContent && currentIdx === 0) return;
 
-    setIsSubmitting(true);
+    const payload = {
+      currentQuestionId: currentQuestion.id,
+      currentIndex: currentIdx,
+      mode,
+      answers: Object.fromEntries(
+        Object.entries(draftAnswers).map(([id, text]) => [id, { text }])
+      ),
+    };
+
     try {
-      // Submit follow-up answer
-      await fetch("/api/answers", {
+      const res = await fetch(`/api/sessions/${session.id}/draft`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          sessionId,
-          questionId: questions[currentQuestionIndex].id,
-          transcriptText: answerText,
-          isFollowUp: true,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
-
-      setShowFollowUp(false);
-      setFollowUpQuestion(null);
-
-      // Move to next question
-      if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setCurrentTranscript("");
-      } else {
-        router.push(`/practice/results/${sessionId}`);
+      if (res.ok) {
+        const saved = await res.json();
+        setLastSavedAt(saved.draft?.updatedAt ?? new Date().toISOString());
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to submit follow-up");
-    } finally {
-      setIsSubmitting(false);
+      console.warn("Autosave failed", err);
     }
-  };
+  }, [currentIdx, currentQuestion, draftAnswers, isSubmitting, mode, pendingCompletion, pendingNext, session]);
 
-  const handleDismissCoachingModal = () => {
-    setShowCoachingModal(false);
-    setCurrentCoaching(null);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      void saveDraft();
+    }, 20000);
+    return () => clearInterval(interval);
+  }, [saveDraft]);
 
-    // Move to next question
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setCurrentTranscript("");
-    } else {
-      // All questions answered, navigate to results
-      router.push(`/practice/results/${sessionId}`);
-    }
-  };
-
-  // Loading state
   if (isLoading) {
     return (
       <main className="flex min-h-screen items-center justify-center">
-        <div className="text-center space-y-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="text-lg text-muted-foreground">Loading your interview questions...</p>
+        <div className="space-y-2 text-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          <p className="text-muted-foreground">Loading your session...</p>
         </div>
       </main>
     );
   }
 
-  // Error state
-  if (error && questions.length === 0) {
+  if (error || !session || questions.length === 0) {
     return (
       <main className="flex min-h-screen items-center justify-center px-6">
-        <div className="max-w-md w-full text-center space-y-4">
-          <div className="text-destructive text-5xl mb-4">⚠️</div>
-          <h1 className="text-2xl font-bold">Unable to Load Questions</h1>
-          <p className="text-muted-foreground">{error}</p>
-          <Button onClick={() => router.push("/practice")}>Return to Setup</Button>
-        </div>
-      </main>
-    );
-  }
-
-  const currentQuestion = questions[currentQuestionIndex];
-
-  if (!currentQuestion) {
-    return (
-      <main className="flex min-h-screen items-center justify-center px-6">
-        <div className="max-w-md w-full text-center space-y-4">
-          <h1 className="text-2xl font-bold">No Questions Available</h1>
-          <p className="text-muted-foreground">
-            There was a problem loading your questions. Please try again.
-          </p>
-          <Button onClick={() => router.push("/practice")}>Return to Setup</Button>
-        </div>
-      </main>
-    );
-  }
-
-  // Coaching modal view
-  if (showCoachingModal && currentCoaching) {
-    return (
-      <main className="flex min-h-screen flex-col py-12 px-6">
-        <div className="w-full max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold">Coaching Feedback</h1>
-            <p className="text-muted-foreground mt-2">Here's how you did on this question</p>
-          </div>
-
-          <CoachingFeedback
-            feedback={currentCoaching}
-            questionNumber={currentQuestionIndex + 1}
-            lowAnxietyMode={session?.lowAnxietyEnabled}
-          />
-
-          <div className="mt-8 flex justify-center">
-            <Button size="lg" onClick={handleDismissCoachingModal}>
-              Next Question
-            </Button>
-          </div>
-        </div>
-      </main>
-    );
-  }
-
-  // Follow-up modal view
-  if (showFollowUp && followUpQuestion) {
-    return (
-      <main className="flex min-h-screen flex-col py-12 px-6">
-        <div className="w-full max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold">Follow-up Question</h1>
-            <p className="text-muted-foreground mt-2">Let's dive a bit deeper to help you shine!</p>
-          </div>
-
-          {error && (
-            <div className="mb-6 bg-destructive/10 border border-destructive/50 text-destructive rounded-lg p-4">
-              <p className="text-sm font-medium">{error}</p>
-            </div>
-          )}
-
-          {session?.mode === "audio" ? (
-            <AudioRecorder
-              onTranscript={handleTranscript}
-              showCaptions={true}
-              disabled={isSubmitting}
-            />
-          ) : (
-            <AnswerInput
-              questionText={followUpQuestion}
-              questionNumber={currentQuestionIndex + 1}
-              totalQuestions={questions.length}
-              onSubmit={handleFollowUpAnswer}
-              isSubmitting={isSubmitting}
-              isFollowUp={true}
-            />
-          )}
+        <div className="max-w-md text-center space-y-3">
+          <h1 className="text-2xl font-bold">Something went wrong</h1>
+          <p className="text-muted-foreground">{error || "Session is unavailable."}</p>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="flex min-h-screen flex-col py-12 px-6">
-      {/* Mic Test Modal */}
-      <MicTestModal
-        open={showMicTest && session?.mode === "audio"}
-        onClose={() => setShowMicTest(false)}
-        onMicCheckPassed={() => {
-          setMicTestPassed(true);
-          setShowMicTest(false);
-        }}
-      />
-
-      {/* Header */}
-      <div className="w-full max-w-4xl mx-auto mb-8">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold">Practice Session</h1>
-            {session?.mode === "audio" && (
-              <p className="text-sm text-muted-foreground mt-1">Audio Mode • Mic Test Required</p>
-            )}
+    <main className="min-h-screen px-6 py-10">
+      <div className="max-w-4xl mx-auto space-y-6">
+        <header className="space-y-2">
+          <p className="text-sm text-muted-foreground">
+            Session {session.id.slice(0, 8)} •{" "}
+            {session.low_anxiety_enabled ? "Low-Anxiety Mode" : "Standard Mode"}
+          </p>
+          <h1 className="text-3xl font-bold">Answer the question below</h1>
+          <p className="text-muted-foreground">
+            Share a concise STAR story. You can use Ctrl/Cmd + Enter to submit.
+          </p>
+          {(pendingNext || pendingCompletion) && (
+            <p className="text-sm text-primary">
+              {pendingCompletion ? "Saving your final answer..." : "Saved! Loading the next question..."}
+            </p>
+          )}
+          <div className="flex items-center gap-3 text-sm text-muted-foreground">
+            <span>
+              Autosave every 20s{" "}
+              {restored ? "• Draft restored" : ""}
+              {lastSavedAt ? ` • Last saved ${new Date(lastSavedAt).toLocaleTimeString()}` : ""}
+            </span>
+            <button
+              className="text-primary underline"
+              onClick={() => {
+                setDraftAnswers({});
+                setLastSavedAt(null);
+                setRestored(false);
+                if (session) {
+                  fetch(`/api/sessions/${session.id}/draft`, { method: "DELETE" }).catch(() => {});
+                }
+              }}
+            >
+              Discard draft
+            </button>
           </div>
-          <Button
-            variant="outline"
-            onClick={() => {
-              if (confirm("Are you sure you want to exit? Your progress will be saved.")) {
-                router.push("/practice");
-              }
-            }}
-          >
-            Save & Exit
-          </Button>
-        </div>
-      </div>
+        </header>
 
-      {/* Error Banner (for submission errors) */}
-      {error && (
-        <div className="w-full max-w-4xl mx-auto mb-6">
+        {error && (
           <div className="bg-destructive/10 border border-destructive/50 text-destructive rounded-lg p-4">
             <p className="text-sm font-medium">{error}</p>
+            <button
+              className="text-sm underline mt-2"
+              onClick={() => window.location.reload()}
+            >
+              Retry
+            </button>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Answer Input or Audio Recorder */}
-      {session?.mode === "audio" && micTestPassed ? (
-        <div className="w-full max-w-4xl mx-auto">
-          <div className="mb-6 rounded-lg bg-blue-50 border border-blue-200 p-4">
-            <p className="text-sm font-medium text-blue-900">{currentQuestion.text}</p>
-            <p className="text-xs text-blue-700 mt-2">
-              Question {currentQuestionIndex + 1} of {questions.length}
-            </p>
-          </div>
-
-          {currentTranscript && (
-            <div className="mb-6 rounded-lg bg-gray-50 border border-gray-200 p-4">
-              <p className="text-xs font-medium text-gray-600 mb-2">Your Answer (so far):</p>
-              <p className="text-sm text-gray-800">{currentTranscript}</p>
-            </div>
-          )}
-
+        {mode === "audio" ? (
           <AudioRecorder
-            onTranscript={handleTranscript}
-            showCaptions={true}
-            disabled={isSubmitting}
+            onTranscript={(text) => {
+              if (currentQuestion) {
+                setDraftAnswers((prev) => ({ ...prev, [currentQuestion.id]: text }));
+              }
+            }}
+            onFinal={(data) => {
+              handleAnswerSubmit(data.transcript, {
+                durationSeconds: data.durationSeconds,
+                retakeUsed: data.retakeUsed,
+                extensionUsed: data.extensionUsed,
+              });
+            }}
           />
-        </div>
-      ) : (
-        <AnswerInput
-          questionText={currentQuestion.text}
-          questionNumber={currentQuestionIndex + 1}
-          totalQuestions={questions.length}
-          onSubmit={handleSubmitAnswer}
-          isSubmitting={isSubmitting}
-        />
-      )}
-
-      {/* Navigation Hint */}
-      {currentQuestionIndex > 0 && (
-        <div className="w-full max-w-4xl mx-auto mt-6 text-center text-sm text-muted-foreground">
-          <p>
-            You've answered {answeredQuestions.size} of {questions.length} questions
-          </p>
-        </div>
-      )}
+        ) : (
+          <AnswerInput
+            questionText={currentQuestion.question_text}
+            questionNumber={currentIdx + 1}
+            totalQuestions={questions.length}
+            onSubmit={(text) => handleAnswerSubmit(text)}
+            onChangeText={(value) => {
+              if (currentQuestion) {
+                setDraftAnswers((prev) => ({ ...prev, [currentQuestion.id]: value }));
+              }
+            }}
+            initialAnswer={draftAnswers[currentQuestion.id] ?? ""}
+            isSubmitting={isSubmitting}
+          />
+        )}
+      </div>
     </main>
   );
 }

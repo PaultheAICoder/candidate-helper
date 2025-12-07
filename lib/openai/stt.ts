@@ -6,10 +6,6 @@
 import OpenAI from "openai";
 import { trackCost } from "@/lib/utils/cost-tracker";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 interface TranscriptionResult {
   text: string;
   partial: boolean;
@@ -28,6 +24,10 @@ export async function transcribeAudio(
   partial: boolean = false
 ): Promise<TranscriptionResult> {
   try {
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+      dangerouslyAllowBrowser: true,
+    });
     // Convert blob to File for OpenAI SDK
     const file = new File([audioBlob], "audio.webm", { type: "audio/webm" });
 

@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/Label";
 import { Select } from "@/components/ui/Select";
 import { Textarea } from "@/components/ui/Textarea";
 import { Checkbox } from "@/components/ui/Checkbox";
+import { verifyRecaptcha } from "@/lib/security/recaptcha";
 import type { SessionMode } from "@/types/models";
 import type { Session } from "@supabase/supabase-js";
 
@@ -26,6 +27,8 @@ export default function PracticeSetupPage() {
   const [jobDescription, setJobDescription] = useState("");
   const [tailorQuestions, setTailorQuestions] = useState(true);
   const [perQuestionCoaching, setPerQuestionCoaching] = useState(false);
+  const [isUploadingResume, setIsUploadingResume] = useState(false);
+  const [resumeError, setResumeError] = useState<string | null>(null);
 
   // Check if user is authenticated
   useEffect(() => {
@@ -50,6 +53,8 @@ export default function PracticeSetupPage() {
 
     setResumeFile(file);
     setResumeParseStatus("Uploading and parsing resume...");
+    setResumeError(null);
+    setIsUploadingResume(true);
 
     try {
       const formData = new FormData();
@@ -63,15 +68,21 @@ export default function PracticeSetupPage() {
       if (!response.ok) {
         const errorData = await response.json();
         setResumeParseStatus(`Error: ${errorData.error}`);
+        setResumeError(errorData.error || "Upload failed");
         setResumeFile(null);
         return;
       }
 
       const data = await response.json();
       setResumeParseStatus(`✓ Resume parsed! Found ${data.parsedData.skills?.length || 0} skills`);
+      setResumeError(null);
     } catch (err) {
-      setResumeParseStatus(err instanceof Error ? `Error: ${err.message}` : "Error parsing resume");
+      const message = err instanceof Error ? err.message : "Error parsing resume";
+      setResumeParseStatus(`Error: ${message}`);
+      setResumeError(message);
       setResumeFile(null);
+    } finally {
+      setIsUploadingResume(false);
     }
   };
 
@@ -87,7 +98,14 @@ export default function PracticeSetupPage() {
         jobDescriptionText: jobDescription || undefined,
         tailorQuestions: user && tailorQuestions,
         perQuestionCoaching: perQuestionCoaching && !lowAnxietyMode,
+        recaptchaToken: undefined as string | undefined,
       };
+
+      const recaptcha = await verifyRecaptcha();
+      if (!recaptcha.success) {
+        throw new Error(recaptcha.error || "reCAPTCHA verification failed");
+      }
+      sessionPayload.recaptchaToken = recaptcha.token;
 
       const response = await fetch("/api/sessions", {
         method: "POST",
@@ -139,12 +157,12 @@ export default function PracticeSetupPage() {
 
               {/* Resume Upload */}
               <div className="mb-4">
-                <Label className="mb-2 block">Resume (TXT or MD)</Label>
+                <Label className="mb-2 block">Resume (PDF, DOCX, TXT, or MD)</Label>
                 <div className="flex items-center gap-2">
                   <input
                     type="file"
                     id="resume-input"
-                    accept=".txt,.md"
+                    accept=".pdf,.docx,.txt,.md"
                     onChange={(e) => {
                       const file = e.currentTarget.files?.[0];
                       if (file) handleResumeUpload(file);
@@ -152,9 +170,42 @@ export default function PracticeSetupPage() {
                     className="flex-1 text-sm"
                     aria-label="Upload resume file"
                   />
+                  {isUploadingResume && (
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <div className="h-3 w-3 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                      <span>Uploading...</span>
+                    </div>
+                  )}
                 </div>
                 {resumeParseStatus && (
                   <p className="text-xs mt-2 text-muted-foreground">{resumeParseStatus}</p>
+                )}
+                {resumeError && (
+                  <div className="mt-2 flex items-center gap-3">
+                    <button
+                      type="button"
+                      className="text-sm underline text-primary"
+                      onClick={() => {
+                        if (resumeFile) {
+                          void handleResumeUpload(resumeFile);
+                        }
+                      }}
+                      disabled={isUploadingResume}
+                    >
+                      {isUploadingResume ? "Retrying..." : "Retry upload"}
+                    </button>
+                    <button
+                      type="button"
+                      className="text-sm underline"
+                      onClick={() => {
+                        setResumeError(null);
+                        setResumeParseStatus(null);
+                        setResumeFile(null);
+                      }}
+                    >
+                      Choose another file
+                    </button>
+                  </div>
                 )}
               </div>
 
@@ -360,8 +411,8 @@ export default function PracticeSetupPage() {
           )}
 
           {/* Start Button */}
-          <Button size="lg" className="w-full" type="submit" disabled={isLoading}>
-            {isLoading ? "Creating Session..." : "Start Practice"}
+          <Button size="lg" className="w-full" type="submit" disabled={isLoading || isUploadingResume}>
+            {isLoading ? "Creating Session..." : isUploadingResume ? "Uploading resume..." : "Start Practice"}
           </Button>
 
           <p className="text-center text-sm text-muted-foreground">

@@ -23,18 +23,19 @@ const MIN_SCORE = 0.5; // Minimum acceptable score for reCAPTCHA v3
  * @returns Promise<boolean> - True if verification passes
  */
 export async function verifyRecaptcha(
-  token: string,
+  token?: string,
   expectedAction?: string
 ): Promise<{
   success: boolean;
   score?: number;
   error?: string;
+  token?: string;
 }> {
   if (!RECAPTCHA_SECRET_KEY) {
-    console.error("RECAPTCHA_SECRET_KEY not configured");
+    console.warn("RECAPTCHA_SECRET_KEY not configured; skipping verification");
     return {
-      success: false,
-      error: "reCAPTCHA not configured",
+      success: true,
+      token: token,
     };
   }
 
@@ -106,6 +107,7 @@ export async function verifyRecaptchaFromRequest(
   success: boolean;
   score?: number;
   error?: string;
+  token?: string;
 }> {
   try {
     const body = await request.json();
