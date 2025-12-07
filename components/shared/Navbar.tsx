@@ -24,6 +24,9 @@ export function Navbar() {
 
           <div className="flex items-center gap-4">
             <Button asChild variant="ghost">
+              <Link href="/resume-builder">Build Resume</Link>
+            </Button>
+            <Button asChild variant="ghost">
               <Link href="/login">Sign In</Link>
             </Button>
             <Button asChild>
