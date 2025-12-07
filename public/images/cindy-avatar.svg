@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Cindy avatar">
+  <circle cx="60" cy="60" r="58" fill="#F5F3FF" stroke="#6B5BFF" stroke-width="4"/>
+  <circle cx="60" cy="54" r="26" fill="#FFFFFF" stroke="#6B5BFF" stroke-width="3"/>
+  <path d="M38 92c4-10 12-16 22-16s18 6 22 16" fill="#6B5BFF" opacity="0.15"/>
+  <circle cx="50" cy="52" r="4" fill="#6B5BFF"/>
+  <circle cx="70" cy="52" r="4" fill="#6B5BFF"/>
+  <path d="M50 66c3 3 7 4 10 4s7-1 10-4" stroke="#6B5BFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M42 42c4-6 10-9 18-9s14 3 18 9" stroke="#6B5BFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

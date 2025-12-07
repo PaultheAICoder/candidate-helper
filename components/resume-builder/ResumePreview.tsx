@@ -18,11 +18,11 @@ interface ResumePreviewProps {
 export function ResumePreview({ resumeData, onBack, onEdit }: ResumePreviewProps) {
   const [isExporting, setIsExporting] = useState(false);
 
-  async function handleExportPDF() {
+  async function handleExport(format: 'pdf' | 'docx' | 'txt') {
     setIsExporting(true);
 
     try {
-      const response = await fetch("/api/resume-builder/export/pdf");
+      const response = await fetch(`/api/resume-builder/export/${format}`);
 
       if (!response.ok) {
         throw new Error("Export failed");
@@ -32,14 +32,14 @@ export function ResumePreview({ resumeData, onBack, onEdit }: ResumePreviewProps
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `${resumeData.basic_info?.full_name?.replace(/\s+/g, "_") || "resume"}_${Date.now()}.pdf`;
+      a.download = `${resumeData.basic_info?.full_name?.replace(/\s+/g, "_") || "resume"}_${Date.now()}.${format}`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
     } catch (error) {
       console.error("Export error:", error);
-      alert("Failed to export PDF. Please try again.");
+      alert(`Failed to export ${format.toUpperCase()}. Please try again.`);
     } finally {
       setIsExporting(false);
     }
@@ -179,23 +179,41 @@ export function ResumePreview({ resumeData, onBack, onEdit }: ResumePreviewProps
 
       {/* Actions */}
       <div className="flex flex-col gap-4 max-w-3xl mx-auto">
-        <button
-          onClick={handleExportPDF}
-          disabled={isExporting}
-          className="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:bg-gray-400 flex items-center justify-center gap-2"
-        >
-          {isExporting ? (
-            <>
-              <Loader2 className="w-5 h-5 animate-spin" />
-              Generating PDF...
-            </>
-          ) : (
-            <>
-              <Download className="w-5 h-5" />
-              Download as PDF
-            </>
-          )}
-        </button>
+        <div className="grid grid-cols-3 gap-3">
+          <button
+            onClick={() => handleExport('pdf')}
+            disabled={isExporting}
+            className="px-4 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:bg-gray-400 flex flex-col items-center justify-center gap-1"
+          >
+            <Download className="w-5 h-5" />
+            <span className="text-sm">PDF</span>
+          </button>
+
+          <button
+            onClick={() => handleExport('docx')}
+            disabled={isExporting}
+            className="px-4 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 disabled:bg-gray-400 flex flex-col items-center justify-center gap-1"
+          >
+            <Download className="w-5 h-5" />
+            <span className="text-sm">Word</span>
+          </button>
+
+          <button
+            onClick={() => handleExport('txt')}
+            disabled={isExporting}
+            className="px-4 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-700 disabled:bg-gray-400 flex flex-col items-center justify-center gap-1"
+          >
+            <Download className="w-5 h-5" />
+            <span className="text-sm">Text</span>
+          </button>
+        </div>
+
+        {isExporting && (
+          <div className="flex items-center justify-center gap-2 text-gray-600">
+            <Loader2 className="w-4 h-4 animate-spin" />
+            <span className="text-sm">Generating download...</span>
+          </div>
+        )}
 
         <div className="text-center text-sm text-gray-600">
           <p>Your resume will be saved automatically.</p>
