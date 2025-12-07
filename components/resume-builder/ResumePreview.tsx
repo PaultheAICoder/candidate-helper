@@ -17,6 +17,28 @@ interface ResumePreviewProps {
 
 export function ResumePreview({ resumeData, onBack, onEdit }: ResumePreviewProps) {
   const [isExporting, setIsExporting] = useState(false);
+  const [isPreparingPractice, setIsPreparingPractice] = useState(false);
+
+  async function handleUseForPractice() {
+    setIsPreparingPractice(true);
+
+    try {
+      const response = await fetch("/api/resume-builder/use-for-practice", {
+        method: "POST",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to prepare resume");
+      }
+
+      const { redirectTo } = await response.json();
+      window.location.href = redirectTo;
+    } catch (error) {
+      console.error("Prepare practice error:", error);
+      alert("Failed to prepare resume for practice. Please try again.");
+      setIsPreparingPractice(false);
+    }
+  }
 
   async function handleExport(format: 'pdf' | 'docx' | 'txt') {
     setIsExporting(true);
@@ -215,14 +237,23 @@ export function ResumePreview({ resumeData, onBack, onEdit }: ResumePreviewProps
           </div>
         )}
 
+        <button
+          onClick={handleUseForPractice}
+          disabled={isPreparingPractice}
+          className="w-full px-6 py-3 border-2 border-purple-600 text-purple-600 font-semibold rounded-lg hover:bg-purple-50 disabled:bg-gray-100 disabled:border-gray-400 disabled:text-gray-400 flex items-center justify-center gap-2"
+        >
+          {isPreparingPractice ? (
+            <>
+              <Loader2 className="w-5 h-5 animate-spin" />
+              Preparing...
+            </>
+          ) : (
+            "Use This Resume for Interview Practice →"
+          )}
+        </button>
+
         <div className="text-center text-sm text-gray-600">
           <p>Your resume will be saved automatically.</p>
-          <p className="mt-1">
-            Want to use this for interview practice?{" "}
-            <a href="/practice" className="text-blue-600 hover:text-blue-700 underline">
-              Start a practice session
-            </a>
-          </p>
         </div>
       </div>
 
