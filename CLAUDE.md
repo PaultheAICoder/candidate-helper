@@ -164,22 +164,36 @@ app/
 
 ### Local Setup
 
+**NOTE**: This project uses **hosted Supabase** (not local). The database is at `jbgbgiehjvviuvirkfcg.supabase.co`. You do NOT need to run `supabase start` or have Docker installed for local development.
+
 ```bash
 # Install dependencies
 npm install
 
-# Start Supabase locally (requires Supabase CLI + Docker)
-supabase start
-
-# Run migrations + seed data (question bank, system config)
-supabase db reset
-
-# Generate TypeScript types from Supabase schema
-npm run db:types
-
 # Start Next.js dev server
 npm run dev  # http://localhost:3000
 ```
+
+For database schema changes, apply migrations directly to the hosted Supabase instance.
+
+### Production Deployment
+
+For production, Next.js requires a build step:
+
+```bash
+# Build for production
+npm run build
+
+# Start production server
+npm run start  # http://localhost:3000
+```
+
+**Deployment options:**
+- **Vercel (recommended)**: Automatic builds on push, handles `build` + `start` automatically
+- **Docker**: Can containerize with `next build` + `next start` in Dockerfile
+- **Self-hosted**: Run `npm run build && npm run start` on any Node.js server
+
+The project is configured for Vercel deployment (see `vercel.json` if present, or auto-detected by Vercel).
 
 ### Testing
 
@@ -200,18 +214,17 @@ npm run test:a11y
 
 ### Database
 
+**NOTE**: Using hosted Supabase - manage via Supabase Dashboard at https://supabase.com/dashboard
+
 ```bash
-# Create new migration
-supabase migration new <name>
+# View/edit data in Supabase Studio (hosted)
+# Navigate to: https://supabase.com/dashboard/project/jbgbgiehjvviuvirkfcg
 
-# Apply migrations
-supabase db reset
+# Generate TypeScript types from hosted schema
+npm run db:types
 
-# View data in Supabase Studio
-# Navigate to http://localhost:54323
-
-# Test RLS policies
-supabase db diff --use-migra
+# For schema changes, use Supabase Dashboard SQL Editor
+# or apply migrations via Supabase CLI linked to the hosted project
 ```
 
 ### API Testing
