@@ -15,6 +15,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 All code changes MUST comply with these five core principles (see `.specify/memory/constitution.md`):
 
 ### 1. Accessibility-First
+
 - WCAG 2.2 AA conformance is MANDATORY
 - Text-only fallback required for all features
 - Use Radix UI primitives for ARIA compliance
@@ -22,6 +23,7 @@ All code changes MUST comply with these five core principles (see `.specify/memo
 - Keyboard navigation and screen reader compatibility
 
 ### 2. Ethical AI & Data Privacy
+
 - AI MUST NOT fabricate facts or invent experiences
 - Audio recordings NEVER stored (transcripts only)
 - Strip SSN/DOB from resumes, keep location for ATS
@@ -29,6 +31,7 @@ All code changes MUST comply with these five core principles (see `.specify/memo
 - Plain-English consent before uploads
 
 ### 3. Performance & Cost Control
+
 - TTS ≤700ms, ASR ≤300ms, coaching ≤3s, report ≤10s
 - Monthly OpenAI budget cap: $300
 - Gracefully degrade to text-only when approaching cap
@@ -36,11 +39,13 @@ All code changes MUST comply with these five core principles (see `.specify/memo
 - Session limits: 2/day/user, 10 questions OR 30 minutes max
 
 ### 4. Progressive Enhancement
+
 - Guest mode: text-only, generic questions, no auth required
 - Registered mode: resume upload, audio recording, tailored questions, job digest
 - Never hard-gate core coaching value
 
 ### 5. User Safety & Consent
+
 - Eligibility: 18+, U.S.-based (MVP scope)
 - Virus scan all uploads (ClamAV on Railway)
 - reCAPTCHA on forms, rate limiting per IP/account
@@ -62,6 +67,7 @@ This project uses spec-driven development. All feature work follows this sequenc
 **Current Feature**: `001-ai-interview-coach` in `specs/001-ai-interview-coach/`
 
 Key documents:
+
 - `spec.md` - 6 user stories (US1-US6), functional requirements, success criteria
 - `plan.md` - Technical architecture, constitution check, project structure
 - `data-model.md` - Database schema (10 core entities + 3 supporting tables)
@@ -92,6 +98,7 @@ app/
 ### Data Flow
 
 **Guest Session (US1)**:
+
 1. POST /api/sessions (user_id=NULL, mode='text') → session created
 2. POST /api/sessions/[id]/questions → fetch generic soft-skills from seed data
 3. User answers via text → POST /api/answers (transcript_text)
@@ -99,6 +106,7 @@ app/
 5. View report → strengths, clarifications, per-question coaching
 
 **Registered Session (US2)**:
+
 1. User signs in (Supabase Auth: Google OAuth or email magic link)
 2. POST /api/uploads/resume → ClamAV scan → PII detection → OpenAI parsing → Supabase Storage
 3. POST /api/sessions (user_id, mode='audio', resume/JD attached)
@@ -109,6 +117,7 @@ app/
 8. Download PDF → GET /api/reports/[id]/pdf (pdf-lib generation)
 
 **Job Digest (US4)**:
+
 1. Cron: POST /api/cron/curate-jobs (noon PT) → parse ZipRecruiter/Indeed/Mac's List emails via OpenAI
 2. User opts in → POST /api/users/digest-optin → double opt-in email sent
 3. Cron: POST /api/cron/send-digests (5pm PT) → calculate match scores (hard skills 50%, soft 20%, seniority 20%, logistics 10%)
@@ -118,6 +127,7 @@ app/
 ### Database Schema
 
 **Core entities** (see `data-model.md` for full schema):
+
 - `users` - registered accounts with eligibility, preferences, consent flags
 - `profiles` - career details, resume metadata (1:1 with users)
 - `sessions` - practice sessions with mode, anxiety flag, draft-save JSONB
@@ -130,6 +140,7 @@ app/
 - `consents` - versioned Terms/Privacy agreements
 
 **Row Level Security**:
+
 - Users isolated to own data via `auth.uid() = user_id`
 - Guest sessions allowed via `user_id IS NULL`
 - Recruiters access transcripts if `recruiter_access_granted = TRUE` OR performance threshold (avg STAR ≥4.2, completion ≥70%)
@@ -138,6 +149,7 @@ app/
 ### Key Utilities
 
 **OpenAI Integration** (`lib/openai/`):
+
 - `coaching.ts` - GPT-4o prompts for STAR scoring, narrative feedback, example answers (NEVER fabricate)
 - `questions.ts` - Generate tailored questions from resume/JD
 - `stt.ts` - Whisper transcription (partial=true for real-time, partial=false for final)
@@ -145,16 +157,19 @@ app/
 - `resume-parser.ts` - Structured output extraction (name, email, skills, experience, education)
 
 **Security** (`lib/security/`):
+
 - `virus-scan.ts` - HTTP client to ClamAV service on Railway
 - `pii-detection.ts` - Regex for SSN/DOB with age validation, replace with [REDACTED]
 - `rate-limit.ts` - Per-IP and per-account limits
 - `recaptcha.ts` - reCAPTCHA v3 verification (score threshold ≥0.5)
 
 **Scoring** (`lib/scoring/`):
+
 - `star.ts` - Parse OpenAI responses for Situation/Task/Action/Result scores (1-5 each), specificity/impact/clarity tags
 - `job-match.ts` - 0-100 match score algorithm with weighted criteria, must-have skills gate
 
 **Cost Control** (`lib/utils/cost-tracker.ts`):
+
 - Insert `cost_tracking` row after each OpenAI API call
 - Check `get_current_month_cost() >= $285` before enabling audio mode
 - Set `audio_mode_enabled = FALSE` in `system_config` when cap approached
@@ -185,10 +200,11 @@ For production, Next.js requires a build step:
 npm run build
 
 # Start production server
-npm run start  # http://localhost:3000
+npm run start  # http://localhost:3333
 ```
 
 **Deployment options:**
+
 - **Vercel (recommended)**: Automatic builds on push, handles `build` + `start` automatically
 - **Docker**: Can containerize with `next build` + `next start` in Dockerfile
 - **Self-hosted**: Run `npm run build && npm run start` on any Node.js server
@@ -256,12 +272,14 @@ curl -X POST http://localhost:3000/api/sessions \
 4. **Phase 9-11**: Admin, Security, Polish (can run parallel with user stories)
 
 Each task in `tasks.md` follows format: `- [ ] T### [P?] [Story?] Description with file path`
+
 - `[P]` = parallelizable (different files, no dependencies)
 - `[US1]`-`[US6]` = user story labels for traceability
 
 ### Testing Each User Story
 
 Validate independently at checkpoints:
+
 - **US1**: Guest can complete text session → receive coaching → see sign-up nudge
 - **US2**: User uploads resume → records audio → receives tailored questions
 - **US3**: User views 3-pane report → downloads PDF
@@ -272,6 +290,7 @@ Validate independently at checkpoints:
 ### Code Review Checklist
 
 Before committing feature code:
+
 1. ✅ Constitutional compliance: Accessibility (text fallback?), Privacy (no fabrication?), Performance (cost tracked?), Progressive (guest value?), Safety (consent obtained?)
 2. ✅ File paths match task description in tasks.md
 3. ✅ TypeScript strict mode, no `any` types
@@ -343,6 +362,7 @@ RECAPTCHA_SECRET_KEY=
 ## Performance Targets
 
 Monitor these SLOs in production:
+
 - TTS first byte: ≤700ms
 - ASR partial transcripts: ≤300ms
 - Coaching generation: ≤3s
@@ -351,6 +371,7 @@ Monitor these SLOs in production:
 - Page loads (p95): ≤1.5s
 
 If targets missed, investigate:
+
 - Vercel Edge Functions for OpenAI routes (reduce cold starts)
 - Streaming responses (don't buffer entire response)
 - React.memo on heavy components (AudioRecorder, CoachingFeedback)
@@ -359,6 +380,7 @@ If targets missed, investigate:
 ## Deployment Checklist
 
 Before deploying to production:
+
 1. Environment variables set in Vercel
 2. Supabase project created (not local)
 3. ClamAV service deployed on Railway
